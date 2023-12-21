@@ -19,9 +19,9 @@ SSH Service
 ## Items collected
 |Name|Description|type|OID|Key and additional info|
 |----|-----------|----|----|----|
-|型番|Description of this component: G700 Media Gateway|`SNMP agent`|.1.3.6.1.4.1.6889.2.9.1.1.3.0|cmgHardwareFaultMask<p>Update:10 min</p>|
-|ハードウェアモジュールの健康状態|ハードウェアモジュールに不具合が発生したときに、不具合発生フラグ1が立ちます。|`SNMP agent`|.1.3.6.1.4.1.6889.2.9.1.1.10.12.0|cmgDescription<p>Update:1 day</p>|
-|ハードウェアステータス|POSTのステータス|`SNMP agent`|.1.3.6.1.4.1.6889.2.9.1.1.10.12.0|cmgHardwareStatusMask<p>Update:5 min</p>|
+|型番|Description of this component: G700 Media Gateway|`SNMP agent`|.1.3.6.1.4.1.6889.2.9.1.1.3.0|cmgDescription<p>Update:10 min</p>|
+|ハードウェアモジュールの健康状態|ハードウェアモジュールに不具合が発生したときに、不具合発生フラグ1が立ちます。|`SNMP agent`|.1.3.6.1.4.1.6889.2.9.1.1.10.12.0|cmgHardwareFaultMask<p>Update:1 day</p>|
+|ハードウェアステータス|POSTのステータス|`SNMP agent`|.1.3.6.1.4.1.6889.2.9.1.1.10.13.0|cmgHardwareStatusMask<p>Update:5 min</p>|
 
 
 ## Triggers
