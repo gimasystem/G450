@@ -4,14 +4,10 @@ Zabbix6.0でAvaya製 VoIP-GW G450を監視するための監視テンプレー�
 ## Zabbixへのインポート方法
 *see also https://www.zabbix.com/documentation/current/jp/manual/xml_export_import/templates
 
-## G450 初期状態からの設定方法 ( G450 configuration )
-* PCのIPアドレスを変更する
-* G450とPCをLANケーブルで接続する
-* PCからSSH接続する(推奨：teraterm)
-* ID/Passを入力する
-* G450にSSH接続したことを確認する
-* SNMP設定する
-* 設定コピー
+## G450のSNMP設定手順 ( G450 configuration )
+* PCからG450にSSH接続する(推奨：teraterm)
+* "snmp-server community read-only public read-write private" と入力してSNMPの設定を追加する (読み込み用のコミュニテイ名を"public" 書き込み可のコミュニテイ名を"private")
+* "copy running-config startup-config” と入力して設定を保存する。
 
 ## Template links
 SSH Service
