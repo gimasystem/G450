@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>6.0</version>
-    <date>2023-12-05T15:10:33Z</date>
+    <date>2023-12-22T07:54:04Z</date>
     <groups>
         <group>
             <uuid>36bff6c29af64692839d077febfc7079</uuid>
@@ -13,15 +13,12 @@
             <uuid>43595147a0874c7395a6bfdb43b1a069</uuid>
             <template>Avaya G450 by SNMP</template>
             <name>Avaya G450 by SNMP</name>
-            <description>Template Avaya G430/G450  VOIP-GW</description>
-            <templates>
-                <template>
-                    <name>Generic by SNMP</name>
-                </template>
-                <template>
-                    <name>SSH Service</name>
-                </template>
-            </templates>
+            <description>Zabbix monitoring Template for the Avaya Branch Gateway
+tested with Avaya G450(firmware Vintage 36.26.0)
+
+(Japanese)
+Avaya製 VoIP-GW用の Zabbix6監視テンプレートです
+Avaya G450 (ファームウェアバージョン 36.26.0)でテストしました。</description>
             <groups>
                 <group>
                     <name>Templates/Network devices</name>
@@ -38,22 +35,22 @@
                     <history>365d</history>
                     <trends>0</trends>
                     <value_type>TEXT</value_type>
-                    <description>Description of this component: G700 Media Gateway</description>
+                    <description>Description of this component: G700 Media Gateway
+
+(Japanese)
+筐体の型番名</description>
                     <inventory_link>TYPE_FULL</inventory_link>
                 </item>
                 <item>
                     <uuid>7e06602e8613471f8c604163f6aa5a77</uuid>
-                    <name>ハードウェアモジュールの健康状態</name>
+                    <name>筐体の健康状態</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.10.12.0</snmp_oid>
                     <key>cmgHardwareFaultMask</key>
                     <delay>10m</delay>
                     <trends>0</trends>
                     <value_type>TEXT</value_type>
-                    <description>ハードウェアモジュールに不具合が発生したときに、不具合発生フラグ1が立ちます。
-電源ユニット、冷却ファン、筐体内温度やその他アラームに不具合が発生すると、不具合の内容に応じたビットが1になります。
-
-Each bit of this value set to '1' indicates a specific fault
+                    <description>Each bit of this value set to '1' indicates a specific fault
 in the module.
 Octets are numbered in the order in which they appear in the PDU.
 Bits are numbered from the most-significant leftmost bit in the
@@ -101,11 +98,25 @@ range.
 20      2/4   0x08   TDM Test Expansion Box 2 Failure
 21      2/5   0x04   PoE Power Supply Base Box Failure
 22      2/6   0x02   PoE Power Supply Expansion Box 1 Failure
-23      2/7   0x01   PoE Power Supply Expansion Box 2 Failure</description>
+23      2/7   0x01   PoE Power Supply Expansion Box 2 Failure
+
+(Japanese)
+電源モジュール異常を検知したときや冷却ファン、筐体内温度に異常が発生したときに値が変化します。
+
+ハードウェアモジュールに不具合が発生したときに、不具合発生フラグ1が立ちます。
+電源ユニット、冷却ファン、筐体内温度やその他アラームに不具合が発生すると、不具合の内容に応じたビットが1になります。
+0オクテット目の上位4ビットは冷却ファンのステータス、
+0オクテット目の下位4ビットは筐体内温度のステータス、
+1オクテット目はパワーサプライのステータス
+2オクテット目はその他項目のアラームを表します。
+
+●作者コメント
+この値が0以外のときは、何かのハードウェア異常が発生していると考えられるので
+各種ステータスを確認し、対処する必要があります。</description>
                 </item>
                 <item>
                     <uuid>77f6d515163e448680221f756db2644a</uuid>
-                    <name>ハードウェア不具合フラグ（POST）</name>
+                    <name>ハードウェアモジュールステータス</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.10.13.0</snmp_oid>
                     <key>cmgHardwareStatusMask</key>
@@ -157,7 +168,33 @@ alert is on.
 35     4/3   0x10	POST ADC test failed.
 36     4/4   0x08	POST CPLD access test failed.
 37-39  4/5-7	Unused.
-40-47  5/0-7	Unused.</description>
+40-47  5/0-7	Unused.
+
+(Japanese)
+メディアゲートウェイのコントローラやDSP、I/Oポート、LANモジュールなどに異常が発生したときに値が変化します。
+左端のビットを0bitとしてカウントし、最右端はビットは47bitとしてカウントされます。 (ケイジャンナンバリング)
+ケイジャンナンバリングではオクテットを跨いでカウントされ、
+第1オクテット目の0ビットは (ケイジャンナンバリングで)8ビット目としてカウントされます。
+異常を検知すると、検知した項目にビット1が設定されます
+
+0 bit：メディアゲートウェイのアラートLEDが点灯しています。
+1 bit：メディアゲートウェイのアラートLEDが2つ以上点灯しています。
+2 bit：未使用
+3 bit：未使用
+4 bit:コミュニケーションコントローラの死活監視アラートが発報
+5 bit:未使用
+6 bit:未使用
+7 bit:未使用
+8 bit:HDLCコントローラのローカルループバック試験に失敗
+9 bit:イーサネットコントローラのローカルループバック試験に失敗
+10 bit:イーサネットコントローラの物理ローカルループバック試験に失敗
+11 bit:I/Oポートの読み書き試験に失敗
+
+
+●作者コメント
+cmgHardwareFaultMaskと同様、値が0以外のときは、何かのハードウェア異常が発生していると考えられるます。
+各種ステータスを確認し、対処する必要があります。
+&quot;00 00 00 00 00 00&quot;が正常。他の値の場合、異常が発生している可能性が考えられます。</description>
                 </item>
                 <item>
                     <uuid>bfae48b10f5847b1bc456b826108bce5</uuid>
@@ -195,12 +232,19 @@ alert is on.
                     <history>365d</history>
                     <trends>0</trends>
                     <value_type>TEXT</value_type>
-                    <description>Serial number of this gateway</description>
+                    <description>Serial number of this gateway
+
+(Japanese)
+ゲートウェイ本体のシリアル番号
+
+●作者コメント
+CPUモジュールとG450本体はそれぞれ別個のシリアル番号を持ちます。
+ホストインベントリのシリアル番号として設定されます</description>
                     <inventory_link>SERIALNO_A</inventory_link>
                 </item>
                 <item>
                     <uuid>51aea3bf450d4af28bd828063ea0c796</uuid>
-                    <name>CPU平均負荷率（1分間）</name>
+                    <name>CPU負荷率（1分間平均）</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.1.1.1.5.10</snmp_oid>
                     <key>genCpuAverageUtilization</key>
@@ -211,14 +255,14 @@ monitoring is enabled and full window of results has been captured.
 Sample window is 60 seconds. Number of samples is 12, which results
 a sample interval of 5 seconds.
 
-(日本語)
-CPU使用率のモニタリングが有効になっているときにパーセンテージで示します。
-結果のフルウィンドウがキャプチャされている場合、
-5秒間隔でサンプルした過去60秒の平均値となります</description>
+(Japanese)
+CPU使用率をパーセンテージで示します。
+CPU使用率のモニタリング設定が有効になっている必要があります。
+過去60秒間のCPU負荷率を5秒間隔でサンプルした平均値です。</description>
                 </item>
                 <item>
                     <uuid>2e082fcd064d4c46a8c7ee4666ecd717</uuid>
-                    <name>CPU負荷率(5秒間)</name>
+                    <name>CPU負荷率</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.1.1.1.6.10</snmp_oid>
                     <key>genCpuCurrentUtilization</key>
@@ -227,7 +271,12 @@ CPU使用率のモニタリングが有効になっているときにパーセ�
                     <trends>60d</trends>
                     <units>%</units>
                     <description>The current  CPU utilization in percentage if the monitoring is enabled.
-The sample interval is 5 seconds.</description>
+The sample interval is 5 seconds.
+
+(Japanese)
+現在のCPU使用率をパーセンテージで示します。
+CPU使用率のモニタリング設定が有効になっている必要があります。
+過去5秒間の負荷率です。</description>
                 </item>
                 <item>
                     <uuid>39f2f47d26f3472c93b5b75c42eea22d</uuid>
@@ -236,25 +285,34 @@ The sample interval is 5 seconds.</description>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.2.4.0</snmp_oid>
                     <key>genMemUtilizationAllocationFailures</key>
                     <delay>5m</delay>
-                    <description>The total number of the memory that fails allocation.</description>
+                    <description>The total number of the memory that fails allocation.
+
+(Japanese)
+割り当てに失敗したメモリの合計</description>
                 </item>
                 <item>
                     <uuid>8d95403c74644e79b949ea0622ba5988</uuid>
-                    <name>動的に割り当てられたメモリ</name>
+                    <name>利用可能な動的割り当てメモリ</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.2.3.3.0</snmp_oid>
                     <key>genMemUtilizationDynAllocMemAvailable</key>
                     <units>byte</units>
-                    <description>The available dynamically allocated memory in Bytes.</description>
+                    <description>The available dynamically allocated memory in Bytes.
+
+(Japanese)
+利用可能な動的割り当てメモリ（Byte）</description>
                 </item>
                 <item>
                     <uuid>3c3ea389f20148fbb61618cec7a73578</uuid>
-                    <name>使用中メモリ</name>
+                    <name>動的割当メモリ</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.2.3.1.0</snmp_oid>
                     <key>genMemUtilizationDynAllocMemUsed</key>
                     <units>byte</units>
-                    <description>The dynamically allocated memory has been used in Bytes.</description>
+                    <description>The dynamically allocated memory has been used in Bytes.
+
+(Japanese)
+動的に割り当てられたメモリ(バイト単位)</description>
                 </item>
                 <item>
                     <uuid>c67404cac215467dae80ea04c1d79429</uuid>
@@ -272,7 +330,10 @@ The sample interval is 5 seconds.</description>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.2.6.1.3.10</snmp_oid>
                     <key>genMemUtilizationPercentUsed</key>
                     <units>percent</units>
-                    <description>The percenatge of memory used.</description>
+                    <description>The percenatge of memory used.
+
+(Japanese)
+メモリ使用率 (パーセント)</description>
                 </item>
                 <item>
                     <uuid>d7ac661aa9bf49b08e292abd3a1f87b6</uuid>
@@ -282,7 +343,10 @@ The sample interval is 5 seconds.</description>
                     <key>genMemUtilizationPhyRam</key>
                     <delay>1h</delay>
                     <units>byte</units>
-                    <description>The total size of the physical ram in Bytes.</description>
+                    <description>The total size of the physical ram in Bytes.
+
+(Japanese)
+物理メモリの合計(Byte単位)</description>
                 </item>
                 <item>
                     <uuid>3d68198c488b44a59b1bf7fb2877333f</uuid>
