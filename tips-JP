@@ -1,0 +1,8 @@
+
+
+
+# 筐体内温度を確認する
+筐体内温度を確認するとき
+
+show temp
+https://documentation.avaya.com/ja-JP/bundle/AvayaG450BranchGatewayCLIReference_10.2.x/page/showTemp.html
