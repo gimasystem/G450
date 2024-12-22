@@ -16,6 +16,8 @@ Zabbix6.0でAvaya製 VoIP-GW G450を監視するための監視テンプレー�
 no links
 
 ## Items collected
+Documentation not updated
+
 |Name|Description|type|OID|Key and additional info|
 |----|-----------|----|----|----|
 |型番(詳細)|Description of this component: G700 Media Gateway|`SNMP agent`|.1.3.6.1.4.1.6889.2.9.1.1.3.0|cmgDescription<p>Update:1 day</p>|
