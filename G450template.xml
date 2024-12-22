@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>6.0</version>
-    <date>2023-12-22T07:54:04Z</date>
+    <date>2024-12-22T13:24:55Z</date>
     <groups>
         <group>
             <uuid>36bff6c29af64692839d077febfc7079</uuid>
@@ -27,7 +27,7 @@ Avaya G450 (ファームウェアバージョン 36.26.0)でテストしまし�
             <items>
                 <item>
                     <uuid>d7b5191a70bb48ae9bc8a8ef9d263272</uuid>
-                    <name>型番(詳細)</name>
+                    <name>Component Description</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.3.0</snmp_oid>
                     <key>cmgDescription</key>
@@ -40,10 +40,16 @@ Avaya G450 (ファームウェアバージョン 36.26.0)でテストしまし�
 (Japanese)
 筐体の型番名</description>
                     <inventory_link>TYPE_FULL</inventory_link>
+                    <tags>
+                        <tag>
+                            <tag>class</tag>
+                            <value>hardware</value>
+                        </tag>
+                    </tags>
                 </item>
                 <item>
                     <uuid>7e06602e8613471f8c604163f6aa5a77</uuid>
-                    <name>筐体の健康状態</name>
+                    <name>Hardware Sensor Health</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.10.12.0</snmp_oid>
                     <key>cmgHardwareFaultMask</key>
@@ -110,13 +116,13 @@ range.
 1オクテット目はパワーサプライのステータス
 2オクテット目はその他項目のアラームを表します。
 
-●作者コメント
-この値が0以外のときは、何かのハードウェア異常が発生していると考えられるので
+●テンプレ作者コメント
+この値が0以外のときは、何かのハードウェア異常が発生していると考えられます。
 各種ステータスを確認し、対処する必要があります。</description>
                 </item>
                 <item>
                     <uuid>77f6d515163e448680221f756db2644a</uuid>
-                    <name>ハードウェアモジュールステータス</name>
+                    <name>Hardware Status</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.10.13.0</snmp_oid>
                     <key>cmgHardwareStatusMask</key>
@@ -191,14 +197,13 @@ alert is on.
 11 bit:I/Oポートの読み書き試験に失敗
 
 
-●作者コメント
-cmgHardwareFaultMaskと同様、値が0以外のときは、何かのハードウェア異常が発生していると考えられるます。
-各種ステータスを確認し、対処する必要があります。
-&quot;00 00 00 00 00 00&quot;が正常。他の値の場合、異常が発生している可能性が考えられます。</description>
+●テンプレ作者コメント
+&quot;00 00 00 00 00 00&quot;が正常値ですが、
+cmgHardwareFaultMaskと同様、この値が以外のときは、何かのハードウェア異常が発生していると考えられるので、G450のハードウェアステータスを確認し、対処する必要があります。</description>
                 </item>
                 <item>
                     <uuid>bfae48b10f5847b1bc456b826108bce5</uuid>
-                    <name>型番</name>
+                    <name>Hardware Type</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.1.0</snmp_oid>
                     <key>cmgHWType</key>
@@ -213,21 +218,28 @@ cmgHardwareFaultMaskと同様、値が0以外のときは、何かのハード�
                 </item>
                 <item>
                     <uuid>1a56411ad24949bba617eb1ca1b3efa2</uuid>
-                    <name>本体ハードウェアバージョン</name>
+                    <name>Hardware Vintage</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.5.0</snmp_oid>
                     <key>cmgHWVintage</key>
                     <delay>1d</delay>
                     <history>365d</history>
                     <trends>0</trends>
-                    <description>Hardware version of this gateway</description>
+                    <description>Hardware version of this gateway
+
+(Japanese)
+G450本体のハードウェアリビジョン（世代）です。
+
+●テンプレ作者コメント
+古いリビジョンに対応していないファームウェアがあります。
+ファームウェアを更新するときは、リビジョンに対応したファームウェアを適用してください</description>
                 </item>
                 <item>
                     <uuid>f75d70eaf3724e26b74870f278e683b9</uuid>
-                    <name>シリアル番号（本体）</name>
+                    <name>Serial Number</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.4.0</snmp_oid>
-                    <key>cmgSerialNumbe</key>
+                    <key>cmgSerialNumber</key>
                     <delay>1d</delay>
                     <history>365d</history>
                     <trends>0</trends>
@@ -237,18 +249,21 @@ cmgHardwareFaultMaskと同様、値が0以外のときは、何かのハード�
 (Japanese)
 ゲートウェイ本体のシリアル番号
 
-●作者コメント
+●テンプレ作者コメント
 CPUモジュールとG450本体はそれぞれ別個のシリアル番号を持ちます。
-ホストインベントリのシリアル番号として設定されます</description>
+ホストインベントリのシリアル番号として設定されます。
+
+CPUモジュール単体が不具合を起こすことは極めて少ないものの、バージョンアップなどでCPUモジュールを交換する可能性があります。
+CPUモジュールとG450本体のシリアル番号はそれぞれ個別に管理しておいたほうが無難です。</description>
                     <inventory_link>SERIALNO_A</inventory_link>
                 </item>
                 <item>
                     <uuid>51aea3bf450d4af28bd828063ea0c796</uuid>
-                    <name>CPU負荷率（1分間平均）</name>
+                    <name>CPU Utilization (1min Average)</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.1.1.1.5.10</snmp_oid>
                     <key>genCpuAverageUtilization</key>
-                    <history>30d</history>
+                    <history>10d</history>
                     <units>%</units>
                     <description>The curent average CPU utilization in percentage if the
 monitoring is enabled and full window of results has been captured.
@@ -257,30 +272,66 @@ a sample interval of 5 seconds.
 
 (Japanese)
 CPU使用率をパーセンテージで示します。
-CPU使用率のモニタリング設定が有効になっている必要があります。
-過去60秒間のCPU負荷率を5秒間隔でサンプルした平均値です。</description>
+1分間のCPU負荷率を5秒間隔でサンプルした平均値です。
+CPU使用率のモニタリング設定が有効になっている必要があります。</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>cpu</value>
+                        </tag>
+                    </tags>
                 </item>
                 <item>
                     <uuid>2e082fcd064d4c46a8c7ee4666ecd717</uuid>
-                    <name>CPU負荷率</name>
+                    <name>CPU Utilization (current)</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.1.1.1.6.10</snmp_oid>
                     <key>genCpuCurrentUtilization</key>
                     <delay>5s</delay>
                     <history>1d</history>
-                    <trends>60d</trends>
+                    <trends>30d</trends>
                     <units>%</units>
                     <description>The current  CPU utilization in percentage if the monitoring is enabled.
 The sample interval is 5 seconds.
 
 (Japanese)
 現在のCPU使用率をパーセンテージで示します。
-CPU使用率のモニタリング設定が有効になっている必要があります。
-過去5秒間の負荷率です。</description>
+CPU使用率のモニタリング設定が有効になっている必要があります。</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>cpu</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>46306be92ea546eabd0fd4da0d4654d2</uuid>
+                    <name>CPU Utilization Enable Monitoring</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.1.1.1.2.10</snmp_oid>
+                    <key>genCpuUtilizationEnableMonitoring</key>
+                    <delay>1h</delay>
+                    <history>7d</history>
+                    <trends>0</trends>
+                    <description>Enable or disable CPU utilization monitoring. The default is disabled(1).
+
+(japanese)
+CPUモニタ設定が有効になっているとき、2(enabled)になります
+デフォルトでは無効(disabled)になっているので、
+CPUの負荷率を監視するときは、CLIからCPUモニタリングを有効に設定する必要があります。</description>
+                    <valuemap>
+                        <name>CpuUtilizationEnableMonitoring</name>
+                    </valuemap>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>cpu</value>
+                        </tag>
+                    </tags>
                 </item>
                 <item>
                     <uuid>39f2f47d26f3472c93b5b75c42eea22d</uuid>
-                    <name>割り当てに失敗したメモリの合計数</name>
+                    <name>total count of memory failures</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.2.4.0</snmp_oid>
                     <key>genMemUtilizationAllocationFailures</key>
@@ -288,11 +339,17 @@ CPU使用率のモニタリング設定が有効になっている必要があ�
                     <description>The total number of the memory that fails allocation.
 
 (Japanese)
-割り当てに失敗したメモリの合計</description>
+メモリの割り当てに失敗した回数</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
+                        </tag>
+                    </tags>
                 </item>
                 <item>
                     <uuid>8d95403c74644e79b949ea0622ba5988</uuid>
-                    <name>利用可能な動的割り当てメモリ</name>
+                    <name>available dynamically allocated memory</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.2.3.3.0</snmp_oid>
                     <key>genMemUtilizationDynAllocMemAvailable</key>
@@ -300,11 +357,17 @@ CPU使用率のモニタリング設定が有効になっている必要があ�
                     <description>The available dynamically allocated memory in Bytes.
 
 (Japanese)
-利用可能な動的割り当てメモリ（Byte）</description>
+利用可能な動的割り当てメモリ（Byte単位）</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
+                        </tag>
+                    </tags>
                 </item>
                 <item>
                     <uuid>3c3ea389f20148fbb61618cec7a73578</uuid>
-                    <name>動的割当メモリ</name>
+                    <name>allocated memory</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.2.3.1.0</snmp_oid>
                     <key>genMemUtilizationDynAllocMemUsed</key>
@@ -313,52 +376,546 @@ CPU使用率のモニタリング設定が有効になっている必要があ�
 
 (Japanese)
 動的に割り当てられたメモリ(バイト単位)</description>
-                </item>
-                <item>
-                    <uuid>c67404cac215467dae80ea04c1d79429</uuid>
-                    <name>メモリサイズ(Byte単位)</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.2.2.0</snmp_oid>
-                    <key>genMemUtilizationOperationalImage</key>
-                    <units>byte</units>
-                    <description>The total size of the operational image in Bytes.</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
+                        </tag>
+                    </tags>
                 </item>
                 <item>
                     <uuid>316f442dc8814619837f967c3f193b3f</uuid>
-                    <name>メモリ使用率(%)</name>
+                    <name>Memory Usage</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.2.6.1.3.10</snmp_oid>
                     <key>genMemUtilizationPercentUsed</key>
-                    <units>percent</units>
+                    <delay>3m</delay>
+                    <trends>731d</trends>
+                    <units>%</units>
                     <description>The percenatge of memory used.
 
 (Japanese)
-メモリ使用率 (パーセント)</description>
+メモリ使用率 (パーセント表記)</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
+                        </tag>
+                    </tags>
                 </item>
                 <item>
                     <uuid>d7ac661aa9bf49b08e292abd3a1f87b6</uuid>
-                    <name>利用可能メモリサイズ</name>
+                    <name>total size of physical RAM</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.2.6.1.2.10</snmp_oid>
                     <key>genMemUtilizationPhyRam</key>
-                    <delay>1h</delay>
+                    <delay>1d</delay>
+                    <history>30d</history>
+                    <trends>0</trends>
                     <units>byte</units>
                     <description>The total size of the physical ram in Bytes.
 
 (Japanese)
-物理メモリの合計(Byte単位)</description>
+物理メモリサイズ</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
+                        </tag>
+                    </tags>
                 </item>
                 <item>
                     <uuid>3d68198c488b44a59b1bf7fb2877333f</uuid>
-                    <name>メモリサイズ</name>
+                    <name>total size of RAM</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.2.1.0</snmp_oid>
                     <key>genMemUtilizationTotalRAM</key>
                     <delay>1d</delay>
+                    <history>30d</history>
+                    <trends>0</trends>
                     <units>byte</units>
-                    <description>The total size of the ram in MBytes.</description>
+                    <description>The total size of the ram in MBytes.
+
+(Japanese)
+RAMの容量</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
+                        </tag>
+                    </tags>
                 </item>
             </items>
+            <discovery_rules>
+                <discovery_rule>
+                    <uuid>bc39d224a1d449f2b665197a1b641fa6</uuid>
+                    <name>Module discovery</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#SLOT},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.1,{#MODULENAME},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.2,{#MODULESN},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.5,{#MODULEFW},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.8,{#MODULEFAULTMASK},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.10,{#MODULESTATUSMASK},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.11]</snmp_oid>
+                    <key>CmgModuleSlot.discovery</key>
+                    <delay>3h</delay>
+                    <lifetime>1d</lifetime>
+                    <description>discovery
+used SLOT,name,Serial Number,Firmware version,status.
+
+(japanese)
+使用中のモジュール、モジュールの型番、シリアル番号、ファームウェアバージョン、モジュール使用状況やエラーステータスを取得します</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>99ddb8622b1045e39033d93a6e6d52a3</uuid>
+                            <name>ModuleSlot V{#SLOT} FaultMask</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.10.{#SNMPINDEX}</snmp_oid>
+                            <key>cmgModuleFaultMask[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <description>&quot;Each bit of this value set to '1' indicates a specific fault
+	in the module.
+
+	Octets are numbered in the order in which they appear in the PDU.
+	Bits are numbered from the most-significant leftmost bit in the
+	octet (bit 0) to the least-significant rightmost bit (bit 7).
+
+	Cajun numbering continues across octets, so that octet 1 bit 0 is
+	called bit 8 in the Cajun scheme.  That number is also shown below,
+	with the octet value for each single bit set.
+
+    Cajun  Octet Octet
+    bit#   bit#  value	Meaning
+    -----  ----- -----	-------
+    0      0/0   0x80	Media module is in administrative busy-out.
+    1      0/1   0x40	One or more ports on this media module is in administrative
+			busy-out.
+    2      0/2   0x20	Insertion sequence failed.
+    3      0/3       	AWOH data module conflict.
+    4      0/4   0x08	Media module automatic reset occurred.
+    5      0/5   0x04	One or more power-on startup tests failed.
+    6      0/6   0x02	Media module parameter exchange failed.
+    7      0/7       	Unsupported module enrolment.
+    8-15   1/0-7	Unused.</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>Module</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>7d0ce3e3b1f94e33b47ee8b0b493b191</uuid>
+                            <name>ModuleSlot V{#SLOT} Firmware version</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.8.{#SNMPINDEX}</snmp_oid>
+                            <key>cmgModuleFWVersion[{#SNMPINDEX}]</key>
+                            <delay>2h</delay>
+                            <history>1w</history>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <description>Firmware version of this module. This duplicates information available in the Load MIB.  It shows the media module run image version, plus the VoIP engine version if applicable.</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>Module</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>9521f684d6f74c61b7cb3afad34ae9d4</uuid>
+                            <name>ModuleSlot V{#SLOT} SerialNumber</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>cmgModuleSerialNumber[{#SNMPINDEX}]</key>
+                            <delay>2h</delay>
+                            <history>1w</history>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <description>Serial number of this module.  The first 12 characters are meaningful.
+Form is yyLLmmnnnnnn, where
+
+yy = last 2 digits of the year of manufacture
+LL = manufacturing facility, e.g. DR for Denver, Colorado
+mm = month of manufacture, 01 - 12
+nnnnnn = a six-digit sequence number</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>Module</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>597c902602a548b1846a56d206598795</uuid>
+                            <name>ModuleSlot V{#SLOT} Module Name</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.81.8.1.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>cmgModuleSlot[{#SNMPINDEX}]</key>
+                            <delay>2h</delay>
+                            <history>1w</history>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>Module</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>0781db82c0d248fe8a6339664f6e5826</uuid>
+                            <name>ModuleSlot V{#SLOT} ModuleStatusMask</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.11.{#SNMPINDEX}</snmp_oid>
+                            <key>cmgModuleStatusMask[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <description>Each bit of this value set to '1' indicates a specific status condition in the module.
+Octets are numbered in the order in which they appear in the PDU.
+Bits are numbered from the most-significant leftmost bit in the octet (bit 0) to the least-significant rightmost bit (bit 7).
+
+Cajun numbering continues across octets, so that octet 1 bit 0 is called bit 8 in the Cajun scheme.  That number is also shown below, with the octet value for each single bit set.
+
+    Cajun  Octet Octet
+    bit#   bit#  value	Meaning
+    -----  ----- -----	-------
+    0      0/0   0x80	Red LED is on.
+    1      0/1   0x40	Module controlled by ACP on communications controller.
+    2-7    0/2-7	Unused.
+    8-15   1/0-7	Unused.</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>Module</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <uuid>04e6049a6b3a4a05997bf1e805ead492</uuid>
+                    <name>Cooling FAN discovery</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#TEMPERSENSORTYPE},1.3.6.1.2.1.99.1.1.1.1,{#SENSORVALUE},1.3.6.1.2.1.99.1.1.1.4,{#SENSORSTATUS},1.3.6.1.2.1.99.1.1.1.5,{#PHYDESCR},1.3.6.1.2.1.47.1.1.1.1.2,{#SENSORDISP},1.3.6.1.2.1.99.1.1.1.6,{#SENSORSHUTDOWN},1.3.6.1.4.1.6889.2.1.99.1.1.1,{#SENSORHIWARNING},1.3.6.1.4.1.6889.2.1.99.1.1.2,{#SENSORLOWWARNING},1.3.6.1.4.1.6889.2.1.99.1.1.5]</snmp_oid>
+                    <key>FAN.discovery</key>
+                    <delay>3h</delay>
+                    <filter>
+                        <evaltype>OR</evaltype>
+                        <conditions>
+                            <condition>
+                                <macro>{#PHYDESCR}</macro>
+                                <value>Fan</value>
+                                <formulaid>A</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <description>(Japanese)
+G450内部の冷却ファンと筐体温度センサーをアイテムとして登録します。
+
+.1.3.6.1.2.1.99.1.1.1.1/ENTITY-SENSOR-MIB::entPhySensorType</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>51f9c0cc922e4027aecc3cd528cd1fe4</uuid>
+                            <name>{#PHYDESCR}_Shutdown threshold</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.1.99.1.1.1.{#SNMPINDEX}</snmp_oid>
+                            <key>avEntPhySensorHiShutdown[{#SNMPINDEX}]</key>
+                            <delay>2h</delay>
+                            <history>1d</history>
+                            <trends>0</trends>
+                            <units>{#SENSORDISP}</units>
+                            <description>The system generates a warning event when the sensor reading falls and crosses this value</description>
+                            <valuemap>
+                                <name>EntitySensorStatus</name>
+                            </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>fan</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>84beee400cc94fa889a574c2da146eea</uuid>
+                            <name>{#PHYDESCR} HiWarning threshold</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.1.99.1.1.2.{#SNMPINDEX}</snmp_oid>
+                            <key>FanSensorHiWarning[{#SNMPINDEX}]</key>
+                            <delay>2h</delay>
+                            <history>1d</history>
+                            <trends>0</trends>
+                            <units>{#SENSORDISP}</units>
+                            <valuemap>
+                                <name>EntitySensorStatus</name>
+                            </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>fan</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>5ad001a01ad34ec294b0f96bf026e6c7</uuid>
+                            <name>{#PHYDESCR} LoWarning threshold</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.1.99.1.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>FanSensorLoWarning[{#SNMPINDEX}]</key>
+                            <delay>2h</delay>
+                            <history>1d</history>
+                            <trends>0</trends>
+                            <units>{#SENSORDISP}</units>
+                            <valuemap>
+                                <name>EntitySensorStatus</name>
+                            </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>fan</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>6d408174325842d8bc73e050240068f0</uuid>
+                            <name>{#PHYDESCR}_Status</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.99.1.1.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>PhySensorOperStatus[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <history>1d</history>
+                            <description>An object using this data type represents the operational
+status of a physical sensor.
+
+The value 'ok(1)' indicates that the agent can obtain the
+sensor value.
+
+The value 'unavailable(2)' indicates that the agent
+presently cannot obtain the sensor value.
+
+The value 'nonoperational(3)' indicates that the agent
+believes the sensor is broken.  The sensor could have a hard
+failure (disconnected wire), or a soft failure such as out-of-range, jittery, or wildly fluctuating readings.&quot;</description>
+                            <valuemap>
+                                <name>EntitySensorStatus</name>
+                            </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>fan</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>099bbfeb38724069a8f34a938c2d1a28</uuid>
+                            <name>{#PHYDESCR}_{#SENSORDISP}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.99.1.1.1.4.{#SNMPINDEX}</snmp_oid>
+                            <key>PhySensorValue[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <trends>731d</trends>
+                            <units>{#SENSORDISP}</units>
+                            <description>An object using this data type represents the operational
+status of a physical sensor.
+
+The value 'ok(1)' indicates that the agent can obtain the
+sensor value.
+
+The value 'unavailable(2)' indicates that the agent
+presently cannot obtain the sensor value.
+
+The value 'nonoperational(3)' indicates that the agent
+believes the sensor is broken.  The sensor could have a hard
+failure (disconnected wire), or a soft failure such as out-of-range, jittery, or wildly fluctuating readings.&quot;</description>
+                            <valuemap>
+                                <name>EntitySensorStatus</name>
+                            </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>fan</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <uuid>dd5cffbf302149bba427ac92deaed87c</uuid>
+                    <name>Ambient Temperature Sensor discovery</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#TEMPERSENSORTYPE},1.3.6.1.2.1.99.1.1.1.1,{#SENSORVALUE},1.3.6.1.2.1.99.1.1.1.4,{#SENSORSTATUS},1.3.6.1.2.1.99.1.1.1.5,{#PHYDESCR},1.3.6.1.2.1.47.1.1.1.1.2,{#SENSORDISP},1.3.6.1.2.1.99.1.1.1.6,{#SENSORSHUTDOWN},1.3.6.1.4.1.6889.2.1.99.1.1.1,{#SENSORHIWARNING},1.3.6.1.4.1.6889.2.1.99.1.1.2,{#SENSORLOWWARNING},1.3.6.1.4.1.6889.2.1.99.1.1.5]</snmp_oid>
+                    <key>Temperaturediscovery</key>
+                    <delay>3h</delay>
+                    <filter>
+                        <conditions>
+                            <condition>
+                                <macro>{#PHYDESCR}</macro>
+                                <value>Temperature</value>
+                                <formulaid>A</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <description>(Japanese)
+G450内部の筐体温度センサーをアイテムとして登録します。</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>8f9953cb1ef648c2b4f85ddb1d4ad302</uuid>
+                            <name>{#PHYDESCR} HiShutdown Threshold</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.6889.2.1.99.1.1.1.{#SNMPINDEX}</snmp_oid>
+                            <key>AmbientTemperatureSensorHiShutdown[{#SNMPINDEX}]</key>
+                            <delay>2h</delay>
+                            <history>1d</history>
+                            <trends>1d</trends>
+                            <units>°C</units>
+                            <description>The system shuts down when the sensor reading reaches this value
+
+(Japanese)
+筐体温度がこの閾値を超えると、システムがオーバーヒートと判断し停止します。
+冷却FANのステータスも併せて確認する必要があります。</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>temperature</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>8f2d214efcb1456581e470beb8328427</uuid>
+                            <name>{#PHYDESCR} HiWarning Threshold</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.1.99.1.1.2.{#SNMPINDEX}</snmp_oid>
+                            <key>AmbientTemperatureSensorHiWarning[{#SNMPINDEX}]</key>
+                            <delay>2h</delay>
+                            <history>1d</history>
+                            <trends>1d</trends>
+                            <units>°C</units>
+                            <description>The system generates a warning event when the sensor readingrises and crosses this value
+
+(Japanese)
+筐体温度がこの閾値を超えるとアラートを発報します。</description>
+                            <tags>
+                                <tag>
+                                    <tag>class</tag>
+                                    <value>hardware</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>7ec3d83aba9143b49d4ff2d9c8624721</uuid>
+                            <name>{#PHYDESCR} LoWarning Threshold</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.1.99.1.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>AmbientTemperatureSensorLoWarning[{#SNMPINDEX}]</key>
+                            <delay>2h</delay>
+                            <history>1d</history>
+                            <trends>1d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>°C</units>
+                            <tags>
+                                <tag>
+                                    <tag>class</tag>
+                                    <value>hardware</value>
+                                </tag>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>temperature</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>8eb81e6804044ac4903fec546e074c29</uuid>
+                            <name>{#PHYDESCR}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.99.1.1.1.4.{#SNMPINDEX}</snmp_oid>
+                            <key>AmbientTemperature[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <trends>731d</trends>
+                            <units>°C</units>
+                            <description>Ambient Temperature sensor value
+
+(Japanese)
+筐体内温度</description>
+                            <tags>
+                                <tag>
+                                    <tag>class</tag>
+                                    <value>hardware</value>
+                                </tag>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>temperature</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>d41c44ce148d4e0090639c3709077670</uuid>
+                            <name>{#PHYDESCR} Status</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.99.1.1.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>temperature.sensorStatus[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <valuemap>
+                                <name>EntitySensorStatus</name>
+                            </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>class</tag>
+                                    <value>hardware</value>
+                                </tag>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>temperature</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <uuid>b52a108544644640bdabdb8ec632476d</uuid>
+                            <name>{#PHYDESCR}</name>
+                            <ymin_type_1>ITEM</ymin_type_1>
+                            <ymin_item_1>
+                                <host>Avaya G450 by SNMP</host>
+                                <key>AmbientTemperatureSensorLoWarning[{#SNMPINDEX}]</key>
+                            </ymin_item_1>
+                            <ymax_type_1>ITEM</ymax_type_1>
+                            <ymax_item_1>
+                                <host>Avaya G450 by SNMP</host>
+                                <key>AmbientTemperatureSensorHiShutdown[{#SNMPINDEX}]</key>
+                            </ymax_item_1>
+                            <graph_items>
+                                <graph_item>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <color>FF9800</color>
+                                    <calc_fnc>ALL</calc_fnc>
+                                    <item>
+                                        <host>Avaya G450 by SNMP</host>
+                                        <key>AmbientTemperature[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <drawtype>DASHED_LINE</drawtype>
+                                    <color>FF0000</color>
+                                    <calc_fnc>ALL</calc_fnc>
+                                    <item>
+                                        <host>Avaya G450 by SNMP</host>
+                                        <key>AmbientTemperatureSensorHiWarning[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>2</sortorder>
+                                    <drawtype>DASHED_LINE</drawtype>
+                                    <color>FF8888</color>
+                                    <calc_fnc>ALL</calc_fnc>
+                                    <item>
+                                        <host>Avaya G450 by SNMP</host>
+                                        <key>AmbientTemperatureSensorHiShutdown[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                </discovery_rule>
+            </discovery_rules>
             <tags>
                 <tag>
                     <tag>class</tag>
@@ -374,154 +931,25 @@ CPU使用率のモニタリング設定が有効になっている必要があ�
                     <macro>{$FAN_CRIT_STATUS}</macro>
                     <value>3</value>
                 </macro>
-                <macro>
-                    <macro>{$ICMP_LOSS_WARN}</macro>
-                    <value>20</value>
-                </macro>
-                <macro>
-                    <macro>{$ICMP_RESPONSE_TIME_WARN}</macro>
-                    <value>0.15</value>
-                </macro>
-                <macro>
-                    <macro>{$IF.ERRORS.WARN}</macro>
-                    <value>2</value>
-                </macro>
-                <macro>
-                    <macro>{$IF.UTIL.MAX}</macro>
-                    <value>90</value>
-                </macro>
-                <macro>
-                    <macro>{$IFCONTROL}</macro>
-                    <value>1</value>
-                </macro>
-                <macro>
-                    <macro>{$MEMORY.NAME.MATCHES}</macro>
-                    <value>.*</value>
-                    <description>This macro is used in memory discovery. Can be overridden on the host or linked template level.</description>
-                </macro>
-                <macro>
-                    <macro>{$MEMORY.NAME.NOT_MATCHES}</macro>
-                    <value>(Buffer|Cache)</value>
-                    <description>Filter is overridden to ignore RAM(Cache) and RAM(Buffers) memory objects.</description>
-                </macro>
-                <macro>
-                    <macro>{$MEMORY.TYPE.MATCHES}</macro>
-                    <value>.*(\.2|hrStorageRam)$</value>
-                    <description>This macro is used in memory discovery. Can be overridden on the host or linked template level.</description>
-                </macro>
-                <macro>
-                    <macro>{$MEMORY.TYPE.NOT_MATCHES}</macro>
-                    <value>CHANGE_IF_NEEDED</value>
-                    <description>This macro is used in memory discovery. Can be overridden on the host or linked template level if you need to filter out results.</description>
-                </macro>
-                <macro>
-                    <macro>{$MEMORY.UTIL.MAX}</macro>
-                    <value>90</value>
-                    <description>The warning threshold of the &quot;Physical memory: Memory utilization&quot; item.</description>
-                </macro>
-                <macro>
-                    <macro>{$NET.IF.IFADMINSTATUS.MATCHES}</macro>
-                    <value>^.*</value>
-                    <description>Ignore notPresent(6)</description>
-                </macro>
-                <macro>
-                    <macro>{$NET.IF.IFADMINSTATUS.NOT_MATCHES}</macro>
-                    <value>^2$</value>
-                    <description>Ignore down(2) administrative status</description>
-                </macro>
-                <macro>
-                    <macro>{$NET.IF.IFALIAS.MATCHES}</macro>
-                    <value>.*</value>
-                </macro>
-                <macro>
-                    <macro>{$NET.IF.IFALIAS.NOT_MATCHES}</macro>
-                    <value>CHANGE_IF_NEEDED</value>
-                </macro>
-                <macro>
-                    <macro>{$NET.IF.IFDESCR.MATCHES}</macro>
-                    <value>.*</value>
-                </macro>
-                <macro>
-                    <macro>{$NET.IF.IFDESCR.NOT_MATCHES}</macro>
-                    <value>CHANGE_IF_NEEDED</value>
-                </macro>
-                <macro>
-                    <macro>{$NET.IF.IFNAME.MATCHES}</macro>
-                    <value>^.*$</value>
-                </macro>
-                <macro>
-                    <macro>{$NET.IF.IFNAME.NOT_MATCHES}</macro>
-                    <value>(^Software Loopback Interface|^NULL[0-9.]*$|^[Ll]o[0-9.]*$|^[Ss]ystem$|^Nu[0-9.]*$|^veth[0-9a-z]+$|docker[0-9]+|br-[a-z0-9]{12})</value>
-                    <description>Filter out loopbacks, nulls, docker veth links and docker0 bridge by default</description>
-                </macro>
-                <macro>
-                    <macro>{$NET.IF.IFOPERSTATUS.MATCHES}</macro>
-                    <value>^.*$</value>
-                </macro>
-                <macro>
-                    <macro>{$NET.IF.IFOPERSTATUS.NOT_MATCHES}</macro>
-                    <value>^6$</value>
-                    <description>Ignore notPresent(6)</description>
-                </macro>
-                <macro>
-                    <macro>{$NET.IF.IFTYPE.MATCHES}</macro>
-                    <value>.*</value>
-                </macro>
-                <macro>
-                    <macro>{$NET.IF.IFTYPE.NOT_MATCHES}</macro>
-                    <value>CHANGE_IF_NEEDED</value>
-                </macro>
-                <macro>
-                    <macro>{$PSU_CRIT_STATUS}</macro>
-                    <value>2</value>
-                </macro>
-                <macro>
-                    <macro>{$SNMP.TIMEOUT}</macro>
-                    <value>5m</value>
-                </macro>
-                <macro>
-                    <macro>{$VFS.FS.FREE.MIN.CRIT}</macro>
-                    <value>5G</value>
-                    <description>The critical threshold of the filesystem utilization.</description>
-                </macro>
-                <macro>
-                    <macro>{$VFS.FS.FREE.MIN.WARN}</macro>
-                    <value>10G</value>
-                    <description>The warning threshold of the filesystem utilization.</description>
-                </macro>
-                <macro>
-                    <macro>{$VFS.FS.FSNAME.MATCHES}</macro>
-                    <value>.+</value>
-                    <description>This macro is used in filesystems discovery. Can be overridden on the host or linked template level.</description>
-                </macro>
-                <macro>
-                    <macro>{$VFS.FS.FSNAME.NOT_MATCHES}</macro>
-                    <value>^(/dev|/sys|/run|/proc|.+/shm$)</value>
-                    <description>This macro is used in filesystems discovery. Can be overridden on the host or linked template level.</description>
-                </macro>
-                <macro>
-                    <macro>{$VFS.FS.FSTYPE.MATCHES}</macro>
-                    <value>.*(\.4|\.9|hrStorageFixedDisk|hrStorageFlashMemory)$</value>
-                    <description>This macro is used in filesystems discovery. Can be overridden on the host or linked template level.</description>
-                </macro>
-                <macro>
-                    <macro>{$VFS.FS.FSTYPE.NOT_MATCHES}</macro>
-                    <value>CHANGE_IF_NEEDED</value>
-                    <description>This macro is used in filesystems discovery. Can be overridden on the host or linked template level.</description>
-                </macro>
-                <macro>
-                    <macro>{$VFS.FS.PUSED.MAX.CRIT}</macro>
-                    <value>90</value>
-                </macro>
-                <macro>
-                    <macro>{$VFS.FS.PUSED.MAX.WARN}</macro>
-                    <value>80</value>
-                </macro>
             </macros>
             <valuemaps>
                 <valuemap>
-                    <uuid>b156aa1a62b545ef8b74a64517c09c4c</uuid>
-                    <name>ENTITY-SENSORS-MIB::EntitySensorStatus</name>
+                    <uuid>be281ed20e3245d8afd855b7edd5f93f</uuid>
+                    <name>CpuUtilizationEnableMonitoring</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>Disabled</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>Enabled</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>7c2de5bf798d493f9ec72960be84994f</uuid>
+                    <name>EntitySensorStatus</name>
                     <mappings>
                         <mapping>
                             <value>1</value>
@@ -538,1253 +966,40 @@ CPU使用率のモニタリング設定が有効になっている必要があ�
                     </mappings>
                 </valuemap>
                 <valuemap>
-                    <uuid>48225f962eb340f4b141a7d23f2830e5</uuid>
-                    <name>ENTITY-STATE-MIB::EntityOperState</name>
+                    <uuid>bd8608222380453d95cb0520b145c75d</uuid>
+                    <name>ModuleType</name>
                     <mappings>
                         <mapping>
+                            <value>0</value>
+                            <newvalue>none</newvalue>
+                        </mapping>
+                        <mapping>
+                            <type>GREATER_OR_EQUAL</type>
                             <value>1</value>
-                            <newvalue>unknown</newvalue>
+                            <newvalue>t1e1-voip</newvalue>
                         </mapping>
                         <mapping>
                             <value>2</value>
-                            <newvalue>disabled</newvalue>
+                            <newvalue>BRI</newvalue>
                         </mapping>
                         <mapping>
                             <value>3</value>
-                            <newvalue>enabled</newvalue>
+                            <newvalue>DCP</newvalue>
                         </mapping>
                         <mapping>
                             <value>4</value>
-                            <newvalue>testing</newvalue>
-                        </mapping>
-                    </mappings>
-                </valuemap>
-                <valuemap>
-                    <uuid>c2a074071aad420abb6b1eeac927975c</uuid>
-                    <name>EtherLike-MIB::dot3StatsDuplexStatus</name>
-                    <mappings>
-                        <mapping>
-                            <value>1</value>
-                            <newvalue>unknown</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>2</value>
-                            <newvalue>halfDuplex</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>3</value>
-                            <newvalue>fullDuplex</newvalue>
-                        </mapping>
-                    </mappings>
-                </valuemap>
-                <valuemap>
-                    <uuid>ea56d1caaee3461697cf79cb2a05e6ef</uuid>
-                    <name>IF-MIB::ifOperStatus</name>
-                    <mappings>
-                        <mapping>
-                            <value>1</value>
-                            <newvalue>up</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>2</value>
-                            <newvalue>down</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>4</value>
-                            <newvalue>unknown</newvalue>
+                            <newvalue>analog</newvalue>
                         </mapping>
                         <mapping>
                             <value>5</value>
-                            <newvalue>dormant</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>6</value>
-                            <newvalue>notPresent</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>7</value>
-                            <newvalue>lowerLayerDown</newvalue>
-                        </mapping>
-                    </mappings>
-                </valuemap>
-                <valuemap>
-                    <uuid>49fdc8a2720d46b2816c9f72b58518bb</uuid>
-                    <name>IF-MIB::ifType</name>
-                    <mappings>
-                        <mapping>
-                            <value>1</value>
-                            <newvalue>other</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>2</value>
-                            <newvalue>regular1822</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>3</value>
-                            <newvalue>hdh1822</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>4</value>
-                            <newvalue>ddnX25</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>5</value>
-                            <newvalue>rfc877x25</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>6</value>
-                            <newvalue>ethernetCsmacd</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>7</value>
-                            <newvalue>iso88023Csmacd</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>8</value>
-                            <newvalue>iso88024TokenBus</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>9</value>
-                            <newvalue>iso88025TokenRing</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>10</value>
-                            <newvalue>iso88026Man</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>11</value>
-                            <newvalue>starLan</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>12</value>
-                            <newvalue>proteon10Mbit</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>13</value>
-                            <newvalue>proteon80Mbit</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>14</value>
-                            <newvalue>hyperchannel</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>15</value>
-                            <newvalue>fddi</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>16</value>
-                            <newvalue>lapb</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>17</value>
-                            <newvalue>sdlc</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>18</value>
-                            <newvalue>ds1</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>19</value>
-                            <newvalue>e1</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>20</value>
-                            <newvalue>basicISDN</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>21</value>
-                            <newvalue>primaryISDN</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>22</value>
-                            <newvalue>propPointToPointSerial</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>23</value>
-                            <newvalue>ppp</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>24</value>
-                            <newvalue>softwareLoopback</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>25</value>
-                            <newvalue>eon</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>26</value>
-                            <newvalue>ethernet3Mbit</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>27</value>
-                            <newvalue>nsip</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>28</value>
-                            <newvalue>slip</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>29</value>
-                            <newvalue>ultra</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>30</value>
-                            <newvalue>ds3</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>31</value>
-                            <newvalue>sip</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>32</value>
-                            <newvalue>frameRelay</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>33</value>
-                            <newvalue>rs232</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>34</value>
-                            <newvalue>para</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>35</value>
-                            <newvalue>arcnet</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>36</value>
-                            <newvalue>arcnetPlus</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>37</value>
-                            <newvalue>atm</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>38</value>
-                            <newvalue>miox25</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>39</value>
-                            <newvalue>sonet</newvalue>
+                            <newvalue>t1e1</newvalue>
                         </mapping>
                         <mapping>
                             <value>40</value>
-                            <newvalue>x25ple</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>41</value>
-                            <newvalue>iso88022llc</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>42</value>
-                            <newvalue>localTalk</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>43</value>
-                            <newvalue>smdsDxi</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>44</value>
-                            <newvalue>frameRelayService</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>45</value>
-                            <newvalue>v35</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>46</value>
-                            <newvalue>hssi</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>47</value>
-                            <newvalue>hippi</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>48</value>
-                            <newvalue>modem</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>49</value>
-                            <newvalue>aal5</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>50</value>
-                            <newvalue>sonetPath</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>51</value>
-                            <newvalue>sonetVT</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>52</value>
-                            <newvalue>smdsIcip</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>53</value>
-                            <newvalue>propVirtual</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>54</value>
-                            <newvalue>propMultiplexor</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>55</value>
-                            <newvalue>ieee80212</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>56</value>
-                            <newvalue>fibreChannel</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>57</value>
-                            <newvalue>hippiInterface</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>58</value>
-                            <newvalue>frameRelayInterconnect</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>59</value>
-                            <newvalue>aflane8023</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>60</value>
-                            <newvalue>aflane8025</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>61</value>
-                            <newvalue>cctEmul</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>62</value>
-                            <newvalue>fastEther</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>63</value>
-                            <newvalue>isdn</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>64</value>
-                            <newvalue>v11</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>65</value>
-                            <newvalue>v36</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>66</value>
-                            <newvalue>g703at64k</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>67</value>
-                            <newvalue>g703at2mb</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>68</value>
-                            <newvalue>qllc</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>69</value>
-                            <newvalue>fastEtherFX</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>70</value>
-                            <newvalue>channel</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>71</value>
-                            <newvalue>ieee80211</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>72</value>
-                            <newvalue>ibm370parChan</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>73</value>
-                            <newvalue>escon</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>74</value>
-                            <newvalue>dlsw</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>75</value>
-                            <newvalue>isdns</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>76</value>
-                            <newvalue>isdnu</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>77</value>
-                            <newvalue>lapd</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>78</value>
-                            <newvalue>ipSwitch</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>79</value>
-                            <newvalue>rsrb</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>80</value>
-                            <newvalue>atmLogical</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>81</value>
-                            <newvalue>ds0</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>82</value>
-                            <newvalue>ds0Bundle</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>83</value>
-                            <newvalue>bsc</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>84</value>
-                            <newvalue>async</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>85</value>
-                            <newvalue>cnr</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>86</value>
-                            <newvalue>iso88025Dtr</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>87</value>
-                            <newvalue>eplrs</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>88</value>
-                            <newvalue>arap</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>89</value>
-                            <newvalue>propCnls</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>90</value>
-                            <newvalue>hostPad</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>91</value>
-                            <newvalue>termPad</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>92</value>
-                            <newvalue>frameRelayMPI</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>93</value>
-                            <newvalue>x213</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>94</value>
-                            <newvalue>adsl</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>95</value>
-                            <newvalue>radsl</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>96</value>
-                            <newvalue>sdsl</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>97</value>
-                            <newvalue>vdsl</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>98</value>
-                            <newvalue>iso88025CRFPInt</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>99</value>
-                            <newvalue>myrinet</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>100</value>
-                            <newvalue>voiceEM</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>101</value>
-                            <newvalue>voiceFXO</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>102</value>
-                            <newvalue>voiceFXS</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>103</value>
-                            <newvalue>voiceEncap</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>104</value>
-                            <newvalue>voiceOverIp</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>105</value>
-                            <newvalue>atmDxi</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>106</value>
-                            <newvalue>atmFuni</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>107</value>
-                            <newvalue>atmIma</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>108</value>
-                            <newvalue>pppMultilinkBundle</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>109</value>
-                            <newvalue>ipOverCdlc</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>110</value>
-                            <newvalue>ipOverClaw</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>111</value>
-                            <newvalue>stackToStack</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>112</value>
-                            <newvalue>virtualIpAddress</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>113</value>
-                            <newvalue>mpc</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>114</value>
-                            <newvalue>ipOverAtm</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>115</value>
-                            <newvalue>iso88025Fiber</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>116</value>
-                            <newvalue>tdlc</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>117</value>
-                            <newvalue>gigabitEthernet</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>118</value>
-                            <newvalue>hdlc</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>119</value>
-                            <newvalue>lapf</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>120</value>
-                            <newvalue>v37</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>121</value>
-                            <newvalue>x25mlp</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>122</value>
-                            <newvalue>x25huntGroup</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>123</value>
-                            <newvalue>trasnpHdlc</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>124</value>
-                            <newvalue>interleave</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>125</value>
-                            <newvalue>fast</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>126</value>
-                            <newvalue>ip</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>127</value>
-                            <newvalue>docsCableMaclayer</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>128</value>
-                            <newvalue>docsCableDownstream</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>129</value>
-                            <newvalue>docsCableUpstream</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>130</value>
-                            <newvalue>a12MppSwitch</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>131</value>
-                            <newvalue>tunnel</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>132</value>
-                            <newvalue>coffee</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>133</value>
-                            <newvalue>ces</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>134</value>
-                            <newvalue>atmSubInterface</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>135</value>
-                            <newvalue>l2vlan</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>136</value>
-                            <newvalue>l3ipvlan</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>137</value>
-                            <newvalue>l3ipxvlan</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>138</value>
-                            <newvalue>digitalPowerline</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>139</value>
-                            <newvalue>mediaMailOverIp</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>140</value>
-                            <newvalue>dtm</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>141</value>
-                            <newvalue>dcn</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>142</value>
-                            <newvalue>ipForward</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>143</value>
-                            <newvalue>msdsl</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>144</value>
-                            <newvalue>ieee1394</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>145</value>
-                            <newvalue>if-gsn</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>146</value>
-                            <newvalue>dvbRccMacLayer</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>147</value>
-                            <newvalue>dvbRccDownstream</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>148</value>
-                            <newvalue>dvbRccUpstream</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>149</value>
-                            <newvalue>atmVirtual</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>150</value>
-                            <newvalue>mplsTunnel</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>151</value>
-                            <newvalue>srp</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>152</value>
-                            <newvalue>voiceOverAtm</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>153</value>
-                            <newvalue>voiceOverFrameRelay</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>154</value>
-                            <newvalue>idsl</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>155</value>
-                            <newvalue>compositeLink</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>156</value>
-                            <newvalue>ss7SigLink</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>157</value>
-                            <newvalue>propWirelessP2P</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>158</value>
-                            <newvalue>frForward</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>159</value>
-                            <newvalue>rfc1483</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>160</value>
-                            <newvalue>usb</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>161</value>
-                            <newvalue>ieee8023adLag</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>162</value>
-                            <newvalue>bgppolicyaccounting</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>163</value>
-                            <newvalue>frf16MfrBundle</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>164</value>
-                            <newvalue>h323Gatekeeper</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>165</value>
-                            <newvalue>h323Proxy</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>166</value>
-                            <newvalue>mpls</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>167</value>
-                            <newvalue>mfSigLink</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>168</value>
-                            <newvalue>hdsl2</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>169</value>
-                            <newvalue>shdsl</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>170</value>
-                            <newvalue>ds1FDL</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>171</value>
-                            <newvalue>pos</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>172</value>
-                            <newvalue>dvbAsiIn</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>173</value>
-                            <newvalue>dvbAsiOut</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>174</value>
-                            <newvalue>plc</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>175</value>
-                            <newvalue>nfas</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>176</value>
-                            <newvalue>tr008</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>177</value>
-                            <newvalue>gr303RDT</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>178</value>
-                            <newvalue>gr303IDT</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>179</value>
-                            <newvalue>isup</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>180</value>
-                            <newvalue>propDocsWirelessMaclayer</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>181</value>
-                            <newvalue>propDocsWirelessDownstream</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>182</value>
-                            <newvalue>propDocsWirelessUpstream</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>183</value>
-                            <newvalue>hiperlan2</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>184</value>
-                            <newvalue>propBWAp2Mp</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>185</value>
-                            <newvalue>sonetOverheadChannel</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>186</value>
-                            <newvalue>digitalWrapperOverheadChannel</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>187</value>
-                            <newvalue>aal2</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>188</value>
-                            <newvalue>radioMAC</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>189</value>
-                            <newvalue>atmRadio</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>190</value>
-                            <newvalue>imt</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>191</value>
-                            <newvalue>mvl</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>192</value>
-                            <newvalue>reachDSL</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>193</value>
-                            <newvalue>frDlciEndPt</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>194</value>
-                            <newvalue>atmVciEndPt</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>195</value>
-                            <newvalue>opticalChannel</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>196</value>
-                            <newvalue>opticalTransport</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>197</value>
-                            <newvalue>propAtm</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>198</value>
-                            <newvalue>voiceOverCable</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>199</value>
-                            <newvalue>infiniband</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>200</value>
-                            <newvalue>teLink</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>201</value>
-                            <newvalue>q2931</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>202</value>
-                            <newvalue>virtualTg</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>203</value>
-                            <newvalue>sipTg</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>204</value>
-                            <newvalue>sipSig</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>205</value>
-                            <newvalue>docsCableUpstreamChannel</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>206</value>
-                            <newvalue>econet</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>207</value>
-                            <newvalue>pon155</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>208</value>
-                            <newvalue>pon622</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>209</value>
-                            <newvalue>bridge</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>210</value>
-                            <newvalue>linegroup</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>211</value>
-                            <newvalue>voiceEMFGD</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>212</value>
-                            <newvalue>voiceFGDEANA</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>213</value>
-                            <newvalue>voiceDID</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>214</value>
-                            <newvalue>mpegTransport</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>215</value>
-                            <newvalue>sixToFour</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>216</value>
-                            <newvalue>gtp</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>217</value>
-                            <newvalue>pdnEtherLoop1</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>218</value>
-                            <newvalue>pdnEtherLoop2</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>219</value>
-                            <newvalue>opticalChannelGroup</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>220</value>
-                            <newvalue>homepna</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>221</value>
-                            <newvalue>gfp</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>222</value>
-                            <newvalue>ciscoISLvlan</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>223</value>
-                            <newvalue>actelisMetaLOOP</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>224</value>
-                            <newvalue>fcipLink</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>225</value>
-                            <newvalue>rpr</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>226</value>
-                            <newvalue>qam</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>227</value>
-                            <newvalue>lmp</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>228</value>
-                            <newvalue>cblVectaStar</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>229</value>
-                            <newvalue>docsCableMCmtsDownstream</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>230</value>
-                            <newvalue>adsl2</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>231</value>
-                            <newvalue>macSecControlledIF</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>232</value>
-                            <newvalue>macSecUncontrolledIF</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>233</value>
-                            <newvalue>aviciOpticalEther</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>234</value>
-                            <newvalue>atmbond</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>235</value>
-                            <newvalue>voiceFGDOS</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>236</value>
-                            <newvalue>mocaVersion1</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>237</value>
-                            <newvalue>ieee80216WMAN</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>238</value>
-                            <newvalue>adsl2plus</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>239</value>
-                            <newvalue>dvbRcsMacLayer</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>240</value>
-                            <newvalue>dvbTdm</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>241</value>
-                            <newvalue>dvbRcsTdma</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>242</value>
-                            <newvalue>x86Laps</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>243</value>
-                            <newvalue>wwanPP</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>244</value>
-                            <newvalue>wwanPP2</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>245</value>
-                            <newvalue>voiceEBS</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>246</value>
-                            <newvalue>ifPwType</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>247</value>
-                            <newvalue>ilan</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>248</value>
-                            <newvalue>pip</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>249</value>
-                            <newvalue>aluELP</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>250</value>
-                            <newvalue>gpon</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>251</value>
-                            <newvalue>vdsl2</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>252</value>
-                            <newvalue>capwapDot11Profile</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>253</value>
-                            <newvalue>capwapDot11Bss</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>254</value>
-                            <newvalue>capwapWtpVirtualRadio</newvalue>
+                            <newvalue>g450Mainboard</newvalue>
                         </mapping>
                         <mapping>
                             <value>255</value>
-                            <newvalue>bits</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>256</value>
-                            <newvalue>docsCableUpstreamRfPort</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>257</value>
-                            <newvalue>cableDownstreamRfPort</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>258</value>
-                            <newvalue>vmwareVirtualNic</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>259</value>
-                            <newvalue>ieee802154</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>260</value>
-                            <newvalue>otnOdu</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>261</value>
-                            <newvalue>otnOtu</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>262</value>
-                            <newvalue>ifVfiType</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>263</value>
-                            <newvalue>g9981</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>264</value>
-                            <newvalue>g9982</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>265</value>
-                            <newvalue>g9983</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>266</value>
-                            <newvalue>aluEpon</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>267</value>
-                            <newvalue>aluEponOnu</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>268</value>
-                            <newvalue>aluEponPhysicalUni</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>269</value>
-                            <newvalue>aluEponLogicalLink</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>270</value>
-                            <newvalue>aluGponOnu</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>271</value>
-                            <newvalue>aluGponPhysicalUni</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>272</value>
-                            <newvalue>vmwareNicTeam</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>277</value>
-                            <newvalue>docsOfdmDownstream</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>278</value>
-                            <newvalue>docsOfdmaUpstream</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>279</value>
-                            <newvalue>gfast</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>280</value>
-                            <newvalue>sdci</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>281</value>
-                            <newvalue>xboxWireless</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>282</value>
-                            <newvalue>fastdsl</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>283</value>
-                            <newvalue>docsCableScte55d1FwdOob</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>284</value>
-                            <newvalue>docsCableScte55d1RetOob</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>285</value>
-                            <newvalue>docsCableScte55d2DsOob</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>286</value>
-                            <newvalue>docsCableScte55d2UsOob</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>287</value>
-                            <newvalue>docsCableNdf</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>288</value>
-                            <newvalue>docsCableNdr</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>289</value>
-                            <newvalue>ptm</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>290</value>
-                            <newvalue>ghn</newvalue>
-                        </mapping>
-                    </mappings>
-                </valuemap>
-                <valuemap>
-                    <uuid>07838ddef42b4cf8a4f247ef32cdf83b</uuid>
-                    <name>Service state</name>
-                    <mappings>
-                        <mapping>
-                            <value>0</value>
-                            <newvalue>Down</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>1</value>
-                            <newvalue>Up</newvalue>
-                        </mapping>
-                    </mappings>
-                </valuemap>
-                <valuemap>
-                    <uuid>1d028f9e8b834fc1868f187a10c4c4b4</uuid>
-                    <name>zabbix.host.available</name>
-                    <mappings>
-                        <mapping>
-                            <value>0</value>
-                            <newvalue>not available</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>1</value>
-                            <newvalue>available</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>2</value>
                             <newvalue>unknown</newvalue>
                         </mapping>
                     </mappings>
@@ -1802,8 +1017,72 @@ CPU使用率のモニタリング設定が有効になっている必要があ�
                             <newvalue>g350</newvalue>
                         </mapping>
                         <mapping>
+                            <value>3</value>
+                            <newvalue>avayaG250</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>4</value>
+                            <newvalue>avayaG250-BRI</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>5</value>
+                            <newvalue>avayaG250-DS1</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>6</value>
+                            <newvalue>avayaG250-DCP</newvalue>
+                        </mapping>
+                        <mapping>
                             <value>7</value>
                             <newvalue>avayaG450</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>8</value>
+                            <newvalue>avayaG250-A14</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>10</value>
+                            <newvalue>avayaTGM550</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>28</value>
+                            <newvalue>avayaG250vayaCommunicationManagerBranchEditioni120</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>29</value>
+                            <newvalue>avayaCommunicationManagerBranchEditioni40-Analog</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>30</value>
+                            <newvalue>avayaCommunicationManagerBranchEditioni40-BRI</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>31</value>
+                            <newvalue>avayaCommunicationManagerBranchEditioni40-DS1</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>32</value>
+                            <newvalue>avayaCommunicationManagerBranchEditioni40-DCP</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>33</value>
+                            <newvalue>avayaTRM480</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>34</value>
+                            <newvalue>avayaCommunicationManagerBranchEditioni40-A14</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>35</value>
+                            <newvalue>avayaCommunicationManagerBranchEditionG450</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>37</value>
+                            <newvalue>avayaCommunicationManagerBranchEditionG430</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>41</value>
+                            <newvalue>avayaG430</newvalue>
                         </mapping>
                     </mappings>
                 </valuemap>
