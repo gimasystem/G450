@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>6.0</version>
-    <date>2024-12-22T13:24:55Z</date>
+    <date>2024-12-31T12:47:39Z</date>
     <groups>
         <group>
             <uuid>36bff6c29af64692839d077febfc7079</uuid>
@@ -26,6 +26,25 @@ Avaya G450 (ファームウェアバージョン 36.26.0)でテストしまし�
             </groups>
             <items>
                 <item>
+                    <uuid>95a0d0fa09fc43f8aaad7046bff061a0</uuid>
+                    <name>ISDN Active Clock Source</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.2.3.3.0</snmp_oid>
+                    <key>cmgActiveClockSource</key>
+                    <delay>1h</delay>
+                    <trends>0</trends>
+                    <description>Identifies the clock source in use at this processor.</description>
+                    <valuemap>
+                        <name>Active Clock Source</name>
+                    </valuemap>
+                    <tags>
+                        <tag>
+                            <tag>interface</tag>
+                            <value>ISDN</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
                     <uuid>d7b5191a70bb48ae9bc8a8ef9d263272</uuid>
                     <name>Component Description</name>
                     <type>SNMP_AGENT</type>
@@ -44,6 +63,41 @@ Avaya G450 (ファームウェアバージョン 36.26.0)でテストしまし�
                         <tag>
                             <tag>class</tag>
                             <value>hardware</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>342aec1fe2604a0488f1244016427a81</uuid>
+                    <name>Call controller Link Error Code</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.3.4.0</snmp_oid>
+                    <key>cmgH248LinkErrorCode</key>
+                    <delay>10m</delay>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <description>Most recently received H.248 error code affecting the link between this media gateway and its active call controller.
+If cmgH248LinkStatus is up(1), this value will be zero.</description>
+                    <valuemap>
+                        <name>call controller LinkStatus</name>
+                    </valuemap>
+                </item>
+                <item>
+                    <uuid>83b8f3f4bc824997a0b9011efbdce54c</uuid>
+                    <name>Call controller Link Status</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.3.3.0</snmp_oid>
+                    <key>cmgH248LinkStatus</key>
+                    <delay>10m</delay>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <description>Status of the H.248 link connecting this media gateway to its active call controller.</description>
+                    <valuemap>
+                        <name>call controller LinkStatus</name>
+                    </valuemap>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>VoIP</value>
                         </tag>
                     </tags>
                 </item>
@@ -126,7 +180,7 @@ range.
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.10.13.0</snmp_oid>
                     <key>cmgHardwareStatusMask</key>
-                    <delay>5m</delay>
+                    <delay>1h</delay>
                     <trends>0</trends>
                     <value_type>CHAR</value_type>
                     <description>Each bit of this value set to '1' indicates a specific status
@@ -200,6 +254,12 @@ alert is on.
 ●テンプレ作者コメント
 &quot;00 00 00 00 00 00&quot;が正常値ですが、
 cmgHardwareFaultMaskと同様、この値が以外のときは、何かのハードウェア異常が発生していると考えられるので、G450のハードウェアステータスを確認し、対処する必要があります。</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>VoIP</value>
+                        </tag>
+                    </tags>
                 </item>
                 <item>
                     <uuid>bfae48b10f5847b1bc456b826108bce5</uuid>
@@ -233,6 +293,95 @@ G450本体のハードウェアリビジョン（世代）です。
 ●テンプレ作者コメント
 古いリビジョンに対応していないファームウェアがあります。
 ファームウェアを更新するときは、リビジョンに対応したファームウェアを適用してください</description>
+                </item>
+                <item>
+                    <uuid>1262d3c8903245f180dad64c5ceb083c</uuid>
+                    <name>Media gateway fault</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.2.1.15.0</snmp_oid>
+                    <key>cmgMgpFaultMask</key>
+                    <delay>3m</delay>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <description>Each bit of this value set to '1' indicates a specific fault in the Media Gateway processor.
+
+Octets are numbered in the order in which they appear in the PDU.
+Bits are numbered from the most-significant leftmost bit in the octet (bit 0) to the least-significant rightmost bit (bit 7).
+
+Cajun numbering continues across octets, so that octet 1 bit 0 is called bit 8 in the Cajun scheme.  That number is also shown below,with the octet value for each single bit set.
+
+    Cajun  Octet Octet
+    bit#   bit#  value	Meaning
+    -----  ----- -----	-------
+    0      0/0   0x80	Memory failure.
+    1      0/1   0x40	DHCP request failure.
+    2      0/2   0x20	Firmware download failure.
+    3      0/3   0x10	Software watchdog alert - MG processes restarting.
+    4      0/4   0x08	Internal Communications Controller expected but not resent.
+    5      0/5   0x04	Internal Communications Controller automatic reset.
+    6      0/6   0x02	Media Gateway busy-out.
+    7      0/7   0x01	Configuration upload failure.
+    8      1/0   0x80	Primary controller not found.
+    9      1/1   0x40	No controller found.
+    10     1/2   0x20	Registration failure.
+    11     1/3   0x10	H.248 control link down.
+    12-13  1/4-5	Unused.
+    14     1/6   0x02	Maintenance test failure.
+    15     1/7   0x01	Maintenance test failure over threshold.
+    16     2/0   0x80   Configuration download failure.
+    17-23  2/0-7	Unused.</description>
+                </item>
+                <item>
+                    <uuid>01d0c6f93d4649448996d0f5a3185321</uuid>
+                    <name>ISDN Primary Clock Source</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.2.3.1.0</snmp_oid>
+                    <key>cmgPrimaryClockSource</key>
+                    <delay>1h</delay>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <description>Primary clock source configured for this processor.</description>
+                    <tags>
+                        <tag>
+                            <tag>interface</tag>
+                            <value>ISDN</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>3e0c81cc82924c87a9abf7cb531e2c5e</uuid>
+                    <name>Registration Status</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.3.1.0</snmp_oid>
+                    <key>cmgRegistrationState</key>
+                    <delay>3m</delay>
+                    <history>1w</history>
+                    <trends>0</trends>
+                    <description>Shows whether this media gateway is currently registered with any call controller.
+
+(japanese)
+PBXにレジストしているときはRegistered(1)になります。
+PBX接続できず、レジストしていないときはnotRegistered(2)になります。</description>
+                    <valuemap>
+                        <name>RegistrationState</name>
+                    </valuemap>
+                </item>
+                <item>
+                    <uuid>7ccd8eda287c4b0192f20ec89d15f6d1</uuid>
+                    <name>ISDN Secondary Clock Source</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.2.3.2.0</snmp_oid>
+                    <key>cmgSecondaryClockSource</key>
+                    <delay>1h</delay>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <description>Secondary clock source configured for this processor.</description>
+                    <tags>
+                        <tag>
+                            <tag>interface</tag>
+                            <value>ISDN</value>
+                        </tag>
+                    </tags>
                 </item>
                 <item>
                     <uuid>f75d70eaf3724e26b74870f278e683b9</uuid>
@@ -402,6 +551,14 @@ CPUの負荷率を監視するときは、CLIからCPUモニタリングを有�
                             <value>memory</value>
                         </tag>
                     </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>9b61881b96a74bc395c3fdb386565e80</uuid>
+                            <expression>last(/Avaya G450 by SNMP/genMemUtilizationPercentUsed)&gt;80</expression>
+                            <name>High memory utilization</name>
+                            <opdata>usage: {ITEM.LASTVALUE1}</opdata>
+                        </trigger>
+                    </triggers>
                 </item>
                 <item>
                     <uuid>d7ac661aa9bf49b08e292abd3a1f87b6</uuid>
@@ -453,7 +610,7 @@ RAMの容量</description>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#SLOT},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.1,{#MODULENAME},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.2,{#MODULESN},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.5,{#MODULEFW},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.8,{#MODULEFAULTMASK},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.10,{#MODULESTATUSMASK},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.11]</snmp_oid>
                     <key>CmgModuleSlot.discovery</key>
-                    <delay>3h</delay>
+                    <delay>6h</delay>
                     <lifetime>1d</lifetime>
                     <description>discovery
 used SLOT,name,Serial Number,Firmware version,status.
@@ -592,12 +749,280 @@ Cajun numbering continues across octets, so that octet 1 bit 0 is called bit 8 i
                     </item_prototypes>
                 </discovery_rule>
                 <discovery_rule>
+                    <uuid>54ef209f76db4a49b135b2f882d7c42f</uuid>
+                    <name>VoIP DSP ID discovery in DSP slot#1</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#COREID},.1.3.6.1.4.1.6889.2.9.1.4.6.1.1.101]</snmp_oid>
+                    <key>DSPCoreID.discoverySlot1</key>
+                    <delay>6h</delay>
+                    <lifetime>3d</lifetime>
+                    <description>(japanese)
+G430/G450のメインボードに接続しているDSPの番号を取得して
+DSPスロット#1の各ステータスをディスカバリーで取得します。
+DSPは最大で4枚刺さりますが、1枚目のステータスのみ取得するようにしています。</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>81628df81ffc4b6ab1c72b714f6cee3a</uuid>
+                            <name>DSP Core Admin State #{#COREID}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.6.1.4.101.{#SNMPINDEX}</snmp_oid>
+                            <key>cmgDSPCoreAdminState.[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <description>Maintenance busy-out state of this DSP core.
+
+(Japanese)
+DSPコアがメンテナンスしている時に値が変わります</description>
+                            <valuemap>
+                                <name>DSPCoreAdminState</name>
+                            </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>DSP</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>6c2e5bf6e1ca4fdcbc623d0c96f76750</uuid>
+                                    <expression>last(/Avaya G450 by SNMP/cmgDSPCoreAdminState.[{#SNMPINDEX}],#2)&lt;&gt;2</expression>
+                                    <name>DSP Core Admin State has changed</name>
+                                    <priority>INFO</priority>
+                                    <description>DSP core status had changed</description>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>component</tag>
+                                            <value>DSP</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>ee776f2110cb4ad6b590e2383d85d011</uuid>
+                            <name>DSP Core Channels InUse #{#COREID}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.6.1.3.101.{#SNMPINDEX}</snmp_oid>
+                            <key>cmgDSPCoreChannelsInUse.[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <description>Number of channels in use at this DSP core.
+
+(Japanese)
+DSPコアが使用している通話チャネル数です</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>DSP</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>f8049a3f4234449dbab8c7e54c3ba342</uuid>
+                            <name>DSP Core Demand Test #{#COREID}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.6.1.6.101.{#SNMPINDEX}</snmp_oid>
+                            <key>cmgDSPCoreDemandTest.[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <description>Activates on demand test for the DSP Core.
+
+(Japanese)
+DSPコアのセルフテスト実行状態。</description>
+                            <valuemap>
+                                <name>DSPCoreDemandTest</name>
+                            </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>DSP</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>b117c64a649048e99cc1e18eb29532ed</uuid>
+                            <name>DSP Core Demand Test Result #{#COREID}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.6.1.7.101.{#SNMPINDEX}</snmp_oid>
+                            <key>cmgDSPCoreDemandTestResult.[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <description>Result of the on demand test for the DSP Core.
+
+(Japanese)
+手動または自動で実行されるDSPテストの結果を示します。
+通常時はpass (255) です。
+異常時はerrorCode1～6が出力されます。
+DSPが反応しないときは、notResponding (7)になります。</description>
+                            <valuemap>
+                                <name>DSPCoreDemandTestResult</name>
+                            </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>DSP</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>93087aa14e134abea6ff86d5f48ed2b5</uuid>
+                            <name>DSP Core Status #{#COREID}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.6.1.5.101.{#SNMPINDEX}</snmp_oid>
+                            <key>cmgDSPCoreStatus.[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <description>Status of the DSP Core.
+
+(Japanese)
+DCPコアのステータスになります。
+1: 待機中
+2: 使用中
+3: 不具合発生</description>
+                            <valuemap>
+                                <name>DSPCoreStatus</name>
+                            </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>DSP</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>02045f20c5084e67a36f700599bcb5e1</uuid>
+                            <name>DSP Core Total Channels #{#COREID}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.6.1.2.101.{#SNMPINDEX}</snmp_oid>
+                            <key>cmgDSPCoreTotalChannels.[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <description>Total channels available to this DSP core.
+
+(Japanese)
+DCP1個ごとの最大チャネル数です</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>DSP</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <uuid>5689e163e2974542ac3d51fc73094759</uuid>
+                    <name>DSP Slot discovery</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#VOIPSLOT},.1.3.6.1.4.1.6889.2.9.1.4.5.1.1]</snmp_oid>
+                    <key>DSPslot.discovery</key>
+                    <delay>6h</delay>
+                    <lifetime>3d</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>fef9f962f697454bb8257c4969041a44</uuid>
+                            <name>VoIP Average Occupancy No{#VOIPSLOT}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.5.1.8.{#SNMPINDEX}</snmp_oid>
+                            <key>cmgVoipAverageOccupancy_[{#VOIPSLOT}]</key>
+                            <delay>5m</delay>
+                            <history>30d</history>
+                            <description>5-minute average occupancy of this VoIP engine.
+
+(Japanese)
+VoIPエンジンの、5分間の平均稼働率です。</description>
+                            <tags>
+                                <tag>
+                                    <tag>compornent</tag>
+                                    <value>VoIP</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>c7f64dec2b5b4973a19ac02f6affee37</uuid>
+                            <name>VoIP Channels In Use No{#VOIPSLOT}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.5.1.7.{#SNMPINDEX}</snmp_oid>
+                            <key>cmgVoipChannelsInUse_[{#VOIPSLOT}]</key>
+                            <history>7d</history>
+                            <description>Number of channels in use at this VoIP engine.
+
+(Japanese)
+VoIPエンジンが使用しているチャネル数です</description>
+                            <tags>
+                                <tag>
+                                    <tag>compornent</tag>
+                                    <value>VoIP</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>cae92f4f651148f2bedaf182f0e05bd8</uuid>
+                            <name>VoIP Fault Mask No{#VOIPSLOT}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.5.1.14.{#SNMPINDEX}</snmp_oid>
+                            <key>cmgVoipFaultMask_[{#VOIPSLOT}]</key>
+                            <delay>5m</delay>
+                            <history>30d</history>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <description>Each bit of this value set to '1' indicates a specific fault	in the VoIP engine.
+
+(Japanese)
+VoIPエンジンに障害が発生したときに値が変化します。
+4オクテットの文字列のうち、一番左がもっとも重要で、一番右のビットは影響度の低いビットになります。</description>
+                            <tags>
+                                <tag>
+                                    <tag>compornent</tag>
+                                    <value>VoIP</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>2a15a2be2d2b472c956d13567b24d380</uuid>
+                            <name>VoIP Hyper Activity No{#VOIPSLOT}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.5.1.9.{#SNMPINDEX}</snmp_oid>
+                            <key>cmgVoipHyperactivity_[{#VOIPSLOT}]</key>
+                            <delay>5m</delay>
+                            <history>30d</history>
+                            <description>Indicates whether hyperactivity has been detected by this VoIP engine.
+normal(1), hyperactive(2), unknown(255)
+
+(Japanese)
+VoIPエンジンの稼働状況を示します。
+過負荷になると、この値が2(hyperactive(2))になります。</description>
+                            <tags>
+                                <tag>
+                                    <tag>compornent</tag>
+                                    <value>VoIP</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>f63cfcefcd8241b9932b753759f280cf</uuid>
+                            <name>VoIP Total Channels</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.5.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>cmgVoipTotalChannels_[{#VOIPSLOT}]</key>
+                            <delay>30m</delay>
+                            <history>10d</history>
+                            <trends>60d</trends>
+                            <description>Total channels enforced by Communications Manager.
+
+(Japanese)
+コミュニケーションマネージャー (ACM)によって管理される総チャネル数です。</description>
+                            <tags>
+                                <tag>
+                                    <tag>compornent</tag>
+                                    <value>VoIP</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
                     <uuid>04e6049a6b3a4a05997bf1e805ead492</uuid>
                     <name>Cooling FAN discovery</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#TEMPERSENSORTYPE},1.3.6.1.2.1.99.1.1.1.1,{#SENSORVALUE},1.3.6.1.2.1.99.1.1.1.4,{#SENSORSTATUS},1.3.6.1.2.1.99.1.1.1.5,{#PHYDESCR},1.3.6.1.2.1.47.1.1.1.1.2,{#SENSORDISP},1.3.6.1.2.1.99.1.1.1.6,{#SENSORSHUTDOWN},1.3.6.1.4.1.6889.2.1.99.1.1.1,{#SENSORHIWARNING},1.3.6.1.4.1.6889.2.1.99.1.1.2,{#SENSORLOWWARNING},1.3.6.1.4.1.6889.2.1.99.1.1.5]</snmp_oid>
                     <key>FAN.discovery</key>
-                    <delay>3h</delay>
+                    <delay>6h</delay>
                     <filter>
                         <evaltype>OR</evaltype>
                         <conditions>
@@ -609,9 +1034,8 @@ Cajun numbering continues across octets, so that octet 1 bit 0 is called bit 8 i
                         </conditions>
                     </filter>
                     <description>(Japanese)
-G450内部の冷却ファンと筐体温度センサーをアイテムとして登録します。
-
-.1.3.6.1.2.1.99.1.1.1.1/ENTITY-SENSOR-MIB::entPhySensorType</description>
+G450内部のの冷却ファンをディスカバリで探して、アイテムとして登録します。
+同じOIDツリーの中に温度センサーがありますが、別のディスカバリルールで登録するようにしています。</description>
                     <item_prototypes>
                         <item_prototype>
                             <uuid>51f9c0cc922e4027aecc3cd528cd1fe4</uuid>
@@ -742,8 +1166,8 @@ failure (disconnected wire), or a soft failure such as out-of-range, jittery, or
                     <name>Ambient Temperature Sensor discovery</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#TEMPERSENSORTYPE},1.3.6.1.2.1.99.1.1.1.1,{#SENSORVALUE},1.3.6.1.2.1.99.1.1.1.4,{#SENSORSTATUS},1.3.6.1.2.1.99.1.1.1.5,{#PHYDESCR},1.3.6.1.2.1.47.1.1.1.1.2,{#SENSORDISP},1.3.6.1.2.1.99.1.1.1.6,{#SENSORSHUTDOWN},1.3.6.1.4.1.6889.2.1.99.1.1.1,{#SENSORHIWARNING},1.3.6.1.4.1.6889.2.1.99.1.1.2,{#SENSORLOWWARNING},1.3.6.1.4.1.6889.2.1.99.1.1.5]</snmp_oid>
-                    <key>Temperaturediscovery</key>
-                    <delay>3h</delay>
+                    <key>Temperature.discovery</key>
+                    <delay>6h</delay>
                     <filter>
                         <conditions>
                             <condition>
@@ -753,8 +1177,6 @@ failure (disconnected wire), or a soft failure such as out-of-range, jittery, or
                             </condition>
                         </conditions>
                     </filter>
-                    <description>(Japanese)
-G450内部の筐体温度センサーをアイテムとして登録します。</description>
                     <item_prototypes>
                         <item_prototype>
                             <uuid>8f9953cb1ef648c2b4f85ddb1d4ad302</uuid>
@@ -867,6 +1289,42 @@ G450内部の筐体温度センサーをアイテムとして登録します。<
                             </tags>
                         </item_prototype>
                     </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <uuid>2ca87e3a4bf24f11846e0e13912b8d9a</uuid>
+                            <expression>last(/Avaya G450 by SNMP/AmbientTemperature[{#SNMPINDEX}])&gt;last(/Avaya G450 by SNMP/AmbientTemperatureSensorHiShutdown[{#SNMPINDEX}])</expression>
+                            <name>temperature has reached Critical.</name>
+                            <opdata>Current Temperature: {ITEM.LASTVALUE1}</opdata>
+                            <priority>DISASTER</priority>
+                            <description>The enclosure temperature has reached the critical range. Check room temperature, chassis temperature, and cooling fan status.
+Adjust the air conditioner to lower the room temperature.
+The area around the equipment should be well ventilated so that airflow is near the enclosure.
+Check the status of the cooling fan as it may be stopped.
+
+(japanese)
+筐体温度が致命的な温度に達しました。直ちに筐体の電源を切り、
+エアコンを調節して室温を下げてください。
+筐体付近に風が当たるように、機材周辺の風通しを良くする必要があります。
+冷却ファンが止まっている可能性があるので冷却ファンのステータスを確認してください。</description>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <uuid>f531c93529d3442aa0f89396d5293695</uuid>
+                            <expression>last(/Avaya G450 by SNMP/AmbientTemperature[{#SNMPINDEX}])&gt;last(/Avaya G450 by SNMP/AmbientTemperatureSensorHiWarning[{#SNMPINDEX}])</expression>
+                            <name>temperature has reached warning range.</name>
+                            <opdata>Current Temperature: {ITEM.LASTVALUE1}</opdata>
+                            <priority>HIGH</priority>
+                            <description>The enclosure temperature has reached the warning range. Check room temperature, chassis temperature, and cooling fan status.
+Adjust the air conditioner to lower the room temperature.
+The area around the equipment should be well ventilated so that airflow is near the enclosure.
+Check the status of the cooling fan as it may be stopped.
+
+(japanese)
+筐体温度が高温になっています。室温、筐体温度、冷却ファンの回転数を確認してください。
+エアコンを調節して室温を下げてください。
+筐体付近に風が当たるように、機材周辺の風通しを良くする必要があります。
+冷却ファンが止まっている可能性があるので冷却ファンのステータスを確認してください。</description>
+                        </trigger_prototype>
+                    </trigger_prototypes>
                     <graph_prototypes>
                         <graph_prototype>
                             <uuid>b52a108544644640bdabdb8ec632476d</uuid>
@@ -903,8 +1361,7 @@ G450内部の筐体温度センサーをアイテムとして登録します。<
                                 </graph_item>
                                 <graph_item>
                                     <sortorder>2</sortorder>
-                                    <drawtype>DASHED_LINE</drawtype>
-                                    <color>FF8888</color>
+                                    <color>660066</color>
                                     <calc_fnc>ALL</calc_fnc>
                                     <item>
                                         <host>Avaya G450 by SNMP</host>
@@ -934,6 +1391,38 @@ G450内部の筐体温度センサーをアイテムとして登録します。<
             </macros>
             <valuemaps>
                 <valuemap>
+                    <uuid>8bd453af17d047e4abc7edffd2e669ca</uuid>
+                    <name>Active Clock Source</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>primary</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>secondary</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>3</value>
+                            <newvalue>local</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>12429d23dfcb46458b3f555f008b2c71</uuid>
+                    <name>call controller LinkStatus</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>up</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>down</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
                     <uuid>be281ed20e3245d8afd855b7edd5f93f</uuid>
                     <name>CpuUtilizationEnableMonitoring</name>
                     <mappings>
@@ -944,6 +1433,98 @@ G450内部の筐体温度センサーをアイテムとして登録します。<
                         <mapping>
                             <value>2</value>
                             <newvalue>Enabled</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>52770f08fe07421f934be0a773a089e0</uuid>
+                    <name>DSPCoreAdminState</name>
+                    <mappings>
+                        <mapping>
+                            <value>busy-out</value>
+                            <newvalue>1</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>release</value>
+                            <newvalue>2</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>camp-on</value>
+                            <newvalue>3</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>unknown</value>
+                            <newvalue>255</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>4e72df92816c493ea97d58b9b6de6402</uuid>
+                    <name>DSPCoreDemandTest</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>on</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>off</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>f854ea379466464daaeca264d3c8ddc6</uuid>
+                    <name>DSPCoreDemandTestResult</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>errorCode1</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>errorCode2</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>3</value>
+                            <newvalue>errorCode3</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>4</value>
+                            <newvalue>errorCode4</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>5</value>
+                            <newvalue>errorCode5</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>6</value>
+                            <newvalue>errorCode6</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>7</value>
+                            <newvalue>notResponding</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>255</value>
+                            <newvalue>pass</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>87d28e7fc40249f898a97f92fbe3d43e</uuid>
+                    <name>DSPCoreStatus</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>idle</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>inUse</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>3</value>
+                            <newvalue>fault</newvalue>
                         </mapping>
                     </mappings>
                 </valuemap>
@@ -962,6 +1543,44 @@ G450内部の筐体温度センサーをアイテムとして登録します。<
                         <mapping>
                             <value>3</value>
                             <newvalue>nonoperational</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>16c1aa8c29d04adcb77a2ed6f8f7662c</uuid>
+                    <name>H248 LinkErrorCode</name>
+                    <mappings>
+                        <mapping>
+                            <value>0</value>
+                            <newvalue>No error</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>400</value>
+                            <newvalue>Syntax error in message</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>403</value>
+                            <newvalue>Syntax error in TransactionRequest</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>406</value>
+                            <newvalue>Version not supported</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>410</value>
+                            <newvalue>Incorrect identifier</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>411</value>
+                            <newvalue>The transaction refers to an unknown ContextId</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>412</value>
+                            <newvalue>No ContextIDs available</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>421</value>
+                            <newvalue>Unknown action or illegal combination of actions</newvalue>
                         </mapping>
                     </mappings>
                 </valuemap>
@@ -1001,6 +1620,20 @@ G450内部の筐体温度センサーをアイテムとして登録します。<
                         <mapping>
                             <value>255</value>
                             <newvalue>unknown</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>a2381be32a2842e4b291b0a8112126e1</uuid>
+                    <name>RegistrationState</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>registered</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>notRegistered</newvalue>
                         </mapping>
                     </mappings>
                 </valuemap>
@@ -1089,4 +1722,24 @@ G450内部の筐体温度センサーをアイテムとして登録します。<
             </valuemaps>
         </template>
     </templates>
+    <graphs>
+        <graph>
+            <uuid>d6592e29fb934a6d8a7c5747377e3d88</uuid>
+            <name>Memory Usage</name>
+            <yaxismax>0</yaxismax>
+            <show_work_period>NO</show_work_period>
+            <show_triggers>NO</show_triggers>
+            <type>PIE</type>
+            <graph_items>
+                <graph_item>
+                    <color>1A7C11</color>
+                    <calc_fnc>LAST</calc_fnc>
+                    <item>
+                        <host>Avaya G450 by SNMP</host>
+                        <key>genMemUtilizationPercentUsed</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+    </graphs>
 </zabbix_export>
