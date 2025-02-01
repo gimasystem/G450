@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>6.0</version>
-    <date>2024-12-31T12:47:39Z</date>
+    <date>2025-02-01T11:42:38Z</date>
     <groups>
         <group>
             <uuid>36bff6c29af64692839d077febfc7079</uuid>
@@ -26,47 +26,6 @@ Avaya G450 (ファームウェアバージョン 36.26.0)でテストしまし�
             </groups>
             <items>
                 <item>
-                    <uuid>95a0d0fa09fc43f8aaad7046bff061a0</uuid>
-                    <name>ISDN Active Clock Source</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.2.3.3.0</snmp_oid>
-                    <key>cmgActiveClockSource</key>
-                    <delay>1h</delay>
-                    <trends>0</trends>
-                    <description>Identifies the clock source in use at this processor.</description>
-                    <valuemap>
-                        <name>Active Clock Source</name>
-                    </valuemap>
-                    <tags>
-                        <tag>
-                            <tag>interface</tag>
-                            <value>ISDN</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
-                    <uuid>d7b5191a70bb48ae9bc8a8ef9d263272</uuid>
-                    <name>Component Description</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.3.0</snmp_oid>
-                    <key>cmgDescription</key>
-                    <delay>1d</delay>
-                    <history>365d</history>
-                    <trends>0</trends>
-                    <value_type>TEXT</value_type>
-                    <description>Description of this component: G700 Media Gateway
-
-(Japanese)
-筐体の型番名</description>
-                    <inventory_link>TYPE_FULL</inventory_link>
-                    <tags>
-                        <tag>
-                            <tag>class</tag>
-                            <value>hardware</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
                     <uuid>342aec1fe2604a0488f1244016427a81</uuid>
                     <name>Call controller Link Error Code</name>
                     <type>SNMP_AGENT</type>
@@ -80,6 +39,12 @@ If cmgH248LinkStatus is up(1), this value will be zero.</description>
                     <valuemap>
                         <name>call controller LinkStatus</name>
                     </valuemap>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>VoIP</value>
+                        </tag>
+                    </tags>
                 </item>
                 <item>
                     <uuid>83b8f3f4bc824997a0b9011efbdce54c</uuid>
@@ -102,253 +67,6 @@ If cmgH248LinkStatus is up(1), this value will be zero.</description>
                     </tags>
                 </item>
                 <item>
-                    <uuid>7e06602e8613471f8c604163f6aa5a77</uuid>
-                    <name>Hardware Sensor Health</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.10.12.0</snmp_oid>
-                    <key>cmgHardwareFaultMask</key>
-                    <delay>10m</delay>
-                    <trends>0</trends>
-                    <value_type>TEXT</value_type>
-                    <description>Each bit of this value set to '1' indicates a specific fault
-in the module.
-Octets are numbered in the order in which they appear in the PDU.
-Bits are numbered from the most-significant leftmost bit in the
-octet (bit 0) to the least-significant rightmost bit (bit 7).
-Cajun numbering continues across octets, so that octet 1 bit 0 is
-called bit 8 in the Cajun scheme.  That number is also shown below,
-with the octet value for each single bit set.
-Octet 0 high-order 4 bits show fan status.
-Octet 0 low-order 4 bits show temperature status.
-Octet 1 shows power supply status.
-Octet 2 shows other alarms.
-Cajun  Octet Octet
-bit#   /bit# value	Meaning
-----------------------
-0      0/0   0x80	Multiple fan warning:at least two fans have been operating
-at less than 90% of their nominal speed for 5 minutes or
-more.  This may be an early warning of overheating.
-1      0/1   0x40	PSU fan brief failure warning:the power supply fan has been
-operating at less than 90% of its nominal speed for 10 minutes
-or more, but less than 15 minutes.  This may be an early
-warning of overheating.
-2      0/2   0x20	PSU fan prolonged failure warning:the power supply fan has
-been operating at less than 90% of its nominal speed for 15
-minutes or more.  This may be an early warning of overheating.
-3      0/3       	Unused.
-4      0/4   0x08	Temperature warning:cmgCpuTemp has exceeded its warning
-threshold.
-5      0/5   0x04	Temperature warning:cmgDspTemp has exceeded its warning
-threshold.
-6     0/6	Unused.
-7     0/7   Power On Status Test failure -NCE, QUICC test failures on power up
-8      1/0   0x80	The +5.1 v power supply to the MG processor is out of range.
-9      1/1   0x40	The -48 v power supply to the media modules is out of range.
-10      1/2   0x20	The +3.3 v power supply to the VoIP complexes is out of range.
-11      1/3   0x10	The +1.58 v power supply to the DSP units is out of range.
-12      1/4   0x08	The +2.5 v power supply to the 8260 processor is out of range.
-13      1/5   0x04	The -48 v auxiliary power supply to the endpoints is out of
-range.
-14      1/6   0x02	The +12 v power supply to the fans is out of range.
-15      1/7		Unused.
-16      2/0   0x80	Clock synchronization signal is lost.
-17      2/1   0x40	Clock synchronization signal warning. Only one clock syncronization signal source remains.
-18      2/2   0x20   Clock synchronization signal excessive switching.
-19      2/3   0x10   TDM Test Expansion Box 1 Failure
-20      2/4   0x08   TDM Test Expansion Box 2 Failure
-21      2/5   0x04   PoE Power Supply Base Box Failure
-22      2/6   0x02   PoE Power Supply Expansion Box 1 Failure
-23      2/7   0x01   PoE Power Supply Expansion Box 2 Failure
-
-(Japanese)
-電源モジュール異常を検知したときや冷却ファン、筐体内温度に異常が発生したときに値が変化します。
-
-ハードウェアモジュールに不具合が発生したときに、不具合発生フラグ1が立ちます。
-電源ユニット、冷却ファン、筐体内温度やその他アラームに不具合が発生すると、不具合の内容に応じたビットが1になります。
-0オクテット目の上位4ビットは冷却ファンのステータス、
-0オクテット目の下位4ビットは筐体内温度のステータス、
-1オクテット目はパワーサプライのステータス
-2オクテット目はその他項目のアラームを表します。
-
-●テンプレ作者コメント
-この値が0以外のときは、何かのハードウェア異常が発生していると考えられます。
-各種ステータスを確認し、対処する必要があります。</description>
-                </item>
-                <item>
-                    <uuid>77f6d515163e448680221f756db2644a</uuid>
-                    <name>Hardware Status</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.10.13.0</snmp_oid>
-                    <key>cmgHardwareStatusMask</key>
-                    <delay>1h</delay>
-                    <trends>0</trends>
-                    <value_type>CHAR</value_type>
-                    <description>Each bit of this value set to '1' indicates a specific status
-condition in the module.
-Octets are numbered in the order in which they appear in the PDU.
-Bits are numbered from the most-significant leftmost bit in the
-octet (bit 0) to the least-significant rightmost bit (bit 7).
-Cajun numbering continues across octets, so that octet 1 bit 0 is
-called bit 8 in the Cajun scheme.  That number is also shown below,
-with the octet value for each single bit set.
-Octet 0 high-order 4 bits show LED status.
-Octet 0 low-order 4 bits show ICC status.
-Octets 1 - 5 show power-on self test (POST) results.
-Cajun  Octet Octet
-bit#   bit#  value	Meaning
-----------------------
-0      0/0   0x80	Media gateway red LED is on.
-1      0/1   0x40	The red LED is on in one or more of the media modules.
-2-3    0/2-3	Unused.
-4      0/4   0x08	Integrated Communications Controller hardware watchdog
-alert is on.
-5-7    0/5-7	Unused.
-8      1/0	 0x80	POST HDLC local loopback failed.
-9      1/1	 0x40	POST Ethernet local loopback failed.
-10     1/2	 0x20	POST Ethernet physical local loopback failed.
-11     1/3	 0x10	POST Port I/O read-write test failed.
-12-15  1/4-7	Unused.
-16     2/0   0x80	POST NCE0 reset failed.
-17     2/1   0x40	POST NCE0 internal RAM test failed.
-18     2/2   0x20	POST NCE0 FIFO loop-around failed.
-19     2/3   0x10	POST NCE0 internal channel loopback failed.
-20     2/4   0x08	POST NCE0 internal TDM loopback failed.
-21     2/5   0x04	POST NCE0 external channel loopback failed.
-22-23  2/6-7	Unused.
-24     3/0   0x80	POST NCE1 reset failed.
-25     3/1   0x40	POST NCE1 internal RAM test failed.
-26     3/2   0x20	POST NCE1 FIFO loop-around failed.
-27     3/3   0x10	POST NCE1 internal channel loopback failed.
-28     3/4   0x08	POST NCE1 internal TDM loopback failed.
-29     3/5   0x04	POST NCE1 external channel loopback failed.
-30-31  3/6-7	Unused.
-32     4/0   0x80	POST DSP reset failed.
-33     4/1   0x40	POST POST SPI internal loopback failed.
-34     4/2   0x20	POST Spitfire FIFO test failed.
-35     4/3   0x10	POST ADC test failed.
-36     4/4   0x08	POST CPLD access test failed.
-37-39  4/5-7	Unused.
-40-47  5/0-7	Unused.
-
-(Japanese)
-メディアゲートウェイのコントローラやDSP、I/Oポート、LANモジュールなどに異常が発生したときに値が変化します。
-左端のビットを0bitとしてカウントし、最右端はビットは47bitとしてカウントされます。 (ケイジャンナンバリング)
-ケイジャンナンバリングではオクテットを跨いでカウントされ、
-第1オクテット目の0ビットは (ケイジャンナンバリングで)8ビット目としてカウントされます。
-異常を検知すると、検知した項目にビット1が設定されます
-
-0 bit：メディアゲートウェイのアラートLEDが点灯しています。
-1 bit：メディアゲートウェイのアラートLEDが2つ以上点灯しています。
-2 bit：未使用
-3 bit：未使用
-4 bit:コミュニケーションコントローラの死活監視アラートが発報
-5 bit:未使用
-6 bit:未使用
-7 bit:未使用
-8 bit:HDLCコントローラのローカルループバック試験に失敗
-9 bit:イーサネットコントローラのローカルループバック試験に失敗
-10 bit:イーサネットコントローラの物理ローカルループバック試験に失敗
-11 bit:I/Oポートの読み書き試験に失敗
-
-
-●テンプレ作者コメント
-&quot;00 00 00 00 00 00&quot;が正常値ですが、
-cmgHardwareFaultMaskと同様、この値が以外のときは、何かのハードウェア異常が発生していると考えられるので、G450のハードウェアステータスを確認し、対処する必要があります。</description>
-                    <tags>
-                        <tag>
-                            <tag>component</tag>
-                            <value>VoIP</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
-                    <uuid>bfae48b10f5847b1bc456b826108bce5</uuid>
-                    <name>Hardware Type</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.1.0</snmp_oid>
-                    <key>cmgHWType</key>
-                    <delay>1d</delay>
-                    <history>365d</history>
-                    <trends>0</trends>
-                    <description>Indicates the type of component. Where 'media-gateway' refers to G700</description>
-                    <inventory_link>TYPE</inventory_link>
-                    <valuemap>
-                        <name>型番</name>
-                    </valuemap>
-                </item>
-                <item>
-                    <uuid>1a56411ad24949bba617eb1ca1b3efa2</uuid>
-                    <name>Hardware Vintage</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.5.0</snmp_oid>
-                    <key>cmgHWVintage</key>
-                    <delay>1d</delay>
-                    <history>365d</history>
-                    <trends>0</trends>
-                    <description>Hardware version of this gateway
-
-(Japanese)
-G450本体のハードウェアリビジョン（世代）です。
-
-●テンプレ作者コメント
-古いリビジョンに対応していないファームウェアがあります。
-ファームウェアを更新するときは、リビジョンに対応したファームウェアを適用してください</description>
-                </item>
-                <item>
-                    <uuid>1262d3c8903245f180dad64c5ceb083c</uuid>
-                    <name>Media gateway fault</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.2.1.15.0</snmp_oid>
-                    <key>cmgMgpFaultMask</key>
-                    <delay>3m</delay>
-                    <trends>0</trends>
-                    <value_type>CHAR</value_type>
-                    <description>Each bit of this value set to '1' indicates a specific fault in the Media Gateway processor.
-
-Octets are numbered in the order in which they appear in the PDU.
-Bits are numbered from the most-significant leftmost bit in the octet (bit 0) to the least-significant rightmost bit (bit 7).
-
-Cajun numbering continues across octets, so that octet 1 bit 0 is called bit 8 in the Cajun scheme.  That number is also shown below,with the octet value for each single bit set.
-
-    Cajun  Octet Octet
-    bit#   bit#  value	Meaning
-    -----  ----- -----	-------
-    0      0/0   0x80	Memory failure.
-    1      0/1   0x40	DHCP request failure.
-    2      0/2   0x20	Firmware download failure.
-    3      0/3   0x10	Software watchdog alert - MG processes restarting.
-    4      0/4   0x08	Internal Communications Controller expected but not resent.
-    5      0/5   0x04	Internal Communications Controller automatic reset.
-    6      0/6   0x02	Media Gateway busy-out.
-    7      0/7   0x01	Configuration upload failure.
-    8      1/0   0x80	Primary controller not found.
-    9      1/1   0x40	No controller found.
-    10     1/2   0x20	Registration failure.
-    11     1/3   0x10	H.248 control link down.
-    12-13  1/4-5	Unused.
-    14     1/6   0x02	Maintenance test failure.
-    15     1/7   0x01	Maintenance test failure over threshold.
-    16     2/0   0x80   Configuration download failure.
-    17-23  2/0-7	Unused.</description>
-                </item>
-                <item>
-                    <uuid>01d0c6f93d4649448996d0f5a3185321</uuid>
-                    <name>ISDN Primary Clock Source</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.2.3.1.0</snmp_oid>
-                    <key>cmgPrimaryClockSource</key>
-                    <delay>1h</delay>
-                    <trends>0</trends>
-                    <value_type>CHAR</value_type>
-                    <description>Primary clock source configured for this processor.</description>
-                    <tags>
-                        <tag>
-                            <tag>interface</tag>
-                            <value>ISDN</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
                     <uuid>3e0c81cc82924c87a9abf7cb531e2c5e</uuid>
                     <name>Registration Status</name>
                     <type>SNMP_AGENT</type>
@@ -365,46 +83,34 @@ PBX接続できず、レジストしていないときはnotRegistered(2)にな�
                     <valuemap>
                         <name>RegistrationState</name>
                     </valuemap>
-                </item>
-                <item>
-                    <uuid>7ccd8eda287c4b0192f20ec89d15f6d1</uuid>
-                    <name>ISDN Secondary Clock Source</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.2.3.2.0</snmp_oid>
-                    <key>cmgSecondaryClockSource</key>
-                    <delay>1h</delay>
-                    <trends>0</trends>
-                    <value_type>CHAR</value_type>
-                    <description>Secondary clock source configured for this processor.</description>
                     <tags>
                         <tag>
-                            <tag>interface</tag>
-                            <value>ISDN</value>
+                            <tag>component</tag>
+                            <value>VoIP</value>
                         </tag>
                     </tags>
                 </item>
                 <item>
-                    <uuid>f75d70eaf3724e26b74870f278e683b9</uuid>
-                    <name>Serial Number</name>
+                    <uuid>f4f615b8dfb34d048834805d02ab334d</uuid>
+                    <name>Component Firmware Version</name>
                     <type>SNMP_AGENT</type>
-                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.4.0</snmp_oid>
-                    <key>cmgSerialNumber</key>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.2.1.3.0</snmp_oid>
+                    <key>FirmwareVersion</key>
                     <delay>1d</delay>
                     <history>365d</history>
                     <trends>0</trends>
-                    <value_type>TEXT</value_type>
-                    <description>Serial number of this gateway
+                    <value_type>CHAR</value_type>
+                    <description>Firmware version of this gateway.
 
 (Japanese)
-ゲートウェイ本体のシリアル番号
-
-●テンプレ作者コメント
-CPUモジュールとG450本体はそれぞれ別個のシリアル番号を持ちます。
-ホストインベントリのシリアル番号として設定されます。
-
-CPUモジュール単体が不具合を起こすことは極めて少ないものの、バージョンアップなどでCPUモジュールを交換する可能性があります。
-CPUモジュールとG450本体のシリアル番号はそれぞれ個別に管理しておいたほうが無難です。</description>
-                    <inventory_link>SERIALNO_A</inventory_link>
+ゲートウェイ本体のファームウェアバージョンです</description>
+                    <inventory_link>SOFTWARE</inventory_link>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>system</value>
+                        </tag>
+                    </tags>
                 </item>
                 <item>
                     <uuid>51aea3bf450d4af28bd828063ea0c796</uuid>
@@ -466,8 +172,7 @@ CPU使用率のモニタリング設定が有効になっている必要があ�
 
 (japanese)
 CPUモニタ設定が有効になっているとき、2(enabled)になります
-デフォルトでは無効(disabled)になっているので、
-CPUの負荷率を監視するときは、CLIからCPUモニタリングを有効に設定する必要があります。</description>
+デフォルトでは無効(disabled)になっているので、CPUの負荷率を監視するときは、CLIからCPUモニタリングを有効に設定する必要があります。</description>
                     <valuemap>
                         <name>CpuUtilizationEnableMonitoring</name>
                     </valuemap>
@@ -567,8 +272,6 @@ CPUの負荷率を監視するときは、CLIからCPUモニタリングを有�
                     <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.2.6.1.2.10</snmp_oid>
                     <key>genMemUtilizationPhyRam</key>
                     <delay>1d</delay>
-                    <history>30d</history>
-                    <trends>0</trends>
                     <units>byte</units>
                     <description>The total size of the physical ram in Bytes.
 
@@ -588,8 +291,6 @@ CPUの負荷率を監視するときは、CLIからCPUモニタリングを有�
                     <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.2.1.0</snmp_oid>
                     <key>genMemUtilizationTotalRAM</key>
                     <delay>1d</delay>
-                    <history>30d</history>
-                    <trends>0</trends>
                     <units>byte</units>
                     <description>The total size of the ram in MBytes.
 
@@ -599,6 +300,384 @@ RAMの容量</description>
                         <tag>
                             <tag>component</tag>
                             <value>memory</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>7e06602e8613471f8c604163f6aa5a77</uuid>
+                    <name>Hardware Sensor Health</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.10.12.0</snmp_oid>
+                    <key>HardwareFaultMask</key>
+                    <delay>10m</delay>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <description>Each bit of this value set to '1' indicates a specific fault
+in the module.
+Octets are numbered in the order in which they appear in the PDU.
+Bits are numbered from the most-significant leftmost bit in the
+octet (bit 0) to the least-significant rightmost bit (bit 7).
+Cajun numbering continues across octets, so that octet 1 bit 0 is
+called bit 8 in the Cajun scheme.  That number is also shown below,
+with the octet value for each single bit set.
+Octet 0 high-order 4 bits show fan status.
+Octet 0 low-order 4 bits show temperature status.
+Octet 1 shows power supply status.
+Octet 2 shows other alarms.
+Cajun  Octet Octet
+bit#   /bit# value	Meaning
+----------------------
+0      0/0   0x80	Multiple fan warning:at least two fans have been operating
+at less than 90% of their nominal speed for 5 minutes or
+more.  This may be an early warning of overheating.
+1      0/1   0x40	PSU fan brief failure warning:the power supply fan has been
+operating at less than 90% of its nominal speed for 10 minutes
+or more, but less than 15 minutes.  This may be an early
+warning of overheating.
+2      0/2   0x20	PSU fan prolonged failure warning:the power supply fan has
+been operating at less than 90% of its nominal speed for 15
+minutes or more.  This may be an early warning of overheating.
+3      0/3       	Unused.
+4      0/4   0x08	Temperature warning:cmgCpuTemp has exceeded its warning
+threshold.
+5      0/5   0x04	Temperature warning:cmgDspTemp has exceeded its warning
+threshold.
+6     0/6	Unused.
+7     0/7   Power On Status Test failure -NCE, QUICC test failures on power up
+8      1/0   0x80	The +5.1 v power supply to the MG processor is out of range.
+9      1/1   0x40	The -48 v power supply to the media modules is out of range.
+10      1/2   0x20	The +3.3 v power supply to the VoIP complexes is out of range.
+11      1/3   0x10	The +1.58 v power supply to the DSP units is out of range.
+12      1/4   0x08	The +2.5 v power supply to the 8260 processor is out of range.
+13      1/5   0x04	The -48 v auxiliary power supply to the endpoints is out of
+range.
+14      1/6   0x02	The +12 v power supply to the fans is out of range.
+15      1/7		Unused.
+16      2/0   0x80	Clock synchronization signal is lost.
+17      2/1   0x40	Clock synchronization signal warning. Only one clock syncronization signal source remains.
+18      2/2   0x20   Clock synchronization signal excessive switching.
+19      2/3   0x10   TDM Test Expansion Box 1 Failure
+20      2/4   0x08   TDM Test Expansion Box 2 Failure
+21      2/5   0x04   PoE Power Supply Base Box Failure
+22      2/6   0x02   PoE Power Supply Expansion Box 1 Failure
+23      2/7   0x01   PoE Power Supply Expansion Box 2 Failure
+
+(Japanese)
+電源モジュール異常を検知したときや冷却ファン、筐体内温度に異常が発生したときに値が変化します。
+
+ハードウェアモジュールに不具合が発生したときに、不具合発生フラグ1が立ちます。
+電源ユニット、冷却ファン、筐体内温度やその他アラームに不具合が発生すると、不具合の内容に応じたビットが1になります。
+0オクテット目の上位4ビットは冷却ファンのステータス、
+0オクテット目の下位4ビットは筐体内温度のステータス、
+1オクテット目はパワーサプライのステータス
+2オクテット目はその他項目のアラームを表します。
+
+この値が0以外のときは、何かのハードウェア異常が発生していると考えられます。
+各種ステータスを確認し、対処する必要があります。</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>health</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>77f6d515163e448680221f756db2644a</uuid>
+                    <name>Hardware Status</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.10.13.0</snmp_oid>
+                    <key>HardwareStatusMask</key>
+                    <delay>1h</delay>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <description>Each bit of this value set to '1' indicates a specific status
+condition in the module.
+Octets are numbered in the order in which they appear in the PDU.
+Bits are numbered from the most-significant leftmost bit in the
+octet (bit 0) to the least-significant rightmost bit (bit 7).
+Cajun numbering continues across octets, so that octet 1 bit 0 is
+called bit 8 in the Cajun scheme.  That number is also shown below,
+with the octet value for each single bit set.
+Octet 0 high-order 4 bits show LED status.
+Octet 0 low-order 4 bits show ICC status.
+Octets 1 - 5 show power-on self test (POST) results.
+Cajun  Octet Octet
+bit#   bit#  value	Meaning
+----------------------
+0      0/0   0x80	Media gateway red LED is on.
+1      0/1   0x40	The red LED is on in one or more of the media modules.
+2-3    0/2-3	Unused.
+4      0/4   0x08	Integrated Communications Controller hardware watchdog
+alert is on.
+5-7    0/5-7	Unused.
+8      1/0	 0x80	POST HDLC local loopback failed.
+9      1/1	 0x40	POST Ethernet local loopback failed.
+10     1/2	 0x20	POST Ethernet physical local loopback failed.
+11     1/3	 0x10	POST Port I/O read-write test failed.
+12-15  1/4-7	Unused.
+16     2/0   0x80	POST NCE0 reset failed.
+17     2/1   0x40	POST NCE0 internal RAM test failed.
+18     2/2   0x20	POST NCE0 FIFO loop-around failed.
+19     2/3   0x10	POST NCE0 internal channel loopback failed.
+20     2/4   0x08	POST NCE0 internal TDM loopback failed.
+21     2/5   0x04	POST NCE0 external channel loopback failed.
+22-23  2/6-7	Unused.
+24     3/0   0x80	POST NCE1 reset failed.
+25     3/1   0x40	POST NCE1 internal RAM test failed.
+26     3/2   0x20	POST NCE1 FIFO loop-around failed.
+27     3/3   0x10	POST NCE1 internal channel loopback failed.
+28     3/4   0x08	POST NCE1 internal TDM loopback failed.
+29     3/5   0x04	POST NCE1 external channel loopback failed.
+30-31  3/6-7	Unused.
+32     4/0   0x80	POST DSP reset failed.
+33     4/1   0x40	POST POST SPI internal loopback failed.
+34     4/2   0x20	POST Spitfire FIFO test failed.
+35     4/3   0x10	POST ADC test failed.
+36     4/4   0x08	POST CPLD access test failed.
+37-39  4/5-7	Unused.
+40-47  5/0-7	Unused.
+
+(Japanese)
+メディアゲートウェイのコントローラやDSP、I/Oポート、LANモジュールなどに異常が発生したときに値が変化します。
+左端のビットを0bitとしてカウントし、最右端はビットは47bitとしてカウントされます。 (ケイジャンナンバリング)
+ケイジャンナンバリングではオクテットを跨いでカウントされ、
+第1オクテット目の0ビットは (ケイジャンナンバリングで)8ビット目としてカウントされます。
+異常を検知すると、検知した項目にビット1が設定されます
+
+0 bit：メディアゲートウェイのアラートLEDが点灯しています。
+1 bit：メディアゲートウェイのアラートLEDが2つ以上点灯しています。
+2 bit：未使用
+3 bit：未使用
+4 bit:コミュニケーションコントローラの死活監視アラートが発報
+5 bit:未使用
+6 bit:未使用
+7 bit:未使用
+8 bit:HDLCコントローラのローカルループバック試験に失敗
+9 bit:イーサネットコントローラのローカルループバック試験に失敗
+10 bit:イーサネットコントローラの物理ローカルループバック試験に失敗
+11 bit:I/Oポートの読み書き試験に失敗
+
+
+●テンプレ作者コメント
+&quot;00 00 00 00 00 00&quot;が正常値ですが、
+cmgHardwareFaultMaskと同様、この値が以外のときは、何かのハードウェア異常が発生していると考えられるので、G450のハードウェアステータスを確認し、対処する必要があります。</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>health</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>1a56411ad24949bba617eb1ca1b3efa2</uuid>
+                    <name>Hardware Vintage</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.5.0</snmp_oid>
+                    <key>HardwareVintage</key>
+                    <delay>1d</delay>
+                    <history>365d</history>
+                    <trends>0</trends>
+                    <description>Hardware version of this gateway
+
+(Japanese)
+ゲートウェイのハードウェアリビジョン（世代）です。
+
+古いリビジョンに対応していないファームウェアがあります。
+ファームウェアを更新するときは、リビジョンに対応したファームウェアを適用してください</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>system</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>95a0d0fa09fc43f8aaad7046bff061a0</uuid>
+                    <name>ISDN Active Clock Source</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.2.3.3.0</snmp_oid>
+                    <key>ISDNActiveClockSource</key>
+                    <delay>1h</delay>
+                    <trends>0</trends>
+                    <description>Identifies the clock source in use at this processor.
+
+(Japanese)
+ISDNのクロックをどこから提供しているかを示す値です。
+ 
+local(1): 自局がクロックを提供しています。
+remote(2):対向先からクロックが供給されています。</description>
+                    <valuemap>
+                        <name>Active Clock Source</name>
+                    </valuemap>
+                    <tags>
+                        <tag>
+                            <tag>interface</tag>
+                            <value>ISDN</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>01d0c6f93d4649448996d0f5a3185321</uuid>
+                    <name>ISDN Primary Clock Source</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.2.3.1.0</snmp_oid>
+                    <key>ISDNPrimaryClockSource</key>
+                    <delay>1h</delay>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <description>Primary clock source configured for this processor.
+
+(Japanese)
+ISDNのプライマリクロックソースになります。
+T1またはBRIモジュールがクロックを提供している場合
+クロックを提供しているポート「Vs」または「Vs(pp,pp,...)」と表示されます。
+VoIPモジュールがクロックを提供している場合は「voip」と表示されます。
+プライマリクロックソースが設定されていない場合は「None」と表示されます。</description>
+                    <tags>
+                        <tag>
+                            <tag>interface</tag>
+                            <value>ISDN</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>7ccd8eda287c4b0192f20ec89d15f6d1</uuid>
+                    <name>ISDN Secondary Clock Source</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.2.3.2.0</snmp_oid>
+                    <key>ISDNSecondaryClockSource</key>
+                    <delay>1h</delay>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <description>Secondary clock source configured for this processor.</description>
+                    <tags>
+                        <tag>
+                            <tag>interface</tag>
+                            <value>ISDN</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>1262d3c8903245f180dad64c5ceb083c</uuid>
+                    <name>Media gateway fault</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.2.1.15.0</snmp_oid>
+                    <key>MgpFaultMask</key>
+                    <delay>3m</delay>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <description>Each bit of this value set to '1' indicates a specific fault in the Media Gateway processor.
+
+Octets are numbered in the order in which they appear in the PDU.
+Bits are numbered from the most-significant leftmost bit in the octet (bit 0) to the least-significant rightmost bit (bit 7).
+
+Cajun numbering continues across octets, so that octet 1 bit 0 is called bit 8 in the Cajun scheme.  That number is also shown below,with the octet value for each single bit set.
+
+    Cajun  Octet Octet
+    bit#   bit#  value	Meaning
+    -----  ----- -----	-------
+    0      0/0   0x80	Memory failure.
+    1      0/1   0x40	DHCP request failure.
+    2      0/2   0x20	Firmware download failure.
+    3      0/3   0x10	Software watchdog alert - MG processes restarting.
+    4      0/4   0x08	Internal Communications Controller expected but not resent.
+    5      0/5   0x04	Internal Communications Controller automatic reset.
+    6      0/6   0x02	Media Gateway busy-out.
+    7      0/7   0x01	Configuration upload failure.
+    8      1/0   0x80	Primary controller not found.
+    9      1/1   0x40	No controller found.
+    10     1/2   0x20	Registration failure.
+    11     1/3   0x10	H.248 control link down.
+    12-13  1/4-5	Unused.
+    14     1/6   0x02	Maintenance test failure.
+    15     1/7   0x01	Maintenance test failure over threshold.
+    16     2/0   0x80   Configuration download failure.
+    17-23  2/0-7	Unused.
+
+(Japanese)
+メディアゲートウェイプロセッサの不具合発生フラグ
+値が&quot;00 00 &quot;以外の場合、特定の障害が発生している可能性があります。</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>health</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>d7b5191a70bb48ae9bc8a8ef9d263272</uuid>
+                    <name>Component Model Description</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.3.0</snmp_oid>
+                    <key>ModelDescription</key>
+                    <delay>1d</delay>
+                    <history>365d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <description>Description of this component: G700 Media Gateway
+
+(Japanese)
+製品フルネームとソフトウェアバージョンです
+ホストインベントリフィールドに自動設定されます。</description>
+                    <inventory_link>TYPE_FULL</inventory_link>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>system</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>bfae48b10f5847b1bc456b826108bce5</uuid>
+                    <name>Component Model Number</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.2.0</snmp_oid>
+                    <key>ModelNumber</key>
+                    <history>365d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <description>Model number of this component.
+
+(Japanese)
+ハードウェアの型番名です
+ホストインベントリフィールドに自動登録されます。</description>
+                    <inventory_link>TYPE</inventory_link>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>inventory</value>
+                        </tag>
+                        <tag>
+                            <tag>component</tag>
+                            <value>system</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>f75d70eaf3724e26b74870f278e683b9</uuid>
+                    <name>Component Serial Number</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.4.0</snmp_oid>
+                    <key>SerialNumber</key>
+                    <delay>1d</delay>
+                    <history>365d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <description>Serial number of this gateway
+
+(Japanese)
+ゲートウェイ本体のシリアル番号
+
+CPUモジュールとG450本体はそれぞれ別個のシリアル番号を持ちます。
+ホストインベントリのシリアル番号として設定されます。
+
+CPUモジュール単体が不具合を起こすことは極めて少ないものの、バージョンアップなどでCPUモジュールを交換する可能性があります。
+CPUモジュールとG450本体のシリアル番号はそれぞれ個別に管理しておいたほうが無難です。</description>
+                    <inventory_link>SERIALNO_A</inventory_link>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>system</value>
                         </tag>
                     </tags>
                 </item>
@@ -623,35 +702,18 @@ used SLOT,name,Serial Number,Firmware version,status.
                             <name>ModuleSlot V{#SLOT} FaultMask</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.10.{#SNMPINDEX}</snmp_oid>
-                            <key>cmgModuleFaultMask[{#SNMPINDEX}]</key>
+                            <key>ModuleFaultMask[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <trends>0</trends>
                             <value_type>CHAR</value_type>
-                            <description>&quot;Each bit of this value set to '1' indicates a specific fault
-	in the module.
-
-	Octets are numbered in the order in which they appear in the PDU.
-	Bits are numbered from the most-significant leftmost bit in the
-	octet (bit 0) to the least-significant rightmost bit (bit 7).
-
-	Cajun numbering continues across octets, so that octet 1 bit 0 is
-	called bit 8 in the Cajun scheme.  That number is also shown below,
-	with the octet value for each single bit set.
-
-    Cajun  Octet Octet
-    bit#   bit#  value	Meaning
-    -----  ----- -----	-------
-    0      0/0   0x80	Media module is in administrative busy-out.
-    1      0/1   0x40	One or more ports on this media module is in administrative
-			busy-out.
-    2      0/2   0x20	Insertion sequence failed.
-    3      0/3       	AWOH data module conflict.
-    4      0/4   0x08	Media module automatic reset occurred.
-    5      0/5   0x04	One or more power-on startup tests failed.
-    6      0/6   0x02	Media module parameter exchange failed.
-    7      0/7       	Unsupported module enrolment.
-    8-15   1/0-7	Unused.</description>
+                            <description>(Japanese)
+モジュールに異常が発生すると数値が変化します。
+数値を二進数に変換して、ビット毎に事象を確認する必要があります。</description>
                             <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>health</value>
+                                </tag>
                                 <tag>
                                     <tag>component</tag>
                                     <value>Module</value>
@@ -663,12 +725,15 @@ used SLOT,name,Serial Number,Firmware version,status.
                             <name>ModuleSlot V{#SLOT} Firmware version</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.8.{#SNMPINDEX}</snmp_oid>
-                            <key>cmgModuleFWVersion[{#SNMPINDEX}]</key>
+                            <key>ModuleFWVersion[{#SNMPINDEX}]</key>
                             <delay>2h</delay>
                             <history>1w</history>
                             <trends>0</trends>
                             <value_type>CHAR</value_type>
-                            <description>Firmware version of this module. This duplicates information available in the Load MIB.  It shows the media module run image version, plus the VoIP engine version if applicable.</description>
+                            <description>Firmware version of this module. 
+
+(Japanese)
+このモジュールのファームウェアバージョンです。</description>
                             <tags>
                                 <tag>
                                     <tag>component</tag>
@@ -681,7 +746,7 @@ used SLOT,name,Serial Number,Firmware version,status.
                             <name>ModuleSlot V{#SLOT} SerialNumber</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.5.{#SNMPINDEX}</snmp_oid>
-                            <key>cmgModuleSerialNumber[{#SNMPINDEX}]</key>
+                            <key>ModuleSerialNumber[{#SNMPINDEX}]</key>
                             <delay>2h</delay>
                             <history>1w</history>
                             <trends>0</trends>
@@ -692,8 +757,21 @@ Form is yyLLmmnnnnnn, where
 yy = last 2 digits of the year of manufacture
 LL = manufacturing facility, e.g. DR for Denver, Colorado
 mm = month of manufacture, 01 - 12
-nnnnnn = a six-digit sequence number</description>
+nnnnnn = a six-digit sequence number
+
+(Japanese)
+このモジュールのシリアル番号です。最初の12文字が有効な情報を表します。
+形式は yyLLmmnnnnnn で、以下のように構成されています
+
+yy = 製造年の下2桁
+LL = 製造施設（例：DRはコロラド州デンバー）
+mm = 製造月（01 - 12）
+nnnnnn = 6桁の連番</description>
                             <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>inventory</value>
+                                </tag>
                                 <tag>
                                     <tag>component</tag>
                                     <value>Module</value>
@@ -705,11 +783,13 @@ nnnnnn = a six-digit sequence number</description>
                             <name>ModuleSlot V{#SLOT} Module Name</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.81.8.1.1.5.{#SNMPINDEX}</snmp_oid>
-                            <key>cmgModuleSlot[{#SNMPINDEX}]</key>
+                            <key>ModuleSlot[{#SNMPINDEX}]</key>
                             <delay>2h</delay>
                             <history>1w</history>
                             <trends>0</trends>
                             <value_type>CHAR</value_type>
+                            <description>(Japanese)
+スロットに接続されているモジュールの名称を取得します。</description>
                             <tags>
                                 <tag>
                                     <tag>component</tag>
@@ -722,23 +802,16 @@ nnnnnn = a six-digit sequence number</description>
                             <name>ModuleSlot V{#SLOT} ModuleStatusMask</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.11.{#SNMPINDEX}</snmp_oid>
-                            <key>cmgModuleStatusMask[{#SNMPINDEX}]</key>
+                            <key>ModuleStatusMask[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <trends>0</trends>
                             <value_type>CHAR</value_type>
-                            <description>Each bit of this value set to '1' indicates a specific status condition in the module.
-Octets are numbered in the order in which they appear in the PDU.
-Bits are numbered from the most-significant leftmost bit in the octet (bit 0) to the least-significant rightmost bit (bit 7).
+                            <description>(Japanese)
+モジュール内で特定ステータスによって数値が変化します。
+数値を二進数に変換して、ビット毎に事象を確認する必要があります。
 
-Cajun numbering continues across octets, so that octet 1 bit 0 is called bit 8 in the Cajun scheme.  That number is also shown below, with the octet value for each single bit set.
-
-    Cajun  Octet Octet
-    bit#   bit#  value	Meaning
-    -----  ----- -----	-------
-    0      0/0   0x80	Red LED is on.
-    1      0/1   0x40	Module controlled by ACP on communications controller.
-    2-7    0/2-7	Unused.
-    8-15   1/0-7	Unused.</description>
+このVoIP-GWがAvaya Converged Platform(ACP)によって制御されている場合や、
+モジュールのアラートLEDが点灯しているときにこの値が変化します。</description>
                             <tags>
                                 <tag>
                                     <tag>component</tag>
@@ -757,8 +830,7 @@ Cajun numbering continues across octets, so that octet 1 bit 0 is called bit 8 i
                     <delay>6h</delay>
                     <lifetime>3d</lifetime>
                     <description>(japanese)
-G430/G450のメインボードに接続しているDSPの番号を取得して
-DSPスロット#1の各ステータスをディスカバリーで取得します。
+G430/G450のメインボードに接続しているDSPの番号を取得します。
 DSPは最大で4枚刺さりますが、1枚目のステータスのみ取得するようにしています。</description>
                     <item_prototypes>
                         <item_prototype>
@@ -766,12 +838,12 @@ DSPは最大で4枚刺さりますが、1枚目のステータスのみ取得す
                             <name>DSP Core Admin State #{#COREID}</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.6.1.4.101.{#SNMPINDEX}</snmp_oid>
-                            <key>cmgDSPCoreAdminState.[{#SNMPINDEX}]</key>
+                            <key>DSPCoreAdminState.[{#SNMPINDEX}]</key>
                             <delay>3m</delay>
                             <description>Maintenance busy-out state of this DSP core.
 
 (Japanese)
-DSPコアがメンテナンスしている時に値が変わります</description>
+DSPコアのメンテナンスコマンドを実行している時に値が変わります</description>
                             <valuemap>
                                 <name>DSPCoreAdminState</name>
                             </valuemap>
@@ -784,7 +856,7 @@ DSPコアがメンテナンスしている時に値が変わります</descripti
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>6c2e5bf6e1ca4fdcbc623d0c96f76750</uuid>
-                                    <expression>last(/Avaya G450 by SNMP/cmgDSPCoreAdminState.[{#SNMPINDEX}],#2)&lt;&gt;2</expression>
+                                    <expression>last(/Avaya G450 by SNMP/DSPCoreAdminState.[{#SNMPINDEX}],#2)&lt;&gt;2</expression>
                                     <name>DSP Core Admin State has changed</name>
                                     <priority>INFO</priority>
                                     <description>DSP core status had changed</description>
@@ -803,7 +875,7 @@ DSPコアがメンテナンスしている時に値が変わります</descripti
                             <name>DSP Core Channels InUse #{#COREID}</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.6.1.3.101.{#SNMPINDEX}</snmp_oid>
-                            <key>cmgDSPCoreChannelsInUse.[{#SNMPINDEX}]</key>
+                            <key>DSPCoreChannelsInUse.[{#SNMPINDEX}]</key>
                             <delay>3m</delay>
                             <description>Number of channels in use at this DSP core.
 
@@ -821,12 +893,15 @@ DSPコアが使用している通話チャネル数です</description>
                             <name>DSP Core Demand Test #{#COREID}</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.6.1.6.101.{#SNMPINDEX}</snmp_oid>
-                            <key>cmgDSPCoreDemandTest.[{#SNMPINDEX}]</key>
+                            <key>DSPCoreDemandTest.[{#SNMPINDEX}]</key>
                             <delay>3m</delay>
                             <description>Activates on demand test for the DSP Core.
 
 (Japanese)
-DSPコアのセルフテスト実行状態。</description>
+DSPコアのセルフテストの実行中ステータスです。
+
+1: 実行中
+2: 未使用</description>
                             <valuemap>
                                 <name>DSPCoreDemandTest</name>
                             </valuemap>
@@ -842,7 +917,7 @@ DSPコアのセルフテスト実行状態。</description>
                             <name>DSP Core Demand Test Result #{#COREID}</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.6.1.7.101.{#SNMPINDEX}</snmp_oid>
-                            <key>cmgDSPCoreDemandTestResult.[{#SNMPINDEX}]</key>
+                            <key>DSPCoreDemandTestResult.[{#SNMPINDEX}]</key>
                             <delay>3m</delay>
                             <description>Result of the on demand test for the DSP Core.
 
@@ -866,7 +941,7 @@ DSPが反応しないときは、notResponding (7)になります。</descriptio
                             <name>DSP Core Status #{#COREID}</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.6.1.5.101.{#SNMPINDEX}</snmp_oid>
-                            <key>cmgDSPCoreStatus.[{#SNMPINDEX}]</key>
+                            <key>DSPCoreStatus.[{#SNMPINDEX}]</key>
                             <delay>3m</delay>
                             <description>Status of the DSP Core.
 
@@ -883,6 +958,10 @@ DCPコアのステータスになります。
                                     <tag>component</tag>
                                     <value>DSP</value>
                                 </tag>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>health</value>
+                                </tag>
                             </tags>
                         </item_prototype>
                         <item_prototype>
@@ -890,127 +969,16 @@ DCPコアのステータスになります。
                             <name>DSP Core Total Channels #{#COREID}</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.6.1.2.101.{#SNMPINDEX}</snmp_oid>
-                            <key>cmgDSPCoreTotalChannels.[{#SNMPINDEX}]</key>
+                            <key>DSPCoreTotalChannels.[{#SNMPINDEX}]</key>
                             <delay>3m</delay>
                             <description>Total channels available to this DSP core.
 
 (Japanese)
-DCP1個ごとの最大チャネル数です</description>
+DSP1個ごとの最大チャネル数です</description>
                             <tags>
                                 <tag>
                                     <tag>component</tag>
                                     <value>DSP</value>
-                                </tag>
-                            </tags>
-                        </item_prototype>
-                    </item_prototypes>
-                </discovery_rule>
-                <discovery_rule>
-                    <uuid>5689e163e2974542ac3d51fc73094759</uuid>
-                    <name>DSP Slot discovery</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>discovery[{#VOIPSLOT},.1.3.6.1.4.1.6889.2.9.1.4.5.1.1]</snmp_oid>
-                    <key>DSPslot.discovery</key>
-                    <delay>6h</delay>
-                    <lifetime>3d</lifetime>
-                    <item_prototypes>
-                        <item_prototype>
-                            <uuid>fef9f962f697454bb8257c4969041a44</uuid>
-                            <name>VoIP Average Occupancy No{#VOIPSLOT}</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.5.1.8.{#SNMPINDEX}</snmp_oid>
-                            <key>cmgVoipAverageOccupancy_[{#VOIPSLOT}]</key>
-                            <delay>5m</delay>
-                            <history>30d</history>
-                            <description>5-minute average occupancy of this VoIP engine.
-
-(Japanese)
-VoIPエンジンの、5分間の平均稼働率です。</description>
-                            <tags>
-                                <tag>
-                                    <tag>compornent</tag>
-                                    <value>VoIP</value>
-                                </tag>
-                            </tags>
-                        </item_prototype>
-                        <item_prototype>
-                            <uuid>c7f64dec2b5b4973a19ac02f6affee37</uuid>
-                            <name>VoIP Channels In Use No{#VOIPSLOT}</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.5.1.7.{#SNMPINDEX}</snmp_oid>
-                            <key>cmgVoipChannelsInUse_[{#VOIPSLOT}]</key>
-                            <history>7d</history>
-                            <description>Number of channels in use at this VoIP engine.
-
-(Japanese)
-VoIPエンジンが使用しているチャネル数です</description>
-                            <tags>
-                                <tag>
-                                    <tag>compornent</tag>
-                                    <value>VoIP</value>
-                                </tag>
-                            </tags>
-                        </item_prototype>
-                        <item_prototype>
-                            <uuid>cae92f4f651148f2bedaf182f0e05bd8</uuid>
-                            <name>VoIP Fault Mask No{#VOIPSLOT}</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.5.1.14.{#SNMPINDEX}</snmp_oid>
-                            <key>cmgVoipFaultMask_[{#VOIPSLOT}]</key>
-                            <delay>5m</delay>
-                            <history>30d</history>
-                            <trends>0</trends>
-                            <value_type>CHAR</value_type>
-                            <description>Each bit of this value set to '1' indicates a specific fault	in the VoIP engine.
-
-(Japanese)
-VoIPエンジンに障害が発生したときに値が変化します。
-4オクテットの文字列のうち、一番左がもっとも重要で、一番右のビットは影響度の低いビットになります。</description>
-                            <tags>
-                                <tag>
-                                    <tag>compornent</tag>
-                                    <value>VoIP</value>
-                                </tag>
-                            </tags>
-                        </item_prototype>
-                        <item_prototype>
-                            <uuid>2a15a2be2d2b472c956d13567b24d380</uuid>
-                            <name>VoIP Hyper Activity No{#VOIPSLOT}</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.5.1.9.{#SNMPINDEX}</snmp_oid>
-                            <key>cmgVoipHyperactivity_[{#VOIPSLOT}]</key>
-                            <delay>5m</delay>
-                            <history>30d</history>
-                            <description>Indicates whether hyperactivity has been detected by this VoIP engine.
-normal(1), hyperactive(2), unknown(255)
-
-(Japanese)
-VoIPエンジンの稼働状況を示します。
-過負荷になると、この値が2(hyperactive(2))になります。</description>
-                            <tags>
-                                <tag>
-                                    <tag>compornent</tag>
-                                    <value>VoIP</value>
-                                </tag>
-                            </tags>
-                        </item_prototype>
-                        <item_prototype>
-                            <uuid>f63cfcefcd8241b9932b753759f280cf</uuid>
-                            <name>VoIP Total Channels</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.5.1.6.{#SNMPINDEX}</snmp_oid>
-                            <key>cmgVoipTotalChannels_[{#VOIPSLOT}]</key>
-                            <delay>30m</delay>
-                            <history>10d</history>
-                            <trends>60d</trends>
-                            <description>Total channels enforced by Communications Manager.
-
-(Japanese)
-コミュニケーションマネージャー (ACM)によって管理される総チャネル数です。</description>
-                            <tags>
-                                <tag>
-                                    <tag>compornent</tag>
-                                    <value>VoIP</value>
                                 </tag>
                             </tags>
                         </item_prototype>
@@ -1034,20 +1002,22 @@ VoIPエンジンの稼働状況を示します。
                         </conditions>
                     </filter>
                     <description>(Japanese)
-G450内部のの冷却ファンをディスカバリで探して、アイテムとして登録します。
+G450内部のの冷却ファンをアイテムとして登録します。
 同じOIDツリーの中に温度センサーがありますが、別のディスカバリルールで登録するようにしています。</description>
                     <item_prototypes>
                         <item_prototype>
                             <uuid>51f9c0cc922e4027aecc3cd528cd1fe4</uuid>
-                            <name>{#PHYDESCR}_Shutdown threshold</name>
+                            <name>{#PHYDESCR} Shutdown threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.6889.2.1.99.1.1.1.{#SNMPINDEX}</snmp_oid>
-                            <key>avEntPhySensorHiShutdown[{#SNMPINDEX}]</key>
+                            <key>FanSensorHiShutdown[{#SNMPINDEX}]</key>
                             <delay>2h</delay>
                             <history>1d</history>
                             <trends>0</trends>
                             <units>{#SENSORDISP}</units>
-                            <description>The system generates a warning event when the sensor reading falls and crosses this value</description>
+                            <description>(Japanese)
+冷却ファンの回転数が異常と判断されるしきい値です。
+しきい値に達すると、システムがファン異常と判断し停止します。</description>
                             <valuemap>
                                 <name>EntitySensorStatus</name>
                             </valuemap>
@@ -1068,6 +1038,9 @@ G450内部のの冷却ファンをディスカバリで探して、アイテム�
                             <history>1d</history>
                             <trends>0</trends>
                             <units>{#SENSORDISP}</units>
+                            <description>(Japanese)
+冷却ファンの回転数が高くなったときに発報するしきい値です。
+この値を超えると発報します。</description>
                             <valuemap>
                                 <name>EntitySensorStatus</name>
                             </valuemap>
@@ -1088,36 +1061,9 @@ G450内部のの冷却ファンをディスカバリで探して、アイテム�
                             <history>1d</history>
                             <trends>0</trends>
                             <units>{#SENSORDISP}</units>
-                            <valuemap>
-                                <name>EntitySensorStatus</name>
-                            </valuemap>
-                            <tags>
-                                <tag>
-                                    <tag>component</tag>
-                                    <value>fan</value>
-                                </tag>
-                            </tags>
-                        </item_prototype>
-                        <item_prototype>
-                            <uuid>6d408174325842d8bc73e050240068f0</uuid>
-                            <name>{#PHYDESCR}_Status</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>1.3.6.1.2.1.99.1.1.1.5.{#SNMPINDEX}</snmp_oid>
-                            <key>PhySensorOperStatus[{#SNMPINDEX}]</key>
-                            <delay>5m</delay>
-                            <history>1d</history>
-                            <description>An object using this data type represents the operational
-status of a physical sensor.
-
-The value 'ok(1)' indicates that the agent can obtain the
-sensor value.
-
-The value 'unavailable(2)' indicates that the agent
-presently cannot obtain the sensor value.
-
-The value 'nonoperational(3)' indicates that the agent
-believes the sensor is broken.  The sensor could have a hard
-failure (disconnected wire), or a soft failure such as out-of-range, jittery, or wildly fluctuating readings.&quot;</description>
+                            <description>(Japanese)
+冷却ファンの回転数が低下したときに発報するしきい値です。
+この値を下回ると発報します。</description>
                             <valuemap>
                                 <name>EntitySensorStatus</name>
                             </valuemap>
@@ -1130,25 +1076,15 @@ failure (disconnected wire), or a soft failure such as out-of-range, jittery, or
                         </item_prototype>
                         <item_prototype>
                             <uuid>099bbfeb38724069a8f34a938c2d1a28</uuid>
-                            <name>{#PHYDESCR}_{#SENSORDISP}</name>
+                            <name>{#PHYDESCR} {#SENSORDISP}</name>
                             <type>SNMP_AGENT</type>
-                            <snmp_oid>1.3.6.1.2.1.99.1.1.1.4.{#SNMPINDEX}</snmp_oid>
-                            <key>PhySensorValue[{#SNMPINDEX}]</key>
+                            <snmp_oid>.1.3.6.1.2.1.99.1.1.1.4.{#SNMPINDEX}</snmp_oid>
+                            <key>FanSensorRPM[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <trends>731d</trends>
                             <units>{#SENSORDISP}</units>
-                            <description>An object using this data type represents the operational
-status of a physical sensor.
-
-The value 'ok(1)' indicates that the agent can obtain the
-sensor value.
-
-The value 'unavailable(2)' indicates that the agent
-presently cannot obtain the sensor value.
-
-The value 'nonoperational(3)' indicates that the agent
-believes the sensor is broken.  The sensor could have a hard
-failure (disconnected wire), or a soft failure such as out-of-range, jittery, or wildly fluctuating readings.&quot;</description>
+                            <description>(Japanese)
+冷却ファンの回転数(単位:RPM)</description>
                             <valuemap>
                                 <name>EntitySensorStatus</name>
                             </valuemap>
@@ -1156,6 +1092,36 @@ failure (disconnected wire), or a soft failure such as out-of-range, jittery, or
                                 <tag>
                                     <tag>component</tag>
                                     <value>fan</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>6d408174325842d8bc73e050240068f0</uuid>
+                            <name>{#PHYDESCR} Status</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.2.1.99.1.1.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>FanSensorStatus[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <history>1d</history>
+                            <description>The operational status of the sensor.
+
+(Japanese)
+冷却ファンの回転数センサー状況
+
+ok(1):正常
+unavailable(2): 回転数センサーから値を取得することができません。
+nonoperational(3):回転数センサー故障の可能性があります。</description>
+                            <valuemap>
+                                <name>EntitySensorStatus</name>
+                            </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>fan</value>
+                                </tag>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>health</value>
                                 </tag>
                             </tags>
                         </item_prototype>
@@ -1177,21 +1143,43 @@ failure (disconnected wire), or a soft failure such as out-of-range, jittery, or
                             </condition>
                         </conditions>
                     </filter>
+                    <description>(Japanese)
+G450内部の温度センサーをアイテムとして登録します。
+同じOIDツリーの中に冷却ファンがありますが、別のディスカバリルールで登録するようにしています。</description>
                     <item_prototypes>
+                        <item_prototype>
+                            <uuid>8eb81e6804044ac4903fec546e074c29</uuid>
+                            <name>{#PHYDESCR}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.2.1.99.1.1.1.4.{#SNMPINDEX}</snmp_oid>
+                            <key>AmbientTemperatureSensorCelsius[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <trends>731d</trends>
+                            <units>°C</units>
+                            <description>Ambient Temperature sensor value
+
+(Japanese)
+最新の筐体温度</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>temperature</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
                         <item_prototype>
                             <uuid>8f9953cb1ef648c2b4f85ddb1d4ad302</uuid>
                             <name>{#PHYDESCR} HiShutdown Threshold</name>
                             <type>SNMP_AGENT</type>
-                            <snmp_oid>1.3.6.1.4.1.6889.2.1.99.1.1.1.{#SNMPINDEX}</snmp_oid>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.1.99.1.1.1.{#SNMPINDEX}</snmp_oid>
                             <key>AmbientTemperatureSensorHiShutdown[{#SNMPINDEX}]</key>
                             <delay>2h</delay>
                             <history>1d</history>
-                            <trends>1d</trends>
+                            <trends>0</trends>
                             <units>°C</units>
-                            <description>The system shuts down when the sensor reading reaches this value
-
-(Japanese)
-筐体温度がこの閾値を超えると、システムがオーバーヒートと判断し停止します。
+                            <description>(Japanese)
+オーバーヒートのしきい値です。
+筐体温度がしきい値に達すると、システムがオーバーヒートと判断し停止します。
 冷却FANのステータスも併せて確認する必要があります。</description>
                             <tags>
                                 <tag>
@@ -1208,16 +1196,16 @@ failure (disconnected wire), or a soft failure such as out-of-range, jittery, or
                             <key>AmbientTemperatureSensorHiWarning[{#SNMPINDEX}]</key>
                             <delay>2h</delay>
                             <history>1d</history>
-                            <trends>1d</trends>
+                            <trends>0</trends>
                             <units>°C</units>
                             <description>The system generates a warning event when the sensor readingrises and crosses this value
 
 (Japanese)
-筐体温度がこの閾値を超えるとアラートを発報します。</description>
+筐体温度がこのしきい値を超えると発報します。</description>
                             <tags>
                                 <tag>
-                                    <tag>class</tag>
-                                    <value>hardware</value>
+                                    <tag>component</tag>
+                                    <value>temperature</value>
                                 </tag>
                             </tags>
                         </item_prototype>
@@ -1229,38 +1217,13 @@ failure (disconnected wire), or a soft failure such as out-of-range, jittery, or
                             <key>AmbientTemperatureSensorLoWarning[{#SNMPINDEX}]</key>
                             <delay>2h</delay>
                             <history>1d</history>
-                            <trends>1d</trends>
+                            <trends>0</trends>
                             <value_type>FLOAT</value_type>
                             <units>°C</units>
+                            <description>(Japanese)
+筐体温度がしきい値を下回ったときに発報するしきい値です。
+この値を下回ると発報します。</description>
                             <tags>
-                                <tag>
-                                    <tag>class</tag>
-                                    <value>hardware</value>
-                                </tag>
-                                <tag>
-                                    <tag>component</tag>
-                                    <value>temperature</value>
-                                </tag>
-                            </tags>
-                        </item_prototype>
-                        <item_prototype>
-                            <uuid>8eb81e6804044ac4903fec546e074c29</uuid>
-                            <name>{#PHYDESCR}</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>1.3.6.1.2.1.99.1.1.1.4.{#SNMPINDEX}</snmp_oid>
-                            <key>AmbientTemperature[{#SNMPINDEX}]</key>
-                            <delay>5m</delay>
-                            <trends>731d</trends>
-                            <units>°C</units>
-                            <description>Ambient Temperature sensor value
-
-(Japanese)
-筐体内温度</description>
-                            <tags>
-                                <tag>
-                                    <tag>class</tag>
-                                    <value>hardware</value>
-                                </tag>
                                 <tag>
                                     <tag>component</tag>
                                     <value>temperature</value>
@@ -1271,16 +1234,24 @@ failure (disconnected wire), or a soft failure such as out-of-range, jittery, or
                             <uuid>d41c44ce148d4e0090639c3709077670</uuid>
                             <name>{#PHYDESCR} Status</name>
                             <type>SNMP_AGENT</type>
-                            <snmp_oid>1.3.6.1.2.1.99.1.1.1.5.{#SNMPINDEX}</snmp_oid>
-                            <key>temperature.sensorStatus[{#SNMPINDEX}]</key>
+                            <snmp_oid>.1.3.6.1.2.1.99.1.1.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>AmbientTemperatureSensorStatus[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
+                            <description>The operational status of the sensor.
+
+(Japanese)
+筐体温度センサーの接続状況
+
+ok(1):正常
+unavailable(2): センサーから値を取得することができません。
+nonoperational(3):センサー故障の可能性があります。</description>
                             <valuemap>
                                 <name>EntitySensorStatus</name>
                             </valuemap>
                             <tags>
                                 <tag>
-                                    <tag>class</tag>
-                                    <value>hardware</value>
+                                    <tag>component</tag>
+                                    <value>health</value>
                                 </tag>
                                 <tag>
                                     <tag>component</tag>
@@ -1292,7 +1263,7 @@ failure (disconnected wire), or a soft failure such as out-of-range, jittery, or
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>2ca87e3a4bf24f11846e0e13912b8d9a</uuid>
-                            <expression>last(/Avaya G450 by SNMP/AmbientTemperature[{#SNMPINDEX}])&gt;last(/Avaya G450 by SNMP/AmbientTemperatureSensorHiShutdown[{#SNMPINDEX}])</expression>
+                            <expression>last(/Avaya G450 by SNMP/AmbientTemperatureSensorCelsius[{#SNMPINDEX}])&gt;last(/Avaya G450 by SNMP/AmbientTemperatureSensorHiShutdown[{#SNMPINDEX}])</expression>
                             <name>temperature has reached Critical.</name>
                             <opdata>Current Temperature: {ITEM.LASTVALUE1}</opdata>
                             <priority>DISASTER</priority>
@@ -1309,7 +1280,7 @@ Check the status of the cooling fan as it may be stopped.
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>f531c93529d3442aa0f89396d5293695</uuid>
-                            <expression>last(/Avaya G450 by SNMP/AmbientTemperature[{#SNMPINDEX}])&gt;last(/Avaya G450 by SNMP/AmbientTemperatureSensorHiWarning[{#SNMPINDEX}])</expression>
+                            <expression>last(/Avaya G450 by SNMP/AmbientTemperatureSensorCelsius[{#SNMPINDEX}])&gt;last(/Avaya G450 by SNMP/AmbientTemperatureSensorHiWarning[{#SNMPINDEX}])</expression>
                             <name>temperature has reached warning range.</name>
                             <opdata>Current Temperature: {ITEM.LASTVALUE1}</opdata>
                             <priority>HIGH</priority>
@@ -1346,7 +1317,7 @@ Check the status of the cooling fan as it may be stopped.
                                     <calc_fnc>ALL</calc_fnc>
                                     <item>
                                         <host>Avaya G450 by SNMP</host>
-                                        <key>AmbientTemperature[{#SNMPINDEX}]</key>
+                                        <key>AmbientTemperatureSensorCelsius[{#SNMPINDEX}]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -1371,6 +1342,125 @@ Check the status of the cooling fan as it may be stopped.
                             </graph_items>
                         </graph_prototype>
                     </graph_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <uuid>5689e163e2974542ac3d51fc73094759</uuid>
+                    <name>VoIP Slot discovery</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#VOIPSLOT},.1.3.6.1.4.1.6889.2.9.1.4.5.1.1]</snmp_oid>
+                    <key>VoIPSlot.discovery</key>
+                    <delay>6h</delay>
+                    <lifetime>3d</lifetime>
+                    <description>(Japanese)
+VoIPエンジンのスロットを自動登録します。
+G450は4枚、G430は2枚モジュールが接続できます。
+2枚目以降のVoIPエンジンを監視するときは、このディスカバリルールを複製してカスタマイズしてください。</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>fef9f962f697454bb8257c4969041a44</uuid>
+                            <name>VoIP Average Occupancy No{#VOIPSLOT}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.5.1.8.{#SNMPINDEX}</snmp_oid>
+                            <key>VoipAverageOccupancy_[{#VOIPSLOT}]</key>
+                            <delay>5m</delay>
+                            <history>30d</history>
+                            <description>5-minute average occupancy of this VoIP engine.
+
+(Japanese)
+VoIPエンジンの稼働率(5分間平均)</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>VoIP</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>c7f64dec2b5b4973a19ac02f6affee37</uuid>
+                            <name>VoIP Channels In Use No{#VOIPSLOT}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.5.1.7.{#SNMPINDEX}</snmp_oid>
+                            <key>VoipChannelsInUse_[{#VOIPSLOT}]</key>
+                            <history>7d</history>
+                            <description>Number of channels in use at this VoIP engine.
+
+(Japanese)
+VoIPエンジンが使用しているチャネル数</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>VoIP</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>cae92f4f651148f2bedaf182f0e05bd8</uuid>
+                            <name>VoIP Fault Mask No{#VOIPSLOT}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.5.1.14.{#SNMPINDEX}</snmp_oid>
+                            <key>VoipFaultMask_[{#VOIPSLOT}]</key>
+                            <delay>5m</delay>
+                            <history>30d</history>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <description>Each bit of this value set to '1' indicates a specific fault	in the VoIP engine.
+
+(Japanese)
+VoIPエンジンに障害が発生したときに値が変化します。
+4オクテットの文字列のうち、一番左がもっとも重要で、一番右のビットは影響度の低いビットになります。</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>health</value>
+                                </tag>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>VoIP</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>2a15a2be2d2b472c956d13567b24d380</uuid>
+                            <name>VoIP Hyper Activity No{#VOIPSLOT}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.5.1.9.{#SNMPINDEX}</snmp_oid>
+                            <key>VoipHyperactivity_[{#VOIPSLOT}]</key>
+                            <delay>5m</delay>
+                            <history>30d</history>
+                            <description>Indicates whether hyperactivity has been detected by this VoIP engine.
+normal(1), hyperactive(2), unknown(255)
+
+(Japanese)
+VoIPエンジンの稼働状況
+過負荷になると、この値が2(hyperactive(2))になります。</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>VoIP</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>f63cfcefcd8241b9932b753759f280cf</uuid>
+                            <name>VoIP Total Channels</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.5.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>VoipTotalChannels_[{#VOIPSLOT}]</key>
+                            <delay>30m</delay>
+                            <history>10d</history>
+                            <trends>60d</trends>
+                            <description>Total channels enforced by Communications Manager.
+
+(Japanese)
+コミュニケーションマネージャー (ACM)によって管理される総チャネル数です。</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>VoIP</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
                 </discovery_rule>
             </discovery_rules>
             <tags>
@@ -1637,88 +1727,6 @@ Check the status of the cooling fan as it may be stopped.
                         </mapping>
                     </mappings>
                 </valuemap>
-                <valuemap>
-                    <uuid>2fc717dee44049699d79e3696743079a</uuid>
-                    <name>型番</name>
-                    <mappings>
-                        <mapping>
-                            <value>1</value>
-                            <newvalue>media-gateway</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>2</value>
-                            <newvalue>g350</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>3</value>
-                            <newvalue>avayaG250</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>4</value>
-                            <newvalue>avayaG250-BRI</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>5</value>
-                            <newvalue>avayaG250-DS1</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>6</value>
-                            <newvalue>avayaG250-DCP</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>7</value>
-                            <newvalue>avayaG450</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>8</value>
-                            <newvalue>avayaG250-A14</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>10</value>
-                            <newvalue>avayaTGM550</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>28</value>
-                            <newvalue>avayaG250vayaCommunicationManagerBranchEditioni120</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>29</value>
-                            <newvalue>avayaCommunicationManagerBranchEditioni40-Analog</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>30</value>
-                            <newvalue>avayaCommunicationManagerBranchEditioni40-BRI</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>31</value>
-                            <newvalue>avayaCommunicationManagerBranchEditioni40-DS1</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>32</value>
-                            <newvalue>avayaCommunicationManagerBranchEditioni40-DCP</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>33</value>
-                            <newvalue>avayaTRM480</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>34</value>
-                            <newvalue>avayaCommunicationManagerBranchEditioni40-A14</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>35</value>
-                            <newvalue>avayaCommunicationManagerBranchEditionG450</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>37</value>
-                            <newvalue>avayaCommunicationManagerBranchEditionG430</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>41</value>
-                            <newvalue>avayaG430</newvalue>
-                        </mapping>
-                    </mappings>
-                </valuemap>
             </valuemaps>
         </template>
     </templates>
@@ -1726,17 +1734,19 @@ Check the status of the cooling fan as it may be stopped.
         <graph>
             <uuid>d6592e29fb934a6d8a7c5747377e3d88</uuid>
             <name>Memory Usage</name>
-            <yaxismax>0</yaxismax>
             <show_work_period>NO</show_work_period>
             <show_triggers>NO</show_triggers>
-            <type>PIE</type>
+            <ymin_type_1>FIXED</ymin_type_1>
+            <ymax_type_1>FIXED</ymax_type_1>
             <graph_items>
                 <graph_item>
-                    <color>1A7C11</color>
-                    <calc_fnc>LAST</calc_fnc>
+                    <sortorder>1</sortorder>
+                    <drawtype>GRADIENT_LINE</drawtype>
+                    <color>00BFFF</color>
+                    <calc_fnc>ALL</calc_fnc>
                     <item>
                         <host>Avaya G450 by SNMP</host>
-                        <key>genMemUtilizationPercentUsed</key>
+                        <key>genMemUtilizationDynAllocMemUsed</key>
                     </item>
                 </graph_item>
             </graph_items>
