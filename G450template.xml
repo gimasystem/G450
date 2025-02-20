@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>6.0</version>
-    <date>2025-02-01T11:42:38Z</date>
+    <date>2025-02-20T02:55:16Z</date>
     <groups>
         <group>
             <uuid>36bff6c29af64692839d077febfc7079</uuid>
@@ -26,98 +26,11 @@ Avaya G450 (ファームウェアバージョン 36.26.0)でテストしまし�
             </groups>
             <items>
                 <item>
-                    <uuid>342aec1fe2604a0488f1244016427a81</uuid>
-                    <name>Call controller Link Error Code</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.3.4.0</snmp_oid>
-                    <key>cmgH248LinkErrorCode</key>
-                    <delay>10m</delay>
-                    <history>60d</history>
-                    <trends>0</trends>
-                    <description>Most recently received H.248 error code affecting the link between this media gateway and its active call controller.
-If cmgH248LinkStatus is up(1), this value will be zero.</description>
-                    <valuemap>
-                        <name>call controller LinkStatus</name>
-                    </valuemap>
-                    <tags>
-                        <tag>
-                            <tag>component</tag>
-                            <value>VoIP</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
-                    <uuid>83b8f3f4bc824997a0b9011efbdce54c</uuid>
-                    <name>Call controller Link Status</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.3.3.0</snmp_oid>
-                    <key>cmgH248LinkStatus</key>
-                    <delay>10m</delay>
-                    <history>60d</history>
-                    <trends>0</trends>
-                    <description>Status of the H.248 link connecting this media gateway to its active call controller.</description>
-                    <valuemap>
-                        <name>call controller LinkStatus</name>
-                    </valuemap>
-                    <tags>
-                        <tag>
-                            <tag>component</tag>
-                            <value>VoIP</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
-                    <uuid>3e0c81cc82924c87a9abf7cb531e2c5e</uuid>
-                    <name>Registration Status</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.3.1.0</snmp_oid>
-                    <key>cmgRegistrationState</key>
-                    <delay>3m</delay>
-                    <history>1w</history>
-                    <trends>0</trends>
-                    <description>Shows whether this media gateway is currently registered with any call controller.
-
-(japanese)
-PBXにレジストしているときはRegistered(1)になります。
-PBX接続できず、レジストしていないときはnotRegistered(2)になります。</description>
-                    <valuemap>
-                        <name>RegistrationState</name>
-                    </valuemap>
-                    <tags>
-                        <tag>
-                            <tag>component</tag>
-                            <value>VoIP</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
-                    <uuid>f4f615b8dfb34d048834805d02ab334d</uuid>
-                    <name>Component Firmware Version</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.2.1.3.0</snmp_oid>
-                    <key>FirmwareVersion</key>
-                    <delay>1d</delay>
-                    <history>365d</history>
-                    <trends>0</trends>
-                    <value_type>CHAR</value_type>
-                    <description>Firmware version of this gateway.
-
-(Japanese)
-ゲートウェイ本体のファームウェアバージョンです</description>
-                    <inventory_link>SOFTWARE</inventory_link>
-                    <tags>
-                        <tag>
-                            <tag>component</tag>
-                            <value>system</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
                     <uuid>51aea3bf450d4af28bd828063ea0c796</uuid>
                     <name>CPU Utilization (1min Average)</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.1.1.1.5.10</snmp_oid>
-                    <key>genCpuAverageUtilization</key>
+                    <key>CpuAverageUtilization</key>
                     <history>10d</history>
                     <units>%</units>
                     <description>The curent average CPU utilization in percentage if the
@@ -141,7 +54,7 @@ CPU使用率のモニタリング設定が有効になっている必要があ�
                     <name>CPU Utilization (current)</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.1.1.1.6.10</snmp_oid>
-                    <key>genCpuCurrentUtilization</key>
+                    <key>CpuCurrentUtilization</key>
                     <delay>5s</delay>
                     <history>1d</history>
                     <trends>30d</trends>
@@ -164,7 +77,7 @@ CPU使用率のモニタリング設定が有効になっている必要があ�
                     <name>CPU Utilization Enable Monitoring</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.1.1.1.2.10</snmp_oid>
-                    <key>genCpuUtilizationEnableMonitoring</key>
+                    <key>CpuUtilizationEnableMonitoring</key>
                     <delay>1h</delay>
                     <history>7d</history>
                     <trends>0</trends>
@@ -184,122 +97,96 @@ CPUモニタ設定が有効になっているとき、2(enabled)になります
                     </tags>
                 </item>
                 <item>
-                    <uuid>39f2f47d26f3472c93b5b75c42eea22d</uuid>
-                    <name>total count of memory failures</name>
+                    <uuid>f4f615b8dfb34d048834805d02ab334d</uuid>
+                    <name>Component Firmware Version</name>
                     <type>SNMP_AGENT</type>
-                    <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.2.4.0</snmp_oid>
-                    <key>genMemUtilizationAllocationFailures</key>
-                    <delay>5m</delay>
-                    <description>The total number of the memory that fails allocation.
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.2.1.3.0</snmp_oid>
+                    <key>FirmwareVersion</key>
+                    <delay>1d</delay>
+                    <history>365d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <description>Firmware version of this gateway.
 
 (Japanese)
-メモリの割り当てに失敗した回数</description>
+ゲートウェイ本体のファームウェアバージョン</description>
+                    <inventory_link>SOFTWARE</inventory_link>
                     <tags>
                         <tag>
                             <tag>component</tag>
-                            <value>memory</value>
+                            <value>system</value>
                         </tag>
                     </tags>
                 </item>
                 <item>
-                    <uuid>8d95403c74644e79b949ea0622ba5988</uuid>
-                    <name>available dynamically allocated memory</name>
+                    <uuid>342aec1fe2604a0488f1244016427a81</uuid>
+                    <name>Call controller Link Error Code</name>
                     <type>SNMP_AGENT</type>
-                    <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.2.3.3.0</snmp_oid>
-                    <key>genMemUtilizationDynAllocMemAvailable</key>
-                    <units>byte</units>
-                    <description>The available dynamically allocated memory in Bytes.
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.3.4.0</snmp_oid>
+                    <key>H248LinkErrorCode</key>
+                    <delay>10m</delay>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <description>Most recently received H.248 error code affecting the link between this media gateway and its active call controller.
+If cmgH248LinkStatus is up(1), this value will be zero.
 
 (Japanese)
-利用可能な動的割り当てメモリ（Byte単位）</description>
+コールコントローラー間接続のH.248エラーコード
+
+メディアゲートウェイとコールコントローラー間接続がNGになっているときの
+H.248エラーコードを示します。
+正常に接続できているときはUP(1)となります</description>
+                    <valuemap>
+                        <name>call controller LinkStatus</name>
+                    </valuemap>
                     <tags>
                         <tag>
                             <tag>component</tag>
-                            <value>memory</value>
+                            <value>VoIP</value>
                         </tag>
                     </tags>
                 </item>
                 <item>
-                    <uuid>3c3ea389f20148fbb61618cec7a73578</uuid>
-                    <name>allocated memory</name>
+                    <uuid>83b8f3f4bc824997a0b9011efbdce54c</uuid>
+                    <name>Call controller Link Status</name>
                     <type>SNMP_AGENT</type>
-                    <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.2.3.1.0</snmp_oid>
-                    <key>genMemUtilizationDynAllocMemUsed</key>
-                    <units>byte</units>
-                    <description>The dynamically allocated memory has been used in Bytes.
-
-(Japanese)
-動的に割り当てられたメモリ(バイト単位)</description>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.3.3.0</snmp_oid>
+                    <key>H248LinkStatus</key>
+                    <delay>10m</delay>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <description>Status of the H.248 link connecting this media gateway to its active call controller.</description>
+                    <valuemap>
+                        <name>call controller LinkStatus</name>
+                    </valuemap>
                     <tags>
                         <tag>
                             <tag>component</tag>
-                            <value>memory</value>
+                            <value>VoIP</value>
                         </tag>
                     </tags>
                 </item>
                 <item>
-                    <uuid>316f442dc8814619837f967c3f193b3f</uuid>
-                    <name>Memory Usage</name>
+                    <uuid>3e0c81cc82924c87a9abf7cb531e2c5e</uuid>
+                    <name>Call controller Registration Status</name>
                     <type>SNMP_AGENT</type>
-                    <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.2.6.1.3.10</snmp_oid>
-                    <key>genMemUtilizationPercentUsed</key>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.3.1.0</snmp_oid>
+                    <key>H248RegistrationState</key>
                     <delay>3m</delay>
-                    <trends>731d</trends>
-                    <units>%</units>
-                    <description>The percenatge of memory used.
+                    <history>1w</history>
+                    <trends>0</trends>
+                    <description>Shows whether this media gateway is currently registered with any call controller.
 
-(Japanese)
-メモリ使用率 (パーセント表記)</description>
+(japanese)
+PBXにレジストしているときはRegistered(1)になります。
+PBX接続できず、レジストしていないときはnotRegistered(2)になります。</description>
+                    <valuemap>
+                        <name>RegistrationState</name>
+                    </valuemap>
                     <tags>
                         <tag>
                             <tag>component</tag>
-                            <value>memory</value>
-                        </tag>
-                    </tags>
-                    <triggers>
-                        <trigger>
-                            <uuid>9b61881b96a74bc395c3fdb386565e80</uuid>
-                            <expression>last(/Avaya G450 by SNMP/genMemUtilizationPercentUsed)&gt;80</expression>
-                            <name>High memory utilization</name>
-                            <opdata>usage: {ITEM.LASTVALUE1}</opdata>
-                        </trigger>
-                    </triggers>
-                </item>
-                <item>
-                    <uuid>d7ac661aa9bf49b08e292abd3a1f87b6</uuid>
-                    <name>total size of physical RAM</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.2.6.1.2.10</snmp_oid>
-                    <key>genMemUtilizationPhyRam</key>
-                    <delay>1d</delay>
-                    <units>byte</units>
-                    <description>The total size of the physical ram in Bytes.
-
-(Japanese)
-物理メモリサイズ</description>
-                    <tags>
-                        <tag>
-                            <tag>component</tag>
-                            <value>memory</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
-                    <uuid>3d68198c488b44a59b1bf7fb2877333f</uuid>
-                    <name>total size of RAM</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.2.1.0</snmp_oid>
-                    <key>genMemUtilizationTotalRAM</key>
-                    <delay>1d</delay>
-                    <units>byte</units>
-                    <description>The total size of the ram in MBytes.
-
-(Japanese)
-RAMの容量</description>
-                    <tags>
-                        <tag>
-                            <tag>component</tag>
-                            <value>memory</value>
+                            <value>VoIP</value>
                         </tag>
                     </tags>
                 </item>
@@ -312,57 +199,10 @@ RAMの容量</description>
                     <delay>10m</delay>
                     <trends>0</trends>
                     <value_type>TEXT</value_type>
-                    <description>Each bit of this value set to '1' indicates a specific fault
-in the module.
-Octets are numbered in the order in which they appear in the PDU.
-Bits are numbered from the most-significant leftmost bit in the
-octet (bit 0) to the least-significant rightmost bit (bit 7).
-Cajun numbering continues across octets, so that octet 1 bit 0 is
-called bit 8 in the Cajun scheme.  That number is also shown below,
-with the octet value for each single bit set.
-Octet 0 high-order 4 bits show fan status.
-Octet 0 low-order 4 bits show temperature status.
-Octet 1 shows power supply status.
-Octet 2 shows other alarms.
-Cajun  Octet Octet
-bit#   /bit# value	Meaning
-----------------------
-0      0/0   0x80	Multiple fan warning:at least two fans have been operating
-at less than 90% of their nominal speed for 5 minutes or
-more.  This may be an early warning of overheating.
-1      0/1   0x40	PSU fan brief failure warning:the power supply fan has been
-operating at less than 90% of its nominal speed for 10 minutes
-or more, but less than 15 minutes.  This may be an early
-warning of overheating.
-2      0/2   0x20	PSU fan prolonged failure warning:the power supply fan has
-been operating at less than 90% of its nominal speed for 15
-minutes or more.  This may be an early warning of overheating.
-3      0/3       	Unused.
-4      0/4   0x08	Temperature warning:cmgCpuTemp has exceeded its warning
-threshold.
-5      0/5   0x04	Temperature warning:cmgDspTemp has exceeded its warning
-threshold.
-6     0/6	Unused.
-7     0/7   Power On Status Test failure -NCE, QUICC test failures on power up
-8      1/0   0x80	The +5.1 v power supply to the MG processor is out of range.
-9      1/1   0x40	The -48 v power supply to the media modules is out of range.
-10      1/2   0x20	The +3.3 v power supply to the VoIP complexes is out of range.
-11      1/3   0x10	The +1.58 v power supply to the DSP units is out of range.
-12      1/4   0x08	The +2.5 v power supply to the 8260 processor is out of range.
-13      1/5   0x04	The -48 v auxiliary power supply to the endpoints is out of
-range.
-14      1/6   0x02	The +12 v power supply to the fans is out of range.
-15      1/7		Unused.
-16      2/0   0x80	Clock synchronization signal is lost.
-17      2/1   0x40	Clock synchronization signal warning. Only one clock syncronization signal source remains.
-18      2/2   0x20   Clock synchronization signal excessive switching.
-19      2/3   0x10   TDM Test Expansion Box 1 Failure
-20      2/4   0x08   TDM Test Expansion Box 2 Failure
-21      2/5   0x04   PoE Power Supply Base Box Failure
-22      2/6   0x02   PoE Power Supply Expansion Box 1 Failure
-23      2/7   0x01   PoE Power Supply Expansion Box 2 Failure
+                    <description>The hardware sensor operation status flag changes its value when a power module failure is detected or when abnormalities occur in the cooling fan or internal chassis temperature.
 
 (Japanese)
+ハードウェアセンサー動作状況フラグ
 電源モジュール異常を検知したときや冷却ファン、筐体内温度に異常が発生したときに値が変化します。
 
 ハードウェアモジュールに不具合が発生したときに、不具合発生フラグ1が立ちます。
@@ -383,61 +223,18 @@ range.
                 </item>
                 <item>
                     <uuid>77f6d515163e448680221f756db2644a</uuid>
-                    <name>Hardware Status</name>
+                    <name>Hardware Controler Status</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.10.13.0</snmp_oid>
                     <key>HardwareStatusMask</key>
                     <delay>1h</delay>
                     <trends>0</trends>
                     <value_type>CHAR</value_type>
-                    <description>Each bit of this value set to '1' indicates a specific status
-condition in the module.
-Octets are numbered in the order in which they appear in the PDU.
-Bits are numbered from the most-significant leftmost bit in the
-octet (bit 0) to the least-significant rightmost bit (bit 7).
-Cajun numbering continues across octets, so that octet 1 bit 0 is
-called bit 8 in the Cajun scheme.  That number is also shown below,
-with the octet value for each single bit set.
-Octet 0 high-order 4 bits show LED status.
-Octet 0 low-order 4 bits show ICC status.
-Octets 1 - 5 show power-on self test (POST) results.
-Cajun  Octet Octet
-bit#   bit#  value	Meaning
-----------------------
-0      0/0   0x80	Media gateway red LED is on.
-1      0/1   0x40	The red LED is on in one or more of the media modules.
-2-3    0/2-3	Unused.
-4      0/4   0x08	Integrated Communications Controller hardware watchdog
-alert is on.
-5-7    0/5-7	Unused.
-8      1/0	 0x80	POST HDLC local loopback failed.
-9      1/1	 0x40	POST Ethernet local loopback failed.
-10     1/2	 0x20	POST Ethernet physical local loopback failed.
-11     1/3	 0x10	POST Port I/O read-write test failed.
-12-15  1/4-7	Unused.
-16     2/0   0x80	POST NCE0 reset failed.
-17     2/1   0x40	POST NCE0 internal RAM test failed.
-18     2/2   0x20	POST NCE0 FIFO loop-around failed.
-19     2/3   0x10	POST NCE0 internal channel loopback failed.
-20     2/4   0x08	POST NCE0 internal TDM loopback failed.
-21     2/5   0x04	POST NCE0 external channel loopback failed.
-22-23  2/6-7	Unused.
-24     3/0   0x80	POST NCE1 reset failed.
-25     3/1   0x40	POST NCE1 internal RAM test failed.
-26     3/2   0x20	POST NCE1 FIFO loop-around failed.
-27     3/3   0x10	POST NCE1 internal channel loopback failed.
-28     3/4   0x08	POST NCE1 internal TDM loopback failed.
-29     3/5   0x04	POST NCE1 external channel loopback failed.
-30-31  3/6-7	Unused.
-32     4/0   0x80	POST DSP reset failed.
-33     4/1   0x40	POST POST SPI internal loopback failed.
-34     4/2   0x20	POST Spitfire FIFO test failed.
-35     4/3   0x10	POST ADC test failed.
-36     4/4   0x08	POST CPLD access test failed.
-37-39  4/5-7	Unused.
-40-47  5/0-7	Unused.
+                    <description>The controller malfunction occurrence flag changes its value when an abnormality occurs in the media gateway’s controller, DSP, I/O ports, or LAN module.
 
 (Japanese)
+コントローラ不具合発生フラグ
+
 メディアゲートウェイのコントローラやDSP、I/Oポート、LANモジュールなどに異常が発生したときに値が変化します。
 左端のビットを0bitとしてカウントし、最右端はビットは47bitとしてカウントされます。 (ケイジャンナンバリング)
 ケイジャンナンバリングではオクテットを跨いでカウントされ、
@@ -458,9 +255,8 @@ alert is on.
 11 bit:I/Oポートの読み書き試験に失敗
 
 
-●テンプレ作者コメント
 &quot;00 00 00 00 00 00&quot;が正常値ですが、
-cmgHardwareFaultMaskと同様、この値が以外のときは、何かのハードウェア異常が発生していると考えられるので、G450のハードウェアステータスを確認し、対処する必要があります。</description>
+HardwareFaultMaskと同様、この値が以外のときは、何かのハードウェア異常が発生していると考えられるので、ハードウェアステータスを確認し、対処する必要があります。</description>
                     <tags>
                         <tag>
                             <tag>component</tag>
@@ -480,7 +276,7 @@ cmgHardwareFaultMaskと同様、この値が以外のときは、何かのハー
                     <description>Hardware version of this gateway
 
 (Japanese)
-ゲートウェイのハードウェアリビジョン（世代）です。
+ゲートウェイのハードウェアリビジョン（世代）
 
 古いリビジョンに対応していないファームウェアがあります。
 ファームウェアを更新するときは、リビジョンに対応したファームウェアを適用してください</description>
@@ -549,7 +345,14 @@ VoIPモジュールがクロックを提供している場合は「voip」と表
                     <delay>1h</delay>
                     <trends>0</trends>
                     <value_type>CHAR</value_type>
-                    <description>Secondary clock source configured for this processor.</description>
+                    <description>Secondary clock source configured for this processor.
+
+(Japanese)
+ISDNのセカンダリクロックソースになります。
+T1またはBRIモジュールがクロックを提供している場合
+クロックを提供しているポート「Vs」または「Vs(pp,pp,...)」と表示されます。
+VoIPモジュールがクロックを提供している場合は「voip」と表示されます。
+セカンダリクロックソースが設定されていない場合は「None」と表示されます。</description>
                     <tags>
                         <tag>
                             <tag>interface</tag>
@@ -562,37 +365,12 @@ VoIPモジュールがクロックを提供している場合は「voip」と表
                     <name>Media gateway fault</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.2.1.15.0</snmp_oid>
-                    <key>MgpFaultMask</key>
+                    <key>MediagatewayFaultMask</key>
                     <delay>3m</delay>
                     <trends>0</trends>
                     <value_type>CHAR</value_type>
-                    <description>Each bit of this value set to '1' indicates a specific fault in the Media Gateway processor.
-
-Octets are numbered in the order in which they appear in the PDU.
-Bits are numbered from the most-significant leftmost bit in the octet (bit 0) to the least-significant rightmost bit (bit 7).
-
-Cajun numbering continues across octets, so that octet 1 bit 0 is called bit 8 in the Cajun scheme.  That number is also shown below,with the octet value for each single bit set.
-
-    Cajun  Octet Octet
-    bit#   bit#  value	Meaning
-    -----  ----- -----	-------
-    0      0/0   0x80	Memory failure.
-    1      0/1   0x40	DHCP request failure.
-    2      0/2   0x20	Firmware download failure.
-    3      0/3   0x10	Software watchdog alert - MG processes restarting.
-    4      0/4   0x08	Internal Communications Controller expected but not resent.
-    5      0/5   0x04	Internal Communications Controller automatic reset.
-    6      0/6   0x02	Media Gateway busy-out.
-    7      0/7   0x01	Configuration upload failure.
-    8      1/0   0x80	Primary controller not found.
-    9      1/1   0x40	No controller found.
-    10     1/2   0x20	Registration failure.
-    11     1/3   0x10	H.248 control link down.
-    12-13  1/4-5	Unused.
-    14     1/6   0x02	Maintenance test failure.
-    15     1/7   0x01	Maintenance test failure over threshold.
-    16     2/0   0x80   Configuration download failure.
-    17-23  2/0-7	Unused.
+                    <description>The media gateway processor malfunction flag
+If the value is other than &quot;00 00&quot;, a specific fault may have occurred.
 
 (Japanese)
 メディアゲートウェイプロセッサの不具合発生フラグ
@@ -601,6 +379,126 @@ Cajun numbering continues across octets, so that octet 1 bit 0 is called bit 8 i
                         <tag>
                             <tag>component</tag>
                             <value>health</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>39f2f47d26f3472c93b5b75c42eea22d</uuid>
+                    <name>total count of memory failures</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.2.4.0</snmp_oid>
+                    <key>MemoryUtilizationAllocationFailures</key>
+                    <delay>5m</delay>
+                    <description>The total number of the memory that fails allocation.
+
+(Japanese)
+メモリの割り当てに失敗した回数です</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>8d95403c74644e79b949ea0622ba5988</uuid>
+                    <name>available dynamically allocated memory</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.2.3.3.0</snmp_oid>
+                    <key>MemoryUtilizationDynAllocMemAvailable</key>
+                    <units>byte</units>
+                    <description>The available dynamically allocated memory in Bytes.
+
+(Japanese)
+利用可能な動的割り当てメモリ（Byte単位）</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>3c3ea389f20148fbb61618cec7a73578</uuid>
+                    <name>allocated memory</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.2.3.1.0</snmp_oid>
+                    <key>MemoryUtilizationDynAllocMemUsed</key>
+                    <units>byte</units>
+                    <description>The dynamically allocated memory has been used in Bytes.
+
+(Japanese)
+動的に割り当てられたメモリ(バイト単位)</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>316f442dc8814619837f967c3f193b3f</uuid>
+                    <name>Memory Usage</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.2.6.1.3.10</snmp_oid>
+                    <key>MemoryUtilizationPercentUsed</key>
+                    <delay>3m</delay>
+                    <trends>731d</trends>
+                    <units>%</units>
+                    <description>The percenatge of memory used.
+
+(Japanese)
+メモリ使用率 (パーセント表記)</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>9b61881b96a74bc395c3fdb386565e80</uuid>
+                            <expression>last(/Avaya G450 by SNMP/MemoryUtilizationPercentUsed)&gt;80</expression>
+                            <name>High memory utilization</name>
+                            <opdata>usage: {ITEM.LASTVALUE1}</opdata>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>d7ac661aa9bf49b08e292abd3a1f87b6</uuid>
+                    <name>total size of physical RAM</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.2.6.1.2.10</snmp_oid>
+                    <key>MemoryUtilizationPhyRam</key>
+                    <delay>1d</delay>
+                    <units>byte</units>
+                    <description>The total size of the physical ram in Bytes.
+
+(Japanese)
+物理メモリサイズ</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>3d68198c488b44a59b1bf7fb2877333f</uuid>
+                    <name>total size of RAM</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.6889.2.1.11.1.2.1.0</snmp_oid>
+                    <key>MemoryUtilizationTotalRAM</key>
+                    <delay>1d</delay>
+                    <units>byte</units>
+                    <description>The total size of the ram in MBytes.
+
+(Japanese)
+RAMの容量</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
                         </tag>
                     </tags>
                 </item>
@@ -683,144 +581,6 @@ CPUモジュールとG450本体のシリアル番号はそれぞれ個別に管�
                 </item>
             </items>
             <discovery_rules>
-                <discovery_rule>
-                    <uuid>bc39d224a1d449f2b665197a1b641fa6</uuid>
-                    <name>Module discovery</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>discovery[{#SLOT},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.1,{#MODULENAME},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.2,{#MODULESN},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.5,{#MODULEFW},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.8,{#MODULEFAULTMASK},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.10,{#MODULESTATUSMASK},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.11]</snmp_oid>
-                    <key>CmgModuleSlot.discovery</key>
-                    <delay>6h</delay>
-                    <lifetime>1d</lifetime>
-                    <description>discovery
-used SLOT,name,Serial Number,Firmware version,status.
-
-(japanese)
-使用中のモジュール、モジュールの型番、シリアル番号、ファームウェアバージョン、モジュール使用状況やエラーステータスを取得します</description>
-                    <item_prototypes>
-                        <item_prototype>
-                            <uuid>99ddb8622b1045e39033d93a6e6d52a3</uuid>
-                            <name>ModuleSlot V{#SLOT} FaultMask</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.10.{#SNMPINDEX}</snmp_oid>
-                            <key>ModuleFaultMask[{#SNMPINDEX}]</key>
-                            <delay>5m</delay>
-                            <trends>0</trends>
-                            <value_type>CHAR</value_type>
-                            <description>(Japanese)
-モジュールに異常が発生すると数値が変化します。
-数値を二進数に変換して、ビット毎に事象を確認する必要があります。</description>
-                            <tags>
-                                <tag>
-                                    <tag>component</tag>
-                                    <value>health</value>
-                                </tag>
-                                <tag>
-                                    <tag>component</tag>
-                                    <value>Module</value>
-                                </tag>
-                            </tags>
-                        </item_prototype>
-                        <item_prototype>
-                            <uuid>7d0ce3e3b1f94e33b47ee8b0b493b191</uuid>
-                            <name>ModuleSlot V{#SLOT} Firmware version</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.8.{#SNMPINDEX}</snmp_oid>
-                            <key>ModuleFWVersion[{#SNMPINDEX}]</key>
-                            <delay>2h</delay>
-                            <history>1w</history>
-                            <trends>0</trends>
-                            <value_type>CHAR</value_type>
-                            <description>Firmware version of this module. 
-
-(Japanese)
-このモジュールのファームウェアバージョンです。</description>
-                            <tags>
-                                <tag>
-                                    <tag>component</tag>
-                                    <value>Module</value>
-                                </tag>
-                            </tags>
-                        </item_prototype>
-                        <item_prototype>
-                            <uuid>9521f684d6f74c61b7cb3afad34ae9d4</uuid>
-                            <name>ModuleSlot V{#SLOT} SerialNumber</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.5.{#SNMPINDEX}</snmp_oid>
-                            <key>ModuleSerialNumber[{#SNMPINDEX}]</key>
-                            <delay>2h</delay>
-                            <history>1w</history>
-                            <trends>0</trends>
-                            <value_type>CHAR</value_type>
-                            <description>Serial number of this module.  The first 12 characters are meaningful.
-Form is yyLLmmnnnnnn, where
-
-yy = last 2 digits of the year of manufacture
-LL = manufacturing facility, e.g. DR for Denver, Colorado
-mm = month of manufacture, 01 - 12
-nnnnnn = a six-digit sequence number
-
-(Japanese)
-このモジュールのシリアル番号です。最初の12文字が有効な情報を表します。
-形式は yyLLmmnnnnnn で、以下のように構成されています
-
-yy = 製造年の下2桁
-LL = 製造施設（例：DRはコロラド州デンバー）
-mm = 製造月（01 - 12）
-nnnnnn = 6桁の連番</description>
-                            <tags>
-                                <tag>
-                                    <tag>component</tag>
-                                    <value>inventory</value>
-                                </tag>
-                                <tag>
-                                    <tag>component</tag>
-                                    <value>Module</value>
-                                </tag>
-                            </tags>
-                        </item_prototype>
-                        <item_prototype>
-                            <uuid>597c902602a548b1846a56d206598795</uuid>
-                            <name>ModuleSlot V{#SLOT} Module Name</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>.1.3.6.1.4.1.81.8.1.1.5.{#SNMPINDEX}</snmp_oid>
-                            <key>ModuleSlot[{#SNMPINDEX}]</key>
-                            <delay>2h</delay>
-                            <history>1w</history>
-                            <trends>0</trends>
-                            <value_type>CHAR</value_type>
-                            <description>(Japanese)
-スロットに接続されているモジュールの名称を取得します。</description>
-                            <tags>
-                                <tag>
-                                    <tag>component</tag>
-                                    <value>Module</value>
-                                </tag>
-                            </tags>
-                        </item_prototype>
-                        <item_prototype>
-                            <uuid>0781db82c0d248fe8a6339664f6e5826</uuid>
-                            <name>ModuleSlot V{#SLOT} ModuleStatusMask</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.11.{#SNMPINDEX}</snmp_oid>
-                            <key>ModuleStatusMask[{#SNMPINDEX}]</key>
-                            <delay>5m</delay>
-                            <trends>0</trends>
-                            <value_type>CHAR</value_type>
-                            <description>(Japanese)
-モジュール内で特定ステータスによって数値が変化します。
-数値を二進数に変換して、ビット毎に事象を確認する必要があります。
-
-このVoIP-GWがAvaya Converged Platform(ACP)によって制御されている場合や、
-モジュールのアラートLEDが点灯しているときにこの値が変化します。</description>
-                            <tags>
-                                <tag>
-                                    <tag>component</tag>
-                                    <value>Module</value>
-                                </tag>
-                            </tags>
-                        </item_prototype>
-                    </item_prototypes>
-                </discovery_rule>
                 <discovery_rule>
                     <uuid>54ef209f76db4a49b135b2f882d7c42f</uuid>
                     <name>VoIP DSP ID discovery in DSP slot#1</name>
@@ -1122,6 +882,144 @@ nonoperational(3):回転数センサー故障の可能性があります。</des
                                 <tag>
                                     <tag>component</tag>
                                     <value>health</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <uuid>bc39d224a1d449f2b665197a1b641fa6</uuid>
+                    <name>Module discovery</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#SLOT},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.1,{#MODULENAME},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.2,{#MODULESN},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.5,{#MODULEFW},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.8,{#MODULEFAULTMASK},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.10,{#MODULESTATUSMASK},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.11]</snmp_oid>
+                    <key>ModuleSlot.discovery</key>
+                    <delay>6h</delay>
+                    <lifetime>1d</lifetime>
+                    <description>discovery
+used SLOT,name,Serial Number,Firmware version,status.
+
+(japanese)
+使用中のモジュール、モジュールの型番、シリアル番号、ファームウェアバージョン、モジュール使用状況やエラーステータスを取得します</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>99ddb8622b1045e39033d93a6e6d52a3</uuid>
+                            <name>ModuleSlot V{#SLOT} FaultMask</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.10.{#SNMPINDEX}</snmp_oid>
+                            <key>ModuleFaultMask[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <description>(Japanese)
+モジュールに異常が発生すると数値が変化します。
+数値を二進数に変換して、ビット毎に事象を確認する必要があります。</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>health</value>
+                                </tag>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>Module</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>7d0ce3e3b1f94e33b47ee8b0b493b191</uuid>
+                            <name>ModuleSlot V{#SLOT} Firmware version</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.8.{#SNMPINDEX}</snmp_oid>
+                            <key>ModuleFWVersion[{#SNMPINDEX}]</key>
+                            <delay>2h</delay>
+                            <history>1w</history>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <description>Firmware version of this module. 
+
+(Japanese)
+このモジュールのファームウェアバージョンです。</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>Module</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>9521f684d6f74c61b7cb3afad34ae9d4</uuid>
+                            <name>ModuleSlot V{#SLOT} SerialNumber</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>ModuleSerialNumber[{#SNMPINDEX}]</key>
+                            <delay>2h</delay>
+                            <history>1w</history>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <description>Serial number of this module.  The first 12 characters are meaningful.
+Form is yyLLmmnnnnnn, where
+
+yy = last 2 digits of the year of manufacture
+LL = manufacturing facility, e.g. DR for Denver, Colorado
+mm = month of manufacture, 01 - 12
+nnnnnn = a six-digit sequence number
+
+(Japanese)
+このモジュールのシリアル番号です。最初の12文字が有効な情報を表します。
+形式は yyLLmmnnnnnn で、以下のように構成されています
+
+yy = 製造年の下2桁
+LL = 製造施設（例：DRはコロラド州デンバー）
+mm = 製造月（01 - 12）
+nnnnnn = 6桁の連番</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>inventory</value>
+                                </tag>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>Module</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>597c902602a548b1846a56d206598795</uuid>
+                            <name>ModuleSlot V{#SLOT} Module Name</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.81.8.1.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>ModuleSlot[{#SNMPINDEX}]</key>
+                            <delay>2h</delay>
+                            <history>1w</history>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <description>(Japanese)
+スロットに接続されているモジュールの名称を取得します。</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>Module</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>0781db82c0d248fe8a6339664f6e5826</uuid>
+                            <name>ModuleSlot V{#SLOT} ModuleStatusMask</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.11.{#SNMPINDEX}</snmp_oid>
+                            <key>ModuleStatusMask[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <description>(Japanese)
+モジュール内で特定ステータスによって数値が変化します。
+数値を二進数に変換して、ビット毎に事象を確認する必要があります。
+
+このVoIP-GWがAvaya Converged Platform(ACP)によって制御されている場合や、
+モジュールのアラートLEDが点灯しているときにこの値が変化します。</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>Module</value>
                                 </tag>
                             </tags>
                         </item_prototype>
@@ -1746,7 +1644,7 @@ VoIPエンジンの稼働状況
                     <calc_fnc>ALL</calc_fnc>
                     <item>
                         <host>Avaya G450 by SNMP</host>
-                        <key>genMemUtilizationDynAllocMemUsed</key>
+                        <key>MemoryUtilizationDynAllocMemUsed</key>
                     </item>
                 </graph_item>
             </graph_items>
