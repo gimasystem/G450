@@ -21,9 +21,9 @@ no links
 
 |Name|Description|Type|Key and additional info|
 |----|-----------|----|----|
-|Cooling FAN discovery|(English)<BR>add cooling fan of the G450 as an item.<BR><BR>(Japanese)<BR>G450内部の冷却ファンを自動登録します。|`SNMP agent`|{#PHYDESCR}_Shutdown threshold<BR>{#PHYDESCR} HiWarning threshold<BR>{#PHYDESCR} LoWarning threshold<BR>{#PHYDESCR}_Status<BR>{#PHYDESCR}_{#SENSORDISP}|
+|Cooling FAN discovery|add cooling fan of the G450 as an item.<BR><BR>(Japanese)<BR>G450内部の冷却ファンを自動登録します。|`SNMP agent`|{#PHYDESCR}_Shutdown threshold<BR>{#PHYDESCR} HiWarning threshold<BR>{#PHYDESCR} LoWarning threshold<BR>{#PHYDESCR}_Status<BR>{#PHYDESCR}_{#SENSORDISP}|
 |Ambient Temperature Sensor discovery|(Englisth)<BR>temperature sensors and thresholds inside G450 chassis as items.<BR><BR>(Japanese)<BR>G450筐体内部の温度センサーを自動登録します。|`SNMP agent`|{#PHYDESCR} HiShutdown Threshold<BR>{#PHYDESCR} HiWarning Thresholdd<BR>{#PHYDESCR} LoWarning Thresholdd<BR>AmbientTemperature[{#SNMPINDEX}]|
-|Module discovery|(Englisth)<BR>discovery used SLOT,name,Serial Number,Firmware version,status.<BR><BR>(Japanese)<BR>使用中のモジュール、モジュールの型番、シリアル番号、ファームウェアバージョン、モジュール使用状況やエラーステータスを取得します|`SNMP agent`|ModuleSlot V{#SLOT} FaultMask<BR>ModuleSlot V{#SLOT} Firmware version<BR>ModuleSlot V{#SLOT} SerialNumber<BR>ModuleSlot V{#SLOT} Module Name<BR>ModuleSlot V{#SLOT} ModuleStatusMask<BR>|
+|Module discovery|discovery used SLOT,name,Serial Number,Firmware version,status.<BR><BR>(Japanese)<BR>使用中のモジュール、モジュールの型番、シリアル番号、ファームウェアバージョン、モジュール使用状況やエラーステータスを取得します|`SNMP agent`|ModuleSlot V{#SLOT} FaultMask<BR>ModuleSlot V{#SLOT} Firmware version<BR>ModuleSlot V{#SLOT} SerialNumber<BR>ModuleSlot V{#SLOT} Module Name<BR>ModuleSlot V{#SLOT} ModuleStatusMask<BR>|
 
 ## Items collected
 
@@ -39,8 +39,8 @@ The system's serial number and the overall operational status of the hardware ar
 
 |Name|Description|type|OID|Key and additional info|
 |----|-----------|----|----|----|
-|Component Description|Description of this component: Media Gateway<BR><BR>(Japanese)<BR>製品フルネームとソフトウェアバージョンです。ホストインベントリフィールドに自動設定されます。|`SNMP agent`|.1.3.6.1.4.1.6889.2.9.1.1.3.0|ModelDescription<p>Update:1 day</p>|
-|Hardware Sensor Health|The health status of hardware sensors changes when abnormalities are detected, such as power module issues, cooling fan problems, or abnormal chassis temperature.<BR><BR>(Japanese)<BR>ハードウェアセンサーの動作状況<BR>電源モジュール異常を検知したときや冷却ファン、筐体内温度に異常が発生したときに値が変化します。|`SNMP agent`|.1.3.6.1.4.1.6889.2.9.1.1.10.12.0|HardwareFaultMask<p>Update:10 min</p>|
+|Component Description|Description of this component: Media Gateway<BR>(Japanese)<BR>製品フルネームとソフトウェアバージョンです。ホストインベントリフィールドに自動設定されます。|`SNMP agent`|.1.3.6.1.4.1.6889.2.9.1.1.3.0|ModelDescription<p>Update:1 day</p>|
+|Hardware Sensor Health|The health status of hardware sensors changes when abnormalities are detected, such as power module issues, cooling fan problems, or abnormal chassis temperature.<BR>(Japanese)<BR>ハードウェアセンサーの動作状況<BR>電源モジュール異常を検知したときや冷却ファン、筐体内温度に異常が発生したときに値が変化します。|`SNMP agent`|.1.3.6.1.4.1.6889.2.9.1.1.10.12.0|HardwareFaultMask<p>Update:10 min</p>|
 |Hardware Status|<P>changes when abnormalities occur in the media gateway controller, POST, DSP, I/O ports, or LAN modules.</P><P>(Japanese)<BR>POST（Power ON Self Test）のステータス<BR>メディアゲートウェイのコントローラやDSP、I/Oポート、LANモジュールなどに異常が発生したときに値が変化します。</P>|`SNMP agent`|.1.3.6.1.4.1.6889.2.9.1.1.10.13.0|HardwareStatusMask<p>Update:5 min</p>|
 
 ### CPU status
@@ -68,6 +68,12 @@ memory usage
 (Japanese)<BR>
 Memory容量や使用率が登録されます。
 </P>
+
+|Name|Description|type|OID|Key and additional info|
+|----|-----------|----|----|----|
+|total count of memory failures|メモリの割り当てに失敗した回数|`SNMP agent`|.1.3.6.1.4.1.6889.2.1.11.1.2.4.0|MemoryUtilizationAllocationFailures<p>Update:5m</p>|
+|available dynamically allocated memory|利用可能な動的割り当てメモリ（Byte単位）| `SNMP agent`|.1.3.6.1.4.1.6889.2.1.11.1.2.3.3.0|MemoryUtilizationDynAllocMemAvailable|
+|allocated memory|動的に割り当てられたメモリ(バイト単位)|`SNMP agent`|.1.3.6.1.4.1.6889.2.1.11.1.2.3.1.0|MemoryUtilizationDynAllocMemUsed|
 
 ### Module status
 
