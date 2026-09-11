@@ -1162,36 +1162,60 @@ nonoperational(3):センサー故障の可能性があります。</description>
                         <trigger_prototype>
                             <uuid>2ca87e3a4bf24f11846e0e13912b8d9a</uuid>
                             <expression>last(/Avaya G450 by SNMP/AmbientTemperatureSensorCelsius[{#SNMPINDEX}])&gt;last(/Avaya G450 by SNMP/AmbientTemperatureSensorHiShutdown[{#SNMPINDEX}])</expression>
-                            <name>temperature has reached Critical.</name>
+                            <name>Temperature has reached the critical threshold.</name>
                             <opdata>Current Temperature: {ITEM.LASTVALUE1}</opdata>
                             <priority>DISASTER</priority>
-                            <description>The enclosure temperature has reached the critical range. Check room temperature, chassis temperature, and cooling fan status.
-Adjust the air conditioner to lower the room temperature.
-The area around the equipment should be well ventilated so that airflow is near the enclosure.
-Check the status of the cooling fan as it may be stopped.
+                            <description>The enclosure temperature has reached the critical threshold.
+
+Check the following:
+- Room temperature
+- Chassis temperature
+- Cooling fan status
+- Airflow around the equipment
+
+If necessary, adjust the air conditioner to lower the room temperature and ensure adequate ventilation around the equipment.
+The cooling fan may have stopped or malfunctioned.
 
 (japanese)
-筐体温度が致命的な温度に達しました。直ちに筐体の電源を切り、
-エアコンを調節して室温を下げてください。
-筐体付近に風が当たるように、機材周辺の風通しを良くする必要があります。
-冷却ファンが止まっている可能性があるので冷却ファンのステータスを確認してください。</description>
+筐体温度が致命的な温度閾値に達しました。
+
+以下を確認してください。
+- 室温
+- 筐体温度
+- 冷却ファンのステータス
+- 機器周辺の通風状態
+
+必要に応じてエアコンを調節して室温を下げ、機器周辺の通風を確保してください。
+冷却ファンが停止または故障している可能性があるため、ステータスを確認してください。</description>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>f531c93529d3442aa0f89396d5293695</uuid>
                             <expression>last(/Avaya G450 by SNMP/AmbientTemperatureSensorCelsius[{#SNMPINDEX}])&gt;last(/Avaya G450 by SNMP/AmbientTemperatureSensorHiWarning[{#SNMPINDEX}])</expression>
-                            <name>temperature has reached warning range.</name>
+                            <name>Temperature has reached the warning threshold.</name>
                             <opdata>Current Temperature: {ITEM.LASTVALUE1}</opdata>
                             <priority>HIGH</priority>
-                            <description>The enclosure temperature has reached the warning range. Check room temperature, chassis temperature, and cooling fan status.
-Adjust the air conditioner to lower the room temperature.
-The area around the equipment should be well ventilated so that airflow is near the enclosure.
-Check the status of the cooling fan as it may be stopped.
+                            <description>The enclosure temperature has reached the warning threshold.
+
+Check the following:
+- Room temperature
+- Chassis temperature
+- Cooling fan status
+- Airflow around the equipment
+
+If necessary, adjust the air conditioner to lower the room temperature and ensure adequate ventilation around the equipment.
+The cooling fan may have stopped or malfunctioned.
 
 (japanese)
-筐体温度が高温になっています。室温、筐体温度、冷却ファンの回転数を確認してください。
-エアコンを調節して室温を下げてください。
-筐体付近に風が当たるように、機材周辺の風通しを良くする必要があります。
-冷却ファンが止まっている可能性があるので冷却ファンのステータスを確認してください。</description>
+筐体温度が警告閾値を超えています。
+
+以下を確認してください。
+- 室温
+- 筐体温度
+- 冷却ファンのステータス
+- 機器周辺の通風状態
+
+必要に応じてエアコンを調節して室温を下げ、機器周辺の通風を確保してください。
+冷却ファンが停止または故障している可能性があるため、ステータスを確認してください。</description>
                         </trigger_prototype>
                     </trigger_prototypes>
                     <graph_prototypes>
