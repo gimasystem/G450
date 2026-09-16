@@ -62,30 +62,42 @@ CPU負荷率、およびCPUモニタ設定の状態を監視します。
 
 ### Memory status
 <P>
-Memory容量や使用率が登録されます。
+メモリの使用量・空き容量およびメモリ割り当て失敗回数を監視します。
 </P>
 
 |Name|Description|type|OID|Key and additional info|
 |----|-----------|----|----|----|
-|total count of memory failures|メモリの割り当てに失敗した回数|`SNMP agent`|.1.3.6.1.4.1.6889.2.1.11.1.2.4.0|MemoryUtilizationAllocationFailures<p>Update:5m</p>|
+|total count of memory failures|メモリの割り当てに失敗した累積回数|`SNMP agent`|.1.3.6.1.4.1.6889.2.1.11.1.2.4.0|MemoryUtilizationAllocationFailures<p>Update:5m</p>|
 |available dynamically allocated memory|利用可能な動的割り当てメモリ（Byte単位）| `SNMP agent`|.1.3.6.1.4.1.6889.2.1.11.1.2.3.3.0|MemoryUtilizationDynAllocMemAvailable|
 |allocated memory|動的に割り当てられたメモリ(バイト単位)|`SNMP agent`|.1.3.6.1.4.1.6889.2.1.11.1.2.3.1.0|MemoryUtilizationDynAllocMemUsed|
 
-### Module status
-接続しているモジュールの型番やシリアル番号、ステータスが登録されます。
+### System information
+接続しているモジュールの型番やシリアル番号が登録されます。
 |Name|Description|type|OID|Key and additional info|
 |----|-----------|----|----|----|
-|Component Model Description| | `SNMP agent`| | |
-|Component Model Number| | `SNMP agent`| | |
-|Component Serial Number| | `SNMP agent`| | |
+| Component Model Description | コンポーネントの製品名・ソフトウェアバージョン | `SNMP agent` | `.1.3.6.1.4.1.6889.2.9.1.1.3.0` | `ModelDescription`<p>Update: 1d</p> |
+| Component Model Number      | コンポーネントのハードウェア型番        | `SNMP agent` | `.1.3.6.1.4.1.6889.2.9.1.1.2.0` | `ModelNumber`                       |
+| Component Serial Number     | ゲートウェイ本体のシリアル番号         | `SNMP agent` | `.1.3.6.1.4.1.6889.2.9.1.1.4.0` | `SerialNumber`<p>Update: 1d</p>     |
 
 
 ### Cooling FAN status
 
 <P>
-冷却ファンがディスカバリで自動登録されます。
+冷却ファンがディスカバリで自動登録されます。<BR>
 冷却ファンの回転数、ステータス、発報のしきい値が監視アイテムとして登録されます
 </P>
+
+<P>
+冷却ファン交換後は1分以上経ってから `show platform fans` コマンドで、ステータスを確認することをお勧めします。
+</P>
+
+| Name                       | Description              | type         | OID                                           | Key and additional info                              |
+| -------------------------- | ------------------------ | ------------ | --------------------------------------------- | ---------------------------------------------------- |
+| Fan rotation speed         | 冷却ファンの回転数（RPM）           | `SNMP agent` | `.1.3.6.1.2.1.99.1.1.1.4.{#SNMPINDEX}`        | `FanSensorRPM[{#SNMPINDEX}]`<p>Update: 5m</p>        |
+| Fan sensor status          | 冷却ファンの回転数センサーの状態         | `SNMP agent` | `.1.3.6.1.2.1.99.1.1.1.5.{#SNMPINDEX}`        | `FanSensorStatus[{#SNMPINDEX}]`<p>Update: 5m</p>     |
+| Fan shutdown threshold     | 冷却ファンの回転数異常と判断する停止しきい値   | `SNMP agent` | `.1.3.6.1.4.1.6889.2.1.99.1.1.1.{#SNMPINDEX}` | `FanSensorHiShutdown[{#SNMPINDEX}]`<p>Update: 2h</p> |
+| Fan high warning threshold | 冷却ファンの回転数が高くなった場合の警告しきい値 | `SNMP agent` | `.1.3.6.1.4.1.6889.2.1.99.1.1.2.{#SNMPINDEX}` | `FanSensorHiWarning[{#SNMPINDEX}]`<p>Update: 2h</p>  |
+| Fan low warning threshold  | 冷却ファンの回転数が低下した場合の警告しきい値  | `SNMP agent` | `.1.3.6.1.4.1.6889.2.1.99.1.1.5.{#SNMPINDEX}` | `FanSensorLoWarning[{#SNMPINDEX}]`<p>Update: 2h</p>  |
 
 ### Temperature Sensor status
 
