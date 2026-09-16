@@ -102,60 +102,79 @@ CPU負荷率、およびCPUモニタ設定の状態を監視します。
 ### Temperature Sensor status
 
 <P>
-温度センサーがディスカバリで自動登録されます。
-筐体温度、ステータス、発報のしきい値が監視アイテムとして登録されます
-{#PHYDESCR}の部分はディスカバリで自動登録された名称が登録されます
+温度センサーがディスカバリで自動登録されます。<BR>
+「温度、センサーのステータス、および温度異常を判定するためのしきい値が監視アイテムとして登録されます。<BR>
+{#PHYDESCR}には、ディスカバリで自動登録された名称が登録されます
 </P>
 
-|Name|Description|type|OID|Key and additional info|
-|----|-----------|----|----|----|
-|{#PHYDESCR}| | `SNMP agent`| | |
-|{#PHYDESCR} HiShutdown Threshold| | `SNMP agent`| | |
-|{#PHYDESCR} HiWarning Threshold| | `SNMP agent`| | |
-|{#PHYDESCR} LoWarning Threshold| | `SNMP agent`| | |
-|{#PHYDESCR} Status| | `SNMP agent`| | |
+| Name                               | Description                                                          | type         | OID                                           | Key and additional info                                                                        |
+| ---------------------------------- | -------------------------------------------------------------------- | ------------ | --------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `{#PHYDESCR}`                      | 温度センサーで測定した温度                                                        | `SNMP agent` | `.1.3.6.1.2.1.99.1.1.1.4.{#SNMPINDEX}`        | `TemperatureSensor[{#SNMPINDEX}]`<p>Update: 5m</p><p>Units: `{#SENSORDISP}`</p>                |
+| `{#PHYDESCR} HiShutdown Threshold` | 温度センサーのシャットダウンしきい値。温度がこの値に達した場合、過熱による異常としてシステムのシャットダウンが発生する可能性があります。 | `SNMP agent` | `.1.3.6.1.4.1.6889.2.1.99.1.1.1.{#SNMPINDEX}` | `TemperatureSensorHiShutdown[{#SNMPINDEX}]`<p>Update: 2h</p><p>Units: `{#SENSORDISP}`</p>      |
+| `{#PHYDESCR} HiWarning Threshold`  | 温度センサーの高温警告しきい値。温度がこの値を超えた場合に高温警告の対象となります。                           | `SNMP agent` | `.1.3.6.1.4.1.6889.2.1.99.1.1.2.{#SNMPINDEX}` | `TemperatureSensorHiWarning[{#SNMPINDEX}]`<p>Update: 2h</p><p>Units: `{#SENSORDISP}`</p>       |
+| `{#PHYDESCR} LoWarning Threshold`  | 温度センサーの低温警告しきい値。温度がこの値を下回った場合に低温警告の対象となります。                          | `SNMP agent` | `.1.3.6.1.4.1.6889.2.1.99.1.1.5.{#SNMPINDEX}` | `TemperatureSensorLoWarning[{#SNMPINDEX}]`<p>Update: 2h</p><p>Units: `{#SENSORDISP}`</p>       |
+| `{#PHYDESCR} Status`               | 温度センサーの動作状態                                                          | `SNMP agent` | `.1.3.6.1.2.1.99.1.1.1.5.{#SNMPINDEX}`        | `TemperatureSensorStatus[{#SNMPINDEX}]`<p>Update: 5m</p><p>Value map: `EntitySensorStatus`</p> |
+
 
 ### DSP Module Status, DSP status
 
 <P>
-DSPボードのステータスや負荷状況が自動登録されます。<BR>
+DSPボードに搭載されたDSP Coreの状態、使用チャネル数、およびセルフテストの状態・結果がディスカバリによって自動登録されます。<BR>
+{#COREID}には、ディスカバリによって取得したDSP CoreのIDが登録されます。
 </P>
 
-|Name|Description|type|OID|Key and additional info|
-|----|-----------|----|----|----|
-|DSP Core Admin State #{#COREID}| | `SNMP agent`| | |
-|DSP Core Channels InUse #{#COREID}| | `SNMP agent`| | |
-|DSP Core Demand Test #{#COREID}| | `SNMP agent`| | |
-|DSP Core Demand Test Result #{#COREID}| | `SNMP agent`| | |
-|DSP Core Status #{#COREID}| | `SNMP agent`| | |
-|DSP Core Total Channels #{#COREID}| | `SNMP agent`| | |
+| Name                                     | Description                                             | type         | OID                                                | Key and additional info                                                                              |
+| ---------------------------------------- | ------------------------------------------------------- | ------------ | -------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| DSP Core Admin State `#{#COREID}`        | DSP Coreの管理状態。メンテナンス操作によるBusy-outなど、DSP Coreの管理状態を示します。 | `SNMP agent` | `.1.3.6.1.4.1.6889.2.9.1.4.6.1.4.101.{#SNMPINDEX}` | `DSPCoreAdminState.[{#SNMPINDEX}]`<p>Update: 3m</p><p>Value map: `DSPCoreAdminState`</p>             |
+| DSP Core Channels InUse `#{#COREID}`     | DSP Coreで現在使用中の通話チャネル数                                  | `SNMP agent` | `.1.3.6.1.4.1.6889.2.9.1.4.6.1.3.101.{#SNMPINDEX}` | `DSPCoreChannelsInUse.[{#SNMPINDEX}]`<p>Update: 3m</p>                                               |
+| DSP Core Demand Test `#{#COREID}`        | DSP Coreのセルフテスト実行状態                                     | `SNMP agent` | `.1.3.6.1.4.1.6889.2.9.1.4.6.1.6.101.{#SNMPINDEX}` | `DSPCoreDemandTest.[{#SNMPINDEX}]`<p>Update: 3m</p><p>Value map: `DSPCoreDemandTest`</p>             |
+| DSP Core Demand Test Result `#{#COREID}` | DSP Coreに対して実行されたセルフテストの結果                              | `SNMP agent` | `.1.3.6.1.4.1.6889.2.9.1.4.6.1.7.101.{#SNMPINDEX}` | `DSPCoreDemandTestResult.[{#SNMPINDEX}]`<p>Update: 3m</p><p>Value map: `DSPCoreDemandTestResult`</p> |
+| DSP Core Status `#{#COREID}`             | DSP Coreの動作状態                                           | `SNMP agent` | `.1.3.6.1.4.1.6889.2.9.1.4.6.1.5.101.{#SNMPINDEX}` | `DSPCoreStatus.[{#SNMPINDEX}]`<p>Update: 3m</p><p>Value map: `DSPCoreStatus`</p>                     |
+| DSP Core Total Channels `#{#COREID}`     | DSP Coreで利用可能な総チャネル数                                    | `SNMP agent` | `.1.3.6.1.4.1.6889.2.9.1.4.6.1.2.101.{#SNMPINDEX}` | `DSPCoreTotalChannels.[{#SNMPINDEX}]`<p>Update: 3m</p>                                               |
 
-### VoIP connect Status
-G450が接続しているCall Controler (主にACM) への接続状況が監視アイテムとして登録されます
-|Name|Description|type|OID|Key and additional info|
-|----|-----------|----|----|----|
-|VoIP Average Occupancy No{#VOIPSLOT}| | `SNMP agent`| | |
-|VoIP Channels In Use No{#VOIPSLOT}| | `SNMP agent`| | |
-|VoIP Fault Mask No{#VOIPSLOT}| | `SNMP agent`| | |
-|VoIP Hyper Activity No{#VOIPSLOT}| | `SNMP agent`| | |
-|VoIP Total Channels| | `SNMP agent`| | |
+### VoIP engine status and capacity
+<P>
+G450に搭載されたVoIPエンジンのスロットがディスカバリによって自動登録されます。<BR>
+各VoIPエンジンについて、稼働率、使用中チャネル数、障害状態、過負荷状態、およびCommunication Manager（ACM）によって管理される総チャネル数が監視アイテムとして登録されます。<BR>
+{#VOIPSLOT}には、ディスカバリによって取得したVoIPエンジンのスロット番号が登録されます。
+</P>
 
-### ISDN Clock status
+| Name                                 | Description                                      | type         | OID                                             | Key and additional info                                                                                      |
+| ------------------------------------ | ------------------------------------------------ | ------------ | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| VoIP Average Occupancy No{#VOIPSLOT} | VoIPエンジンの稼働率（5分間平均）                              | `SNMP agent` | `.1.3.6.1.4.1.6889.2.9.1.4.5.1.8.{#SNMPINDEX}`  | `VoipAverageOccupancy_[{#VOIPSLOT}]`<p>Update: 5m</p>                                                        |
+| VoIP Channels In Use No{#VOIPSLOT}   | VoIPエンジンで現在使用中のチャネル数                             | `SNMP agent` | `.1.3.6.1.4.1.6889.2.9.1.4.5.1.7.{#SNMPINDEX}`  | `VoipChannelsInUse_[{#VOIPSLOT}]`                                                                            |
+| VoIP Fault Mask No{#VOIPSLOT}        | VoIPエンジンで発生している障害をビット単位で示すフラグ                    | `SNMP agent` | `.1.3.6.1.4.1.6889.2.9.1.4.5.1.14.{#SNMPINDEX}` | `VoipFaultMask_[{#VOIPSLOT}]`<p>Update: 5m</p>                                                               |
+| VoIP Hyper Activity No{#VOIPSLOT}    | VoIPエンジンの過負荷状態。過負荷を検出すると `hyperactive(2)` になります。 | `SNMP agent` | `.1.3.6.1.4.1.6889.2.9.1.4.5.1.9.{#SNMPINDEX}`  | `VoipHyperactivity_[{#VOIPSLOT}]`<p>Update: 5m</p><p>Value map: `1=normal / 2=hyperactive / 255=unknown`</p> |
+| VoIP Total Channels                  | Communication Manager（ACM）によって管理される総チャネル数        | `SNMP agent` | `.1.3.6.1.4.1.6889.2.9.1.4.5.1.6.{#SNMPINDEX}`  | `VoipTotalChannels_[{#VOIPSLOT}]`<p>Update: 30m</p>                                                          |
+
+### ISDN Clock status / Media Gateway status
 
 <P>
-The status of the ISDN synchronization clock is registered as a monitoring item.
-If clock synchronization with the peer connected via a BRI or PRI line fails, voice quality may degrade, or calls may be disconnected.<BR>
-(Japanese)<BR>
-ISDN同期クロックの稼働状況を監視します。BRIやPRI回線において、対向機器とのクロック同期に不整合が生じると、音声通信へのノイズ混入や品質劣化、あるいは予期せぬ通話切断（通信断）が発生するリスクがあります。
-音声基盤の安定稼働を評価するための重要な指標となります。
+ISDN同期クロックの設定および現在使用しているクロックソースを監視します。<BR>
+G450では、Primary、Secondary、Localのクロックソースを設定でき、現在使用しているクロックソースをActive Clock Sourceとして管理します。<BR>
+BRIやPRIなどのISDN回線では、対向機器とのクロック同期が適切に行われていることが重要です。クロック同期に問題が発生した場合、音声品質低下や通信障害につながる可能性があります。
 </P>
 
 |Name|Description|type|OID|Key and additional info|
 |----|-----------|----|----|----|
-|ISDN Active Clock Source| | `SNMP agent`| | |
-|ISDN Primary Clock Source| | `SNMP agent`| | |
-|ISDN Secondary Clock Source| | `SNMP agent`| | |
-|Media gateway fault| | `SNMP agent`| | |
+|ISDN Active Clock Source|現在使用しているISDNクロックソース。`local` はG450自身のクロック、`remote` は対向機器から供給されるクロックを示します。| `SNMP agent`|`.1.3.6.1.4.1.6889.2.9.1.2.3.3.0`|`ISDNActiveClockSource`<p>Update: 1h</p><p>Value map: `Active Clock Source`</p>|
+|ISDN Primary Clock Source|設定されているPrimaryクロックソース。T1/BRIモジュールのポート、VoIPモジュール、または未設定を示します。| `SNMP agent`|`.1.3.6.1.4.1.6889.2.9.1.2.3.1.0`|`ISDNPrimaryClockSource`<p>Update: 1h</p>|
+|ISDN Secondary Clock Source|設定されているSecondaryクロックソース。T1/BRIモジュールのポート、VoIPモジュール、または未設定を示します。| `SNMP agent`|`.1.3.6.1.4.1.6889.2.9.1.2.3.2.0`|`ISDNSecondaryClockSource`<p>Update: 1h</p>|
+|Media gateway fault|メディアゲートウェイプロセッサの障害発生フラグ。`00 00` 以外の場合、何らかの障害が発生している可能性があります。| `SNMP agent`|`.1.3.6.1.4.1.6889.2.9.1.2.1.15.0`|`MediagatewayFaultMask`<p>Update: 3m</p>|
 
 ## Triggers
-testing now
+
+<p>
+監視アイテムの値が設定した条件を満たした場合に、障害として検知します。<BR>
+</P>
+
+<p>💡トリガーは実機での発報テストを実施していません。
+特に温度センサーについては、個人環境でG450を意図的に高温状態にすることが困難なため、しきい値超過時の発報動作は未確認です。
+</P>
+
+|Name|Description|Condition|Severity|
+|---|---|---|---|
+|High memory utilization|メモリ使用率が80%を超えた場合に発報します。|Memory Usage > 80%|未指定|
+|DSP Core Admin State has changed|DSP CoreのAdmin Stateが変更された場合に発報します。|直前値が2（release）ではない場合|INFO|
+|Temperature has reached the critical threshold.|温度センサーの測定値がHiShutdown Thresholdを超えた場合に発報します。|Temperature > HiShutdown Threshold|DISASTER|
+|Temperature has reached the warning threshold.|温度センサーの測定値がHiWarning Thresholdを超えた場合に発報します。|Temperature > HiWarning Threshold|HIGH|
