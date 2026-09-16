@@ -139,7 +139,7 @@ G450に搭載されたVoIPエンジンのスロットがディスカバリによ
 {#VOIPSLOT}には、ディスカバリによって取得したVoIPエンジンのスロット番号が登録されます。
 </P>
 
-| Name                                 | Description                                      | type         | OID                                             | Key and additional info                                                                                      |
+| Name | Description | type | OID  | Key and additional |
 | ------------------------------------ | ------------------------------------------------ | ------------ | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | VoIP Average Occupancy No{#VOIPSLOT} | VoIPエンジンの稼働率（5分間平均）                              | `SNMP agent` | `.1.3.6.1.4.1.6889.2.9.1.4.5.1.8.{#SNMPINDEX}`  | `VoipAverageOccupancy_[{#VOIPSLOT}]`<p>Update: 5m</p>                                                        |
 | VoIP Channels In Use No{#VOIPSLOT}   | VoIPエンジンで現在使用中のチャネル数                             | `SNMP agent` | `.1.3.6.1.4.1.6889.2.9.1.4.5.1.7.{#SNMPINDEX}`  | `VoipChannelsInUse_[{#VOIPSLOT}]`                                                                            |
