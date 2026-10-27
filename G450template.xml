@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
-    <version>7.0</version>
+    <version>8.0</version>
     <template_groups>
         <template_group>
             <uuid>7df967e8653745039a47f97800c2830f</uuid>
