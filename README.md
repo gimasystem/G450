@@ -1,7 +1,7 @@
 # Zabbix 8.0 Template for Avaya G450 Media Gateway
 
 Not tested<BR>
-Zabbix8 LTS版に合わせて作成しているため、動作確認されていません。ご注意ください
+Zabbix8 LTS版用に作成しています。Zabbix8正式リリース前のため動作確認されていません。ご注意ください
 
 ---
 
