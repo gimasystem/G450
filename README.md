@@ -1,9 +1,11 @@
-# Avaya G450 monitor template for Zabbix 6.0
+# Avaya G450 monitor template for Zabbix 7.0  beta
 ## Overview
+<P>
 ZABBIX monitoring template for Avaya G450 Media Gateway.
-
+</P>
 <P>(Japanese)<BR>
-Avaya製VoIP-GW G450用のZabbix監視テンプレートです。
+Avaya製VoIP-GW G450用のZabbix監視テンプレートです。<BR>
+Zabbix 7.0でテストしています（ベータ版）
 </P>
 
 ## G450 Configuration
