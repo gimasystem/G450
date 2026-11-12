@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>7.0</version>
-    <date>2026-11-11T02:55:16Z</date>
-    <groups>
-        <group>
-            <uuid>36bff6c29af64692839d077febfc7079</uuid>
-            <name>Templates/Network devices</name>
-        </group>
-    </groups>
+    <template_groups>
+        <template_group>
+            <uuid>a571c0d175b14fd4a87a9d9b2aa9fcd6</uuid>
+            <name>Templates/Telephony</name>
+        </template_group>
+    </template_groups>
     <templates>
         <template>
             <uuid>43595147a0874c7395a6bfdb43b1a069</uuid>
             <template>Avaya G450 by SNMP</template>
             <name>Avaya G450 by SNMP</name>
-            <description>Zabbix monitoring Template for the Avaya Branch Gateway
-tested with Avaya G450(firmware Vintage 36.26.0)
+            <description>Monitoring template for Avaya Branch Gateway devices.
+Tested with Avaya G450 running firmware version 36.26.0.
+URL
+https://github.com/gimasystem/G450/
 
 (Japanese)
-Avaya製 VoIP-GW用の Zabbix6監視テンプレートです
-Avaya G450 (ファームウェアバージョン 36.26.0)でテストしました。</description>
+Avaya製ブランチゲートウェイG430/G450用 のZabbix監視テンプレートです。
+Avaya G450（ファームウェアバージョン 36.26.0）で動作確認済みです。</description>
+            <vendor>
+                <name>Gimasystem</name>
+                <version>20261112</version>
+            </vendor>
             <groups>
                 <group>
-                    <name>Templates/Network devices</name>
+                    <name>Templates/Telephony</name>
                 </group>
             </groups>
             <items>
@@ -104,8 +109,8 @@ CPUモニタ設定が有効になっているとき、2(enabled)になります
                     <key>FirmwareVersion</key>
                     <delay>1d</delay>
                     <history>365d</history>
-                    <trends>0</trends>
                     <value_type>CHAR</value_type>
+                    <trends>0</trends>
                     <description>Firmware version of this gateway.
 
 (Japanese)
@@ -197,8 +202,8 @@ PBX接続できず、レジストしていないときはnotRegistered(2)にな�
                     <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.10.12.0</snmp_oid>
                     <key>HardwareFaultMask</key>
                     <delay>10m</delay>
-                    <trends>0</trends>
                     <value_type>TEXT</value_type>
+                    <trends>0</trends>
                     <description>The hardware sensor operation status flag changes its value when a power module failure is detected or when abnormalities occur in the cooling fan or internal chassis temperature.
 
 (Japanese)
@@ -228,8 +233,8 @@ PBX接続できず、レジストしていないときはnotRegistered(2)にな�
                     <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.10.13.0</snmp_oid>
                     <key>HardwareStatusMask</key>
                     <delay>1h</delay>
-                    <trends>0</trends>
                     <value_type>CHAR</value_type>
+                    <trends>0</trends>
                     <description>The controller malfunction occurrence flag changes its value when an abnormality occurs in the media gateway’s controller, DSP, I/O ports, or LAN module.
 
 (Japanese)
@@ -319,8 +324,8 @@ remote(2):対向先からクロックが供給されています。</description
                     <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.2.3.1.0</snmp_oid>
                     <key>ISDNPrimaryClockSource</key>
                     <delay>1h</delay>
-                    <trends>0</trends>
                     <value_type>CHAR</value_type>
+                    <trends>0</trends>
                     <description>Primary clock source configured for this processor.
 
 (Japanese)
@@ -343,8 +348,8 @@ VoIPモジュールがクロックを提供している場合は「voip」と表
                     <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.2.3.2.0</snmp_oid>
                     <key>ISDNSecondaryClockSource</key>
                     <delay>1h</delay>
-                    <trends>0</trends>
                     <value_type>CHAR</value_type>
+                    <trends>0</trends>
                     <description>Secondary clock source configured for this processor.
 
 (Japanese)
@@ -367,8 +372,8 @@ VoIPモジュールがクロックを提供している場合は「voip」と表
                     <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.2.1.15.0</snmp_oid>
                     <key>MediagatewayFaultMask</key>
                     <delay>3m</delay>
-                    <trends>0</trends>
                     <value_type>CHAR</value_type>
+                    <trends>0</trends>
                     <description>The media gateway processor malfunction flag
 If the value is other than &quot;00 00&quot;, a specific fault may have occurred.
 
@@ -510,8 +515,8 @@ RAMの容量</description>
                     <key>ModelDescription</key>
                     <delay>1d</delay>
                     <history>365d</history>
-                    <trends>0</trends>
                     <value_type>TEXT</value_type>
+                    <trends>0</trends>
                     <description>Description of this component: G700 Media Gateway
 
 (Japanese)
@@ -532,8 +537,8 @@ RAMの容量</description>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.2.0</snmp_oid>
                     <key>ModelNumber</key>
                     <history>365d</history>
-                    <trends>0</trends>
                     <value_type>CHAR</value_type>
+                    <trends>0</trends>
                     <description>Model number of this component.
 
 (Japanese)
@@ -559,8 +564,8 @@ RAMの容量</description>
                     <key>SerialNumber</key>
                     <delay>1d</delay>
                     <history>365d</history>
-                    <trends>0</trends>
                     <value_type>TEXT</value_type>
+                    <trends>0</trends>
                     <description>Serial number of this gateway
 
 (Japanese)
@@ -581,177 +586,172 @@ CPUモジュールとG450本体のシリアル番号はそれぞれ個別に管�
                 </item>
             </items>
             <discovery_rules>
-
-<discovery_rule>
-    <uuid>54ef209f76db4a49b135b2f882d7c42f</uuid>
-    <name>VoIP DSP ID discovery in all DSP slots</name>
-    <type>SNMP_AGENT</type>
-    <snmp_oid>discovery[{#COREID},.1.3.6.1.4.1.6889.2.9.1.4.6.1.1]</snmp_oid>
-    <key>DSPCoreID.discoveryAllSlots</key>
-    <delay>6h</delay>
-    <lifetime>3d</lifetime>
-    <description>Discovers DSP cores on all VoIP engine slots of the media gateway.
+                <discovery_rule>
+                    <uuid>54ef209f76db4a49b135b2f882d7c42f</uuid>
+                    <name>VoIP DSP ID discovery in all DSP slots</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#COREID},.1.3.6.1.4.1.6889.2.9.1.4.6.1.1]</snmp_oid>
+                    <key>DSPCoreID.discoveryAllSlots</key>
+                    <delay>6h</delay>
+                    <lifetime_type>DELETE_IMMEDIATELY</lifetime_type>
+                    <lifetime>0</lifetime>
+                    <description>Discovers DSP cores on all VoIP engine slots of the media gateway.
 For G450, the motherboard DSP slots are identified by slot IDs 101 to 104.
 
+(Japanese)
 メディアゲートウェイの各VoIPエンジンスロットに搭載されたDSPコアを検出します。
 G450のメインボード上のDSPスロットは、Slot ID 101～104で識別されます。</description>
-    <item_prototypes>
-        <item_prototype>
-            <uuid>81628df81ffc4b6ab1c72b714f6cee3a</uuid>
-            <name>DSP Core Admin State [{#SNMPINDEX}]</name>
-            <type>SNMP_AGENT</type>
-            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.6.1.4.{#SNMPINDEX}</snmp_oid>
-            <key>DSPCoreAdminState.[{#SNMPINDEX}]</key>
-            <delay>3m</delay>
-            <description>Maintenance busy-out state of this DSP core.
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>81628df81ffc4b6ab1c72b714f6cee3a</uuid>
+                            <name>DSP Core Admin State [{#SNMPINDEX}]</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.6.1.4.{#SNMPINDEX}</snmp_oid>
+                            <key>DSPCoreAdminState.[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <description>Maintenance busy-out state of this DSP core.
 
 (Japanese)
 DSPコアのメンテナンスコマンドを実行している時に値が変わります。</description>
-            <valuemap>
-                <name>DSPCoreAdminState</name>
-            </valuemap>
-            <tags>
-                <tag>
-                    <tag>component</tag>
-                    <value>DSP</value>
-                </tag>
-            </tags>
-            <trigger_prototypes>
-                <trigger_prototype>
-                    <uuid>6c2e5bf6e1ca4fdcbc623d0c96f76750</uuid>
-                    <expression>last(/Avaya G450 by SNMP/DSPCoreAdminState.[{#SNMPINDEX}],#2)&lt;&gt;2</expression>
-                    <name>DSP Core Admin State has changed [{#SNMPINDEX}]</name>
-                    <priority>INFO</priority>
-                    <description>DSP core status had changed</description>
-                    <manual_close>YES</manual_close>
-                    <tags>
-                        <tag>
-                            <tag>component</tag>
-                            <value>DSP</value>
-                        </tag>
-                    </tags>
-                </trigger_prototype>
-            </trigger_prototypes>
-        </item_prototype>
-
-        <item_prototype>
-            <uuid>ee776f2110cb4ad6b590e2383d85d011</uuid>
-            <name>DSP Core Channels InUse [{#SNMPINDEX}]</name>
-            <type>SNMP_AGENT</type>
-            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.6.1.3.{#SNMPINDEX}</snmp_oid>
-            <key>DSPCoreChannelsInUse.[{#SNMPINDEX}]</key>
-            <delay>3m</delay>
-            <description>Total number of voice channels available on this DSP core.
+                            <valuemap>
+                                <name>DSPCoreAdminState</name>
+                            </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>DSP</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>6c2e5bf6e1ca4fdcbc623d0c96f76750</uuid>
+                                    <expression>last(/Avaya G450 by SNMP/DSPCoreAdminState.[{#SNMPINDEX}],#2)&lt;&gt;2</expression>
+                                    <name>DSP Core Admin State has changed [{#SNMPINDEX}]</name>
+                                    <priority>INFO</priority>
+                                    <description>DSP core status had changed</description>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>component</tag>
+                                            <value>DSP</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>ee776f2110cb4ad6b590e2383d85d011</uuid>
+                            <name>DSP Core Channels InUse [{#SNMPINDEX}]</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.6.1.3.{#SNMPINDEX}</snmp_oid>
+                            <key>DSPCoreChannelsInUse.[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <description>Total number of voice channels available on this DSP core.
 
 このDSPコアで利用可能な音声チャネルの総数です。</description>
-            <tags>
-                <tag>
-                    <tag>component</tag>
-                    <value>DSP</value>
-                </tag>
-            </tags>
-        </item_prototype>
-
-        <item_prototype>
-            <uuid>f8049a3f4234449dbab8c7e54c3ba342</uuid>
-            <name>DSP Core Demand Test [{#SNMPINDEX}]</name>
-            <type>SNMP_AGENT</type>
-            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.6.1.6.{#SNMPINDEX}</snmp_oid>
-            <key>DSPCoreDemandTest.[{#SNMPINDEX}]</key>
-            <delay>3m</delay>
-            <description>Activates on demand test for the DSP Core.
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>DSP</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>f8049a3f4234449dbab8c7e54c3ba342</uuid>
+                            <name>DSP Core Demand Test [{#SNMPINDEX}]</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.6.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>DSPCoreDemandTest.[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <description>Activates on demand test for the DSP Core.
 
 (Japanese)
 DSPコアのセルフテストの実行中ステータスです。
 
 1: 実行中
 2: 未使用</description>
-            <valuemap>
-                <name>DSPCoreDemandTest</name>
-            </valuemap>
-            <tags>
-                <tag>
-                    <tag>component</tag>
-                    <value>DSP</value>
-                </tag>
-            </tags>
-        </item_prototype>
-
-        <item_prototype>
-            <uuid>b117c64a649048e99cc1e18eb29532ed</uuid>
-            <name>DSP Core Demand Test Result [{#SNMPINDEX}]</name>
-            <type>SNMP_AGENT</type>
-            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.6.1.7.{#SNMPINDEX}</snmp_oid>
-            <key>DSPCoreDemandTestResult.[{#SNMPINDEX}]</key>
-            <delay>3m</delay>
-            <description>Result of the on demand test for the DSP Core.
+                            <valuemap>
+                                <name>DSPCoreDemandTest</name>
+                            </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>DSP</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>b117c64a649048e99cc1e18eb29532ed</uuid>
+                            <name>DSP Core Demand Test Result [{#SNMPINDEX}]</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.6.1.7.{#SNMPINDEX}</snmp_oid>
+                            <key>DSPCoreDemandTestResult.[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <description>Result of the on demand test for the DSP Core.
 
 (Japanese)
 手動または自動で実行されるDSPテストの結果を示します。
 通常時はpass (255) です。
 異常時はerrorCode1～6が出力されます。
 DSPが反応しないときは、notResponding (7)になります。</description>
-            <valuemap>
-                <name>DSPCoreDemandTestResult</name>
-            </valuemap>
-            <tags>
-                <tag>
-                    <tag>component</tag>
-                    <value>DSP</value>
-                </tag>
-            </tags>
-        </item_prototype>
-
-        <item_prototype>
-            <uuid>93087aa14e134abea6ff86d5f48ed2b5</uuid>
-            <name>DSP Core Status [{#SNMPINDEX}]</name>
-            <type>SNMP_AGENT</type>
-            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.6.1.5.{#SNMPINDEX}</snmp_oid>
-            <key>DSPCoreStatus.[{#SNMPINDEX}]</key>
-            <delay>3m</delay>
-            <description>Status of the DSP Core.
+                            <valuemap>
+                                <name>DSPCoreDemandTestResult</name>
+                            </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>DSP</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>93087aa14e134abea6ff86d5f48ed2b5</uuid>
+                            <name>DSP Core Status [{#SNMPINDEX}]</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.6.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>DSPCoreStatus.[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <description>Status of the DSP Core.
 
 (Japanese)
 DSPコアのステータスになります。
 1: 待機中
 2: 使用中
 3: 不具合発生</description>
-            <valuemap>
-                <name>DSPCoreStatus</name>
-            </valuemap>
-            <tags>
-                <tag>
-                    <tag>component</tag>
-                    <value>DSP</value>
-                </tag>
-                <tag>
-                    <tag>component</tag>
-                    <value>health</value>
-                </tag>
-            </tags>
-        </item_prototype>
-
-        <item_prototype>
-            <uuid>02045f20c5084e67a36f700599bcb5e1</uuid>
-            <name>DSP Core Total Channels [{#SNMPINDEX}]</name>
-            <type>SNMP_AGENT</type>
-            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.6.1.2.{#SNMPINDEX}</snmp_oid>
-            <key>DSPCoreTotalChannels.[{#SNMPINDEX}]</key>
-            <delay>3m</delay>
-            <description>Total channels available to this DSP core.
+                            <valuemap>
+                                <name>DSPCoreStatus</name>
+                            </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>DSP</value>
+                                </tag>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>health</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>02045f20c5084e67a36f700599bcb5e1</uuid>
+                            <name>DSP Core Total Channels [{#SNMPINDEX}]</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.4.6.1.2.{#SNMPINDEX}</snmp_oid>
+                            <key>DSPCoreTotalChannels.[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <description>Total channels available to this DSP core.
 
 (Japanese)
 DSPコアごとの最大チャネル数です。</description>
-            <tags>
-                <tag>
-                    <tag>component</tag>
-                    <value>DSP</value>
-                </tag>
-            </tags>
-        </item_prototype>
-    </item_prototypes>
-</discovery_rule>
-
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>DSP</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
                 <discovery_rule>
                     <uuid>04e6049a6b3a4a05997bf1e805ead492</uuid>
                     <name>Cooling FAN discovery</name>
@@ -769,9 +769,13 @@ DSPコアごとの最大チャネル数です。</description>
                             </condition>
                         </conditions>
                     </filter>
-                    <description>(Japanese)
-G450内部のの冷却ファンをアイテムとして登録します。
-同じOIDツリーの中に温度センサーがありますが、別のディスカバリルールで登録するようにしています。</description>
+                    <description>Discovers the internal cooling fans of the G450 and registers them as monitoring items.
+Temperature sensors are located within the same OID tree but are discovered and registered separately using a dedicated discovery rule.
+
+(Japanese)
+G450内部の冷却ファンを自動検出し、監視アイテムとして登録するディスカバリルールです。
+
+温度センサーも同じOIDツリー内に存在しますが、冷却ファンとは分けて、専用のディスカバリルールで検出・登録します。</description>
                     <item_prototypes>
                         <item_prototype>
                             <uuid>51f9c0cc922e4027aecc3cd528cd1fe4</uuid>
@@ -916,8 +920,8 @@ used SLOT,name,Serial Number,Firmware version,status.
                             <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.10.{#SNMPINDEX}</snmp_oid>
                             <key>ModuleFaultMask[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
-                            <trends>0</trends>
                             <value_type>CHAR</value_type>
+                            <trends>0</trends>
                             <description>(Japanese)
 モジュールに異常が発生すると数値が変化します。
 数値を二進数に変換して、ビット毎に事象を確認する必要があります。</description>
@@ -940,8 +944,8 @@ used SLOT,name,Serial Number,Firmware version,status.
                             <key>ModuleFWVersion[{#SNMPINDEX}]</key>
                             <delay>2h</delay>
                             <history>1w</history>
-                            <trends>0</trends>
                             <value_type>CHAR</value_type>
+                            <trends>0</trends>
                             <description>Firmware version of this module. 
 
 (Japanese)
@@ -961,8 +965,8 @@ used SLOT,name,Serial Number,Firmware version,status.
                             <key>ModuleSerialNumber[{#SNMPINDEX}]</key>
                             <delay>2h</delay>
                             <history>1w</history>
-                            <trends>0</trends>
                             <value_type>CHAR</value_type>
+                            <trends>0</trends>
                             <description>Serial number of this module.  The first 12 characters are meaningful.
 Form is yyLLmmnnnnnn, where
 
@@ -998,8 +1002,8 @@ nnnnnn = 6桁の連番</description>
                             <key>ModuleSlot[{#SNMPINDEX}]</key>
                             <delay>2h</delay>
                             <history>1w</history>
-                            <trends>0</trends>
                             <value_type>CHAR</value_type>
+                            <trends>0</trends>
                             <description>(Japanese)
 スロットに接続されているモジュールの名称を取得します。</description>
                             <tags>
@@ -1016,8 +1020,8 @@ nnnnnn = 6桁の連番</description>
                             <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.11.{#SNMPINDEX}</snmp_oid>
                             <key>ModuleStatusMask[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
-                            <trends>0</trends>
                             <value_type>CHAR</value_type>
+                            <trends>0</trends>
                             <description>(Japanese)
 モジュール内で特定ステータスによって数値が変化します。
 数値を二進数に変換して、ビット毎に事象を確認する必要があります。
@@ -1049,9 +1053,13 @@ nnnnnn = 6桁の連番</description>
                             </condition>
                         </conditions>
                     </filter>
-                    <description>(Japanese)
-G450内部の温度センサーをアイテムとして登録します。
-同じOIDツリーの中に冷却ファンがありますが、別のディスカバリルールで登録するようにしています。</description>
+                    <description>Discovers the internal temperature sensors of the G450 and registers them as monitoring items.
+
+Cooling fans are located within the same OID tree but are discovered and registered separately using a dedicated discovery rule.
+
+(Japanese)
+G450内部の温度センサーを自動検出し、監視アイテムとして登録するディスカバリルールです。
+冷却ファンも同じOIDツリー内に存在しますが、温度センサーとは分けて、専用のディスカバリルールで検出・登録します。</description>
                     <item_prototypes>
                         <item_prototype>
                             <uuid>8eb81e6804044ac4903fec546e074c29</uuid>
@@ -1123,8 +1131,8 @@ G450内部の温度センサーをアイテムとして登録します。
                             <key>AmbientTemperatureSensorLoWarning[{#SNMPINDEX}]</key>
                             <delay>2h</delay>
                             <history>1d</history>
-                            <trends>0</trends>
                             <value_type>FLOAT</value_type>
+                            <trends>0</trends>
                             <units>°C</units>
                             <description>(Japanese)
 筐体温度がしきい値を下回ったときに発報するしきい値です。
@@ -1281,10 +1289,12 @@ The cooling fan may have stopped or malfunctioned.
                     <key>VoIPSlot.discovery</key>
                     <delay>6h</delay>
                     <lifetime>3d</lifetime>
-                    <description>(Japanese)
-VoIPエンジンのスロットを自動登録します。
-G450は4枚、G430は2枚モジュールが接続できます。
-2枚目以降のVoIPエンジンを監視するときは、このディスカバリルールを複製してカスタマイズしてください。</description>
+                    <description>Automatically discovers VoIP engine slots and registers them as monitoring targets.
+The G450 supports up to four VoIP engine modules, while the G430 supports up to two modules.
+
+(Japanese)
+VoIPエンジンのスロットを自動検出し、監視対象として登録するディスカバリルールです。
+G450は最大4枚、G430は最大2枚のVoIPエンジンモジュールを搭載できます。</description>
                     <item_prototypes>
                         <item_prototype>
                             <uuid>fef9f962f697454bb8257c4969041a44</uuid>
@@ -1331,8 +1341,8 @@ VoIPエンジンが使用しているチャネル数</description>
                             <key>VoipFaultMask_[{#VOIPSLOT}]</key>
                             <delay>5m</delay>
                             <history>30d</history>
-                            <trends>0</trends>
                             <value_type>CHAR</value_type>
+                            <trends>0</trends>
                             <description>Each bit of this value set to '1' indicates a specific fault	in the VoIP engine.
 
 (Japanese)

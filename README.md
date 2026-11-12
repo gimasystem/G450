@@ -5,7 +5,7 @@ ZABBIX monitoring template for Avaya G450 Media Gateway.
 </P>
 <P>(Japanese)<BR>
 Avaya製VoIP-GW G450用のZabbix監視テンプレートです。<BR>
-Zabbix 7.0でテストしています（ベータ版）
+Zabbix 7.0テスト中です
 </P>
 
 ## G450 Configuration
@@ -93,7 +93,7 @@ CPU負荷率、およびCPUモニタ設定の状態を監視します。
 冷却ファン交換後は1分以上経ってから `show platform fans` コマンドで、ステータスを確認することをお勧めします。
 </P>
 
-| Name                       | Description              | type         | OID                                           | Key and additional info                              |
+| Name | Description | type  | OID  | Key and additional info  |
 | -------------------------- | ------------------------ | ------------ | --------------------------------------------- | ---------------------------------------------------- |
 | Fan rotation speed         | 冷却ファンの回転数（RPM）           | `SNMP agent` | `.1.3.6.1.2.1.99.1.1.1.4.{#SNMPINDEX}`        | `FanSensorRPM[{#SNMPINDEX}]`<p>Update: 5m</p>        |
 | Fan sensor status          | 冷却ファンの回転数センサーの状態         | `SNMP agent` | `.1.3.6.1.2.1.99.1.1.1.5.{#SNMPINDEX}`        | `FanSensorStatus[{#SNMPINDEX}]`<p>Update: 5m</p>     |
