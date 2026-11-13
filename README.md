@@ -257,7 +257,6 @@ The following OIDs are the numeric OIDs configured in the current template expor
 | Component Model Description | `ModelDescription` | `.1.3.6.1.4.1.6889.2.9.1.1.3.0` |
 | Component Model Number | `ModelNumber` | `.1.3.6.1.4.1.6889.2.9.1.1.2.0` |
 | Component Serial Number | `SerialNumber` | `.1.3.6.1.4.1.6889.2.9.1.1.4.0` |
-|  | `MemoryUtilizationDynAllocMemUsed` | `` |
 
 ### Discovery rules
 
