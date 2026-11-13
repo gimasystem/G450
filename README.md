@@ -226,6 +226,80 @@ Trigger operation has not been fully validated by forcing fault conditions on pr
 - ICMP and Ethernet interface monitoring are intentionally outside this template's scope.
 - The template has been tested with G450 firmware 36.26.0. Behavior on other hardware revisions and firmware versions should be verified.
 
+## SNMP OID reference
+
+The following OIDs are the numeric OIDs configured in the current template export. They are listed here for troubleshooting and implementation reference.
+
+### Static items
+
+| Item name | Key | SNMP OID |
+|---|---|---|
+| CPU Utilization (1min Average) | `CpuAverageUtilization` | `.1.3.6.1.4.1.6889.2.1.11.1.1.1.1.5.10` |
+| CPU Utilization (current) | `CpuCurrentUtilization` | `.1.3.6.1.4.1.6889.2.1.11.1.1.1.1.6.10` |
+| CPU Utilization Enable Monitoring | `CpuUtilizationEnableMonitoring` | `.1.3.6.1.4.1.6889.2.1.11.1.1.1.1.2.10` |
+| Component Firmware Version | `FirmwareVersion` | `.1.3.6.1.4.1.6889.2.9.1.2.1.3.0` |
+| Call controller Link Error Code | `H248LinkErrorCode` | `.1.3.6.1.4.1.6889.2.9.1.3.4.0` |
+| Call controller Link Status | `H248LinkStatus` | `.1.3.6.1.4.1.6889.2.9.1.3.3.0` |
+| Call controller Registration Status | `H248RegistrationState` | `.1.3.6.1.4.1.6889.2.9.1.3.1.0` |
+| Hardware Sensor Health | `HardwareFaultMask` | `.1.3.6.1.4.1.6889.2.9.1.1.10.12.0` |
+| Hardware Controller Status | `HardwareStatusMask` | `.1.3.6.1.4.1.6889.2.9.1.1.10.13.0` |
+| Hardware Vintage | `HardwareVintage` | `.1.3.6.1.4.1.6889.2.9.1.1.5.0` |
+| ISDN Active Clock Source | `ISDNActiveClockSource` | `.1.3.6.1.4.1.6889.2.9.1.2.3.3.0` |
+| ISDN Primary Clock Source | `ISDNPrimaryClockSource` | `.1.3.6.1.4.1.6889.2.9.1.2.3.1.0` |
+| ISDN Secondary Clock Source | `ISDNSecondaryClockSource` | `.1.3.6.1.4.1.6889.2.9.1.2.3.2.0` |
+| Media gateway fault | `MediagatewayFaultMask` | `.1.3.6.1.4.1.6889.2.9.1.2.1.15.0` |
+| total count of memory failures | `MemoryUtilizationAllocationFailures` | `.1.3.6.1.4.1.6889.2.1.11.1.2.4.0` |
+| available dynamically allocated memory | `MemoryUtilizationDynAllocMemAvailable` | `.1.3.6.1.4.1.6889.2.1.11.1.2.3.3.0` |
+| allocated memory | `MemoryUtilizationDynAllocMemUsed` | `.1.3.6.1.4.1.6889.2.1.11.1.2.3.1.0` |
+| Memory Usage | `MemoryUtilizationPercentUsed` | `.1.3.6.1.4.1.6889.2.1.11.1.2.6.1.3.10` |
+| total size of physical RAM | `MemoryUtilizationPhyRam` | `.1.3.6.1.4.1.6889.2.1.11.1.2.6.1.2.10` |
+| total size of RAM | `MemoryUtilizationTotalRAM` | `.1.3.6.1.4.1.6889.2.1.11.1.2.1.0` |
+| Component Model Description | `ModelDescription` | `.1.3.6.1.4.1.6889.2.9.1.1.3.0` |
+| Component Model Number | `ModelNumber` | `.1.3.6.1.4.1.6889.2.9.1.1.2.0` |
+| Component Serial Number | `SerialNumber` | `.1.3.6.1.4.1.6889.2.9.1.1.4.0` |
+|  | `MemoryUtilizationDynAllocMemUsed` | `` |
+
+### Discovery rules
+
+| Discovery rule | Key | SNMP discovery OID |
+|---|---|---|
+| VoIP DSP ID discovery in all DSP slots | `DSPCoreID.discoveryAllSlots` | `discovery[{#COREID},.1.3.6.1.4.1.6889.2.9.1.4.6.1.1]` |
+| Cooling FAN discovery | `FAN.discovery` | `discovery[{#TEMPERSENSORTYPE},1.3.6.1.2.1.99.1.1.1.1,{#SENSORVALUE},1.3.6.1.2.1.99.1.1.1.4,{#SENSORSTATUS},1.3.6.1.2.1.99.1.1.1.5,{#PHYDESCR},1.3.6.1.2.1.47.1.1.1.1.2,{#SENSORDISP},1.3.6.1.2.1.99.1.1.1.6,{#SENSORSHUTDOWN},1.3.6.1.4.1.6889.2.1.99.1.1.1,{#SENSORHIWARNING},1.3.6.1.4.1.6889.2.1.99.1.1.2,{#SENSORLOWWARNING},1.3.6.1.4.1.6889.2.1.99.1.1.5]` |
+| Module discovery | `ModuleSlot.discovery` | `discovery[{#SLOT},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.1,{#MODULENAME},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.2,{#MODULESN},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.5,{#MODULEFW},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.8,{#MODULEFAULTMASK},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.10,{#MODULESTATUSMASK},.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.11]` |
+| Ambient Temperature Sensor discovery | `Temperature.discovery` | `discovery[{#TEMPERSENSORTYPE},1.3.6.1.2.1.99.1.1.1.1,{#SENSORVALUE},1.3.6.1.2.1.99.1.1.1.4,{#SENSORSTATUS},1.3.6.1.2.1.99.1.1.1.5,{#PHYDESCR},1.3.6.1.2.1.47.1.1.1.1.2,{#SENSORDISP},1.3.6.1.2.1.99.1.1.1.6,{#SENSORSHUTDOWN},1.3.6.1.4.1.6889.2.1.99.1.1.1,{#SENSORHIWARNING},1.3.6.1.4.1.6889.2.1.99.1.1.2,{#SENSORLOWWARNING},1.3.6.1.4.1.6889.2.1.99.1.1.5]` |
+| VoIP Slot discovery | `VoIPSlot.discovery` | `discovery[{#VOIPSLOT},.1.3.6.1.4.1.6889.2.9.1.4.5.1.1]` |
+
+### Item prototypes
+
+| Item prototype | Key | SNMP OID |
+|---|---|---|
+| DSP Core Admin State [{#SNMPINDEX}] | `DSPCoreAdminState.[{#SNMPINDEX}]` | `.1.3.6.1.4.1.6889.2.9.1.4.6.1.4.{#SNMPINDEX}` |
+| DSP Core Channels InUse [{#SNMPINDEX}] | `DSPCoreChannelsInUse.[{#SNMPINDEX}]` | `.1.3.6.1.4.1.6889.2.9.1.4.6.1.3.{#SNMPINDEX}` |
+| DSP Core Demand Test [{#SNMPINDEX}] | `DSPCoreDemandTest.[{#SNMPINDEX}]` | `.1.3.6.1.4.1.6889.2.9.1.4.6.1.6.{#SNMPINDEX}` |
+| DSP Core Demand Test Result [{#SNMPINDEX}] | `DSPCoreDemandTestResult.[{#SNMPINDEX}]` | `.1.3.6.1.4.1.6889.2.9.1.4.6.1.7.{#SNMPINDEX}` |
+| DSP Core Status [{#SNMPINDEX}] | `DSPCoreStatus.[{#SNMPINDEX}]` | `.1.3.6.1.4.1.6889.2.9.1.4.6.1.5.{#SNMPINDEX}` |
+| DSP Core Total Channels [{#SNMPINDEX}] | `DSPCoreTotalChannels.[{#SNMPINDEX}]` | `.1.3.6.1.4.1.6889.2.9.1.4.6.1.2.{#SNMPINDEX}` |
+| {#PHYDESCR} Shutdown threshold | `FanSensorHiShutdown[{#SNMPINDEX}]` | `.1.3.6.1.4.1.6889.2.1.99.1.1.1.{#SNMPINDEX}` |
+| {#PHYDESCR} HiWarning threshold | `FanSensorHiWarning[{#SNMPINDEX}]` | `.1.3.6.1.4.1.6889.2.1.99.1.1.2.{#SNMPINDEX}` |
+| {#PHYDESCR} LoWarning threshold | `FanSensorLoWarning[{#SNMPINDEX}]` | `.1.3.6.1.4.1.6889.2.1.99.1.1.5.{#SNMPINDEX}` |
+| {#PHYDESCR} {#SENSORDISP} | `FanSensorRPM[{#SNMPINDEX}]` | `.1.3.6.1.2.1.99.1.1.1.4.{#SNMPINDEX}` |
+| {#PHYDESCR} Status | `FanSensorStatus[{#SNMPINDEX}]` | `.1.3.6.1.2.1.99.1.1.1.5.{#SNMPINDEX}` |
+| ModuleSlot V{#SLOT} FaultMask | `ModuleFaultMask[{#SNMPINDEX}]` | `.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.10.{#SNMPINDEX}` |
+| ModuleSlot V{#SLOT} Firmware version | `ModuleFWVersion[{#SNMPINDEX}]` | `.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.8.{#SNMPINDEX}` |
+| ModuleSlot V{#SLOT} SerialNumber | `ModuleSerialNumber[{#SNMPINDEX}]` | `.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.5.{#SNMPINDEX}` |
+| ModuleSlot V{#SLOT} Module Name | `ModuleSlot[{#SNMPINDEX}]` | `.1.3.6.1.4.1.81.8.1.1.5.{#SNMPINDEX}` |
+| ModuleSlot V{#SLOT} ModuleStatusMask | `ModuleStatusMask[{#SNMPINDEX}]` | `.1.3.6.1.4.1.6889.2.9.1.1.11.1.1.11.{#SNMPINDEX}` |
+| {#PHYDESCR} | `AmbientTemperatureSensorCelsius[{#SNMPINDEX}]` | `.1.3.6.1.2.1.99.1.1.1.4.{#SNMPINDEX}` |
+| {#PHYDESCR} HiShutdown Threshold | `AmbientTemperatureSensorHiShutdown[{#SNMPINDEX}]` | `.1.3.6.1.4.1.6889.2.1.99.1.1.1.{#SNMPINDEX}` |
+| {#PHYDESCR} HiWarning Threshold | `AmbientTemperatureSensorHiWarning[{#SNMPINDEX}]` | `.1.3.6.1.4.1.6889.2.1.99.1.1.2.{#SNMPINDEX}` |
+| {#PHYDESCR} LoWarning Threshold | `AmbientTemperatureSensorLoWarning[{#SNMPINDEX}]` | `.1.3.6.1.4.1.6889.2.1.99.1.1.5.{#SNMPINDEX}` |
+| {#PHYDESCR} Status | `AmbientTemperatureSensorStatus[{#SNMPINDEX}]` | `.1.3.6.1.2.1.99.1.1.1.5.{#SNMPINDEX}` |
+| VoIP Average Occupancy No{#VOIPSLOT} | `VoipAverageOccupancy_[{#VOIPSLOT}]` | `.1.3.6.1.4.1.6889.2.9.1.4.5.1.8.{#SNMPINDEX}` |
+| VoIP Channels In Use No{#VOIPSLOT} | `VoipChannelsInUse_[{#VOIPSLOT}]` | `.1.3.6.1.4.1.6889.2.9.1.4.5.1.7.{#SNMPINDEX}` |
+| VoIP Fault Mask No{#VOIPSLOT} | `VoipFaultMask_[{#VOIPSLOT}]` | `.1.3.6.1.4.1.6889.2.9.1.4.5.1.14.{#SNMPINDEX}` |
+| VoIP Hyper Activity No{#VOIPSLOT} | `VoipHyperactivity_[{#VOIPSLOT}]` | `.1.3.6.1.4.1.6889.2.9.1.4.5.1.9.{#SNMPINDEX}` |
+| VoIP Total Channels | `VoipTotalChannels_[{#VOIPSLOT}]` | `.1.3.6.1.4.1.6889.2.9.1.4.5.1.6.{#SNMPINDEX}` |
+
 ## References
 
 - [Avaya G450 Branch Gateway CLI Reference — SNMP access configuration](https://documentation.avaya.com/ja-JP/bundle/AvayaG450BranchGatewayCLIReference_10.2.x/page/SNMPAccessConfiguration.html)
