@@ -61,7 +61,10 @@ CPU使用率のモニタリング設定が有効になっている必要があ�
                             <name>High CPU utilization</name>
                             <opdata>CPU 1-minute average: {ITEM.LASTVALUE1}%</opdata>
                             <priority>HIGH</priority>
-                            <description>CPU 1-minute average utilization has remained above the configured critical threshold for 5 minutes.</description>
+                            <description>CPU 1-minute average utilization has remained above the configured critical threshold for 5 minutes.
+
+(Japanese)
+CPUの1分間平均使用率が、設定されたクリティカル閾値を5分間継続して超過した場合に発報します。</description>
                         </trigger>
                     </triggers>
                 </item>
@@ -171,7 +174,10 @@ H.248エラーコードを示します。
                     <delay>10m</delay>
                     <history>60d</history>
                     <trends>0</trends>
-                    <description>Status of the H.248 link connecting this media gateway to its active call controller.</description>
+                    <description>Status of the H.248 link connecting this media gateway to its active call controller.
+
+(Japanese)
+メディアゲートウェイとアクティブなコールコントローラー間を接続するH.248リンクの状態です。</description>
                     <valuemap>
                         <name>call controller LinkStatus</name>
                     </valuemap>
@@ -477,7 +483,10 @@ If the value is other than &quot;00 00&quot;, a specific fault may have occurred
                             <expression>min(/Avaya G450 by SNMP/MemoryUtilizationPercentUsed,10m)&gt;{$MEMORY.UTIL.WARN}</expression>
                             <name>High memory utilization</name>
                             <priority>WARNING</priority>
-                            <description>Memory utilization has remained above the configured warning threshold for 10 minutes.</description>
+                            <description>Memory utilization has remained above the configured warning threshold for 10 minutes.
+
+(Japanese)
+メモリ使用率が、設定された警告閾値を10分間継続して超過した場合に発報します。</description>
                             <opdata>usage: {ITEM.LASTVALUE1}</opdata>
                         </trigger>
                     </triggers>
@@ -641,7 +650,11 @@ DSPコアのメンテナンスコマンドを実行している時に値が変�
                                     <expression>last(/Avaya G450 by SNMP/DSPCoreAdminState.[{#SNMPINDEX}])&lt;&gt;2</expression>
                                     <name>DSP Core is not in release state [{#SNMPINDEX}]</name>
                                     <priority>INFO</priority>
-                                    <description>The DSP core is not in the release state. Expected value: release(2). Check the DSP core maintenance state.</description>
+                                    <description>The DSP core is not in the release state. Expected value: release(2). Check the DSP core maintenance state.
+
+(Japanese)
+DSPコアのAdmin Stateがrelease(2)以外になっています。
+メンテナンス状態を確認してください。</description>
                                     <manual_close>YES</manual_close>
                                     <tags>
                                         <tag>
@@ -1430,12 +1443,18 @@ VoIPエンジンの稼働状況
                 <macro>
                     <macro>{$CPU.UTIL.CRIT}</macro>
                     <value>90</value>
-                    <description>CPU utilization critical threshold (%)</description>
+                    <description>CPU utilization critical threshold (%)
+
+(Japanese)
+CPU使用率のクリティカル閾値（%）です。</description>
                 </macro>
                 <macro>
                     <macro>{$MEMORY.UTIL.WARN}</macro>
                     <value>80</value>
-                    <description>Memory utilization warning threshold (%)</description>
+                    <description>Memory utilization warning threshold (%)
+
+(Japanese)
+メモリ使用率の警告閾値（%）です。</description>
                 </macro>
             </macros>
             <valuemaps>
