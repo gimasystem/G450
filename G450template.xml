@@ -427,7 +427,7 @@ MGP障害フラグのケイジャンビット0（0オクテット目、マスク
                         <step>
                             <type>JAVASCRIPT</type>
                             <parameters>
-                                <parameter>var parts = value.trim().split(/\\s+/);
+                                <parameter>var parts = value.trim().split(/\s+/);
 var token = parts[0];
 if (typeof token === 'undefined') return 0;
 token = token.replace(/^0x/i, '');
@@ -469,7 +469,7 @@ MGP障害フラグのケイジャンビット1（0オクテット目、マスク
                         <step>
                             <type>JAVASCRIPT</type>
                             <parameters>
-                                <parameter>var parts = value.trim().split(/\\s+/);
+                                <parameter>var parts = value.trim().split(/\s+/);
 var token = parts[0];
 if (typeof token === 'undefined') return 0;
 token = token.replace(/^0x/i, '');
@@ -511,7 +511,7 @@ MGP障害フラグのケイジャンビット2（0オクテット目、マスク
                         <step>
                             <type>JAVASCRIPT</type>
                             <parameters>
-                                <parameter>var parts = value.trim().split(/\\s+/);
+                                <parameter>var parts = value.trim().split(/\s+/);
 var token = parts[0];
 if (typeof token === 'undefined') return 0;
 token = token.replace(/^0x/i, '');
@@ -553,7 +553,7 @@ MGP障害フラグのケイジャンビット3（0オクテット目、マスク
                         <step>
                             <type>JAVASCRIPT</type>
                             <parameters>
-                                <parameter>var parts = value.trim().split(/\\s+/);
+                                <parameter>var parts = value.trim().split(/\s+/);
 var token = parts[0];
 if (typeof token === 'undefined') return 0;
 token = token.replace(/^0x/i, '');
@@ -595,7 +595,7 @@ MGP障害フラグのケイジャンビット4（0オクテット目、マスク
                         <step>
                             <type>JAVASCRIPT</type>
                             <parameters>
-                                <parameter>var parts = value.trim().split(/\\s+/);
+                                <parameter>var parts = value.trim().split(/\s+/);
 var token = parts[0];
 if (typeof token === 'undefined') return 0;
 token = token.replace(/^0x/i, '');
@@ -637,7 +637,7 @@ MGP障害フラグのケイジャンビット5（0オクテット目、マスク
                         <step>
                             <type>JAVASCRIPT</type>
                             <parameters>
-                                <parameter>var parts = value.trim().split(/\\s+/);
+                                <parameter>var parts = value.trim().split(/\s+/);
 var token = parts[0];
 if (typeof token === 'undefined') return 0;
 token = token.replace(/^0x/i, '');
@@ -679,7 +679,7 @@ MGP障害フラグのケイジャンビット6（0オクテット目、マスク
                         <step>
                             <type>JAVASCRIPT</type>
                             <parameters>
-                                <parameter>var parts = value.trim().split(/\\s+/);
+                                <parameter>var parts = value.trim().split(/\s+/);
 var token = parts[0];
 if (typeof token === 'undefined') return 0;
 token = token.replace(/^0x/i, '');
@@ -721,7 +721,7 @@ MGP障害フラグのケイジャンビット7（0オクテット目、マスク
                         <step>
                             <type>JAVASCRIPT</type>
                             <parameters>
-                                <parameter>var parts = value.trim().split(/\\s+/);
+                                <parameter>var parts = value.trim().split(/\s+/);
 var token = parts[0];
 if (typeof token === 'undefined') return 0;
 token = token.replace(/^0x/i, '');
@@ -763,7 +763,7 @@ MGP障害フラグのケイジャンビット8（1オクテット目、マスク
                         <step>
                             <type>JAVASCRIPT</type>
                             <parameters>
-                                <parameter>var parts = value.trim().split(/\\s+/);
+                                <parameter>var parts = value.trim().split(/\s+/);
 var token = parts[1];
 if (typeof token === 'undefined') return 0;
 token = token.replace(/^0x/i, '');
@@ -805,7 +805,7 @@ MGP障害フラグのケイジャンビット9（1オクテット目、マスク
                         <step>
                             <type>JAVASCRIPT</type>
                             <parameters>
-                                <parameter>var parts = value.trim().split(/\\s+/);
+                                <parameter>var parts = value.trim().split(/\s+/);
 var token = parts[1];
 if (typeof token === 'undefined') return 0;
 token = token.replace(/^0x/i, '');
@@ -847,7 +847,7 @@ MGP障害フラグのケイジャンビット10（1オクテット目、マス�
                         <step>
                             <type>JAVASCRIPT</type>
                             <parameters>
-                                <parameter>var parts = value.trim().split(/\\s+/);
+                                <parameter>var parts = value.trim().split(/\s+/);
 var token = parts[1];
 if (typeof token === 'undefined') return 0;
 token = token.replace(/^0x/i, '');
@@ -889,7 +889,7 @@ MGP障害フラグのケイジャンビット11（1オクテット目、マス�
                         <step>
                             <type>JAVASCRIPT</type>
                             <parameters>
-                                <parameter>var parts = value.trim().split(/\\s+/);
+                                <parameter>var parts = value.trim().split(/\s+/);
 var token = parts[1];
 if (typeof token === 'undefined') return 0;
 token = token.replace(/^0x/i, '');
@@ -931,7 +931,7 @@ MGP障害フラグのケイジャンビット14（1オクテット目、マス�
                         <step>
                             <type>JAVASCRIPT</type>
                             <parameters>
-                                <parameter>var parts = value.trim().split(/\\s+/);
+                                <parameter>var parts = value.trim().split(/\s+/);
 var token = parts[1];
 if (typeof token === 'undefined') return 0;
 token = token.replace(/^0x/i, '');
@@ -973,7 +973,7 @@ MGP障害フラグのケイジャンビット15（1オクテット目、マス�
                         <step>
                             <type>JAVASCRIPT</type>
                             <parameters>
-                                <parameter>var parts = value.trim().split(/\\s+/);
+                                <parameter>var parts = value.trim().split(/\s+/);
 var token = parts[1];
 if (typeof token === 'undefined') return 0;
 token = token.replace(/^0x/i, '');
@@ -1015,7 +1015,7 @@ MGP障害フラグのケイジャンビット16（2オクテット目、マス�
                         <step>
                             <type>JAVASCRIPT</type>
                             <parameters>
-                                <parameter>var parts = value.trim().split(/\\s+/);
+                                <parameter>var parts = value.trim().split(/\s+/);
 var token = parts[2];
 if (typeof token === 'undefined') return 0;
 token = token.replace(/^0x/i, '');
