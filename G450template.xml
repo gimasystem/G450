@@ -405,7 +405,7 @@ If the value is other than &quot;00 00&quot;, a specific fault may have occurred
                     </tags>
                 </item>
                 <item>
-                    <uuid>a4500000000000000000000000000001</uuid>
+                    <uuid>fa0739e0ce9b4cd88c18733eed30bc78</uuid>
                     <name>MGP Memory Failure</name>
                     <type>DEPENDENT</type>
                     <key>MgpMemoryFailure</key>
@@ -447,7 +447,7 @@ return (octetValue &amp; 128) ? 1 : 0;</parameter>
                     </tags>
                 </item>
                 <item>
-                    <uuid>a4500000000000000000000000000002</uuid>
+                    <uuid>5a1d9c9ffc424c44964732438a60b561</uuid>
                     <name>MGP DHCP Request Failure</name>
                     <type>DEPENDENT</type>
                     <key>MgpDhcpRequestFailure</key>
@@ -489,7 +489,7 @@ return (octetValue &amp; 64) ? 1 : 0;</parameter>
                     </tags>
                 </item>
                 <item>
-                    <uuid>a4500000000000000000000000000003</uuid>
+                    <uuid>f4485d5860f94b14a772438986a24fc3</uuid>
                     <name>MGP Firmware Download Failure</name>
                     <type>DEPENDENT</type>
                     <key>MgpFirmwareDownloadFailure</key>
@@ -531,7 +531,7 @@ return (octetValue &amp; 32) ? 1 : 0;</parameter>
                     </tags>
                 </item>
                 <item>
-                    <uuid>a4500000000000000000000000000004</uuid>
+                    <uuid>628acf633620457889324a1aadd422d5</uuid>
                     <name>MGP Software Watchdog Alert</name>
                     <type>DEPENDENT</type>
                     <key>MgpSoftwareWatchdogAlert</key>
@@ -573,7 +573,7 @@ return (octetValue &amp; 16) ? 1 : 0;</parameter>
                     </tags>
                 </item>
                 <item>
-                    <uuid>a4500000000000000000000000000005</uuid>
+                    <uuid>46c1806cf2b34c85aa6a176ad6e21201</uuid>
                     <name>MGP ICC Missing</name>
                     <type>DEPENDENT</type>
                     <key>MgpIccMissing</key>
@@ -615,7 +615,7 @@ return (octetValue &amp; 8) ? 1 : 0;</parameter>
                     </tags>
                 </item>
                 <item>
-                    <uuid>a4500000000000000000000000000006</uuid>
+                    <uuid>f2beca16d84c4a0a8114ea8c7e96a2fe</uuid>
                     <name>MGP ICC Automatic Reset</name>
                     <type>DEPENDENT</type>
                     <key>MgpIccAutomaticReset</key>
@@ -657,7 +657,7 @@ return (octetValue &amp; 4) ? 1 : 0;</parameter>
                     </tags>
                 </item>
                 <item>
-                    <uuid>a4500000000000000000000000000007</uuid>
+                    <uuid>07a88473ef9243d48333c344c2f4bf99</uuid>
                     <name>MGP Media Gateway Busy-out</name>
                     <type>DEPENDENT</type>
                     <key>MgpMediaGatewayBusyOut</key>
@@ -699,7 +699,7 @@ return (octetValue &amp; 2) ? 1 : 0;</parameter>
                     </tags>
                 </item>
                 <item>
-                    <uuid>a4500000000000000000000000000008</uuid>
+                    <uuid>07a88473ef9243d48333c344c2e4bf99</uuid>
                     <name>MGP Configuration Upload Failure</name>
                     <type>DEPENDENT</type>
                     <key>MgpConfigurationUploadFailure</key>
@@ -741,7 +741,7 @@ return (octetValue &amp; 1) ? 1 : 0;</parameter>
                     </tags>
                 </item>
                 <item>
-                    <uuid>a4500000000000000000000000000009</uuid>
+                    <uuid>9106dcde651b49899e4375a917748bb9</uuid>
                     <name>MGP Primary Controller Not Found</name>
                     <type>DEPENDENT</type>
                     <key>MgpPrimaryControllerNotFound</key>
@@ -783,7 +783,7 @@ return (octetValue &amp; 128) ? 1 : 0;</parameter>
                     </tags>
                 </item>
                 <item>
-                    <uuid>a4500000000000000000000000000010</uuid>
+                    <uuid>8afd9520fbc442a5ab1a22c9bcd77307</uuid>
                     <name>MGP No Controller Found</name>
                     <type>DEPENDENT</type>
                     <key>MgpNoControllerFound</key>
@@ -825,7 +825,7 @@ return (octetValue &amp; 64) ? 1 : 0;</parameter>
                     </tags>
                 </item>
                 <item>
-                    <uuid>a4500000000000000000000000000011</uuid>
+                    <uuid>1decfb855230491ca2bdae132b886faa</uuid>
                     <name>MGP Registration Failure</name>
                     <type>DEPENDENT</type>
                     <key>MgpRegistrationFailure</key>
@@ -867,7 +867,7 @@ return (octetValue &amp; 32) ? 1 : 0;</parameter>
                     </tags>
                 </item>
                 <item>
-                    <uuid>a4500000000000000000000000000012</uuid>
+                    <uuid>e139efcf4d364a6b984948a84fa961df</uuid>
                     <name>MGP H.248 Control Link Down</name>
                     <type>DEPENDENT</type>
                     <key>MgpH248ControlLinkDown</key>
@@ -909,7 +909,7 @@ return (octetValue &amp; 16) ? 1 : 0;</parameter>
                     </tags>
                 </item>
                 <item>
-                    <uuid>a4500000000000000000000000000013</uuid>
+                    <uuid>c1d82b73c3244cb0803eb4c4415c073c</uuid>
                     <name>MGP Maintenance Test Failure</name>
                     <type>DEPENDENT</type>
                     <key>MgpMaintenanceTestFailure</key>
@@ -951,7 +951,7 @@ return (octetValue &amp; 2) ? 1 : 0;</parameter>
                     </tags>
                 </item>
                 <item>
-                    <uuid>a4500000000000000000000000000014</uuid>
+                    <uuid>6759077bfe204580991a33fdc9439c68</uuid>
                     <name>MGP Maintenance Test Failure Over Threshold</name>
                     <type>DEPENDENT</type>
                     <key>MgpMaintenanceTestFailureOverThreshold</key>
@@ -993,7 +993,7 @@ return (octetValue &amp; 1) ? 1 : 0;</parameter>
                     </tags>
                 </item>
                 <item>
-                    <uuid>a4500000000000000000000000000015</uuid>
+                    <uuid>db1424747f6d4816859f11a55283e9a1</uuid>
                     <name>MGP Configuration Download Failure</name>
                     <type>DEPENDENT</type>
                     <key>MgpConfigurationDownloadFailure</key>
