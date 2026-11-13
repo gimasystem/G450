@@ -53,6 +53,17 @@ CPU使用率のモニタリング設定が有効になっている必要があ�
                             <value>cpu</value>
                         </tag>
                     </tags>
+                
+                    <triggers>
+                        <trigger>
+                            <uuid>5c4e0a5c8f4b4c4a9e0d2c8f7b6a1d33</uuid>
+                            <expression>min(/Avaya G450 by SNMP/CpuAverageUtilization,5m)&gt;{$CPU.UTIL.CRIT}</expression>
+                            <name>High CPU utilization</name>
+                            <opdata>CPU 1-minute average: {ITEM.LASTVALUE1}%</opdata>
+                            <priority>HIGH</priority>
+                            <description>CPU 1-minute average utilization has remained above the configured critical threshold for 5 minutes.</description>
+                        </trigger>
+                    </triggers>
                 </item>
                 <item>
                     <uuid>2e082fcd064d4c46a8c7ee4666ecd717</uuid>
@@ -228,7 +239,7 @@ PBX接続できず、レジストしていないときはnotRegistered(2)にな�
                 </item>
                 <item>
                     <uuid>77f6d515163e448680221f756db2644a</uuid>
-                    <name>Hardware Controler Status</name>
+                    <name>Hardware Controller Status</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.6889.2.9.1.1.10.13.0</snmp_oid>
                     <key>HardwareStatusMask</key>
@@ -241,7 +252,7 @@ PBX接続できず、レジストしていないときはnotRegistered(2)にな�
 コントローラ不具合発生フラグ
 
 メディアゲートウェイのコントローラやDSP、I/Oポート、LANモジュールなどに異常が発生したときに値が変化します。
-左端のビットを0bitとしてカウントし、最右端はビットは47bitとしてカウントされます。 (ケイジャンナンバリング)
+左端のビットを0bitとしてカウントし、最右端のビットは47bitとしてカウントされます。 (ケイジャンナンバリング)
 ケイジャンナンバリングではオクテットを跨いでカウントされ、
 第1オクテット目の0ビットは (ケイジャンナンバリングで)8ビット目としてカウントされます。
 異常を検知すると、検知した項目にビット1が設定されます
@@ -261,7 +272,7 @@ PBX接続できず、レジストしていないときはnotRegistered(2)にな�
 
 
 &quot;00 00 00 00 00 00&quot;が正常値ですが、
-HardwareFaultMaskと同様、この値が以外のときは、何かのハードウェア異常が発生していると考えられるので、ハードウェアステータスを確認し、対処する必要があります。</description>
+HardwareFaultMaskと同様、この値が正常値以外のときは、何かのハードウェア異常が発生していると考えられるので、ハードウェアステータスを確認し、対処する必要があります。</description>
                     <tags>
                         <tag>
                             <tag>component</tag>
@@ -463,8 +474,10 @@ If the value is other than &quot;00 00&quot;, a specific fault may have occurred
                     <triggers>
                         <trigger>
                             <uuid>9b61881b96a74bc395c3fdb386565e80</uuid>
-                            <expression>last(/Avaya G450 by SNMP/MemoryUtilizationPercentUsed)&gt;80</expression>
+                            <expression>min(/Avaya G450 by SNMP/MemoryUtilizationPercentUsed,10m)&gt;{$MEMORY.UTIL.WARN}</expression>
                             <name>High memory utilization</name>
+                            <priority>WARNING</priority>
+                            <description>Memory utilization has remained above the configured warning threshold for 10 minutes.</description>
                             <opdata>usage: {ITEM.LASTVALUE1}</opdata>
                         </trigger>
                     </triggers>
@@ -625,10 +638,10 @@ DSPコアのメンテナンスコマンドを実行している時に値が変�
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>6c2e5bf6e1ca4fdcbc623d0c96f76750</uuid>
-                                    <expression>last(/Avaya G450 by SNMP/DSPCoreAdminState.[{#SNMPINDEX}],#2)&lt;&gt;2</expression>
-                                    <name>DSP Core Admin State has changed [{#SNMPINDEX}]</name>
+                                    <expression>last(/Avaya G450 by SNMP/DSPCoreAdminState.[{#SNMPINDEX}])&lt;&gt;2</expression>
+                                    <name>DSP Core is not in release state [{#SNMPINDEX}]</name>
                                     <priority>INFO</priority>
-                                    <description>DSP core status had changed</description>
+                                    <description>The DSP core is not in the release state. Expected value: release(2). Check the DSP core maintenance state.</description>
                                     <manual_close>YES</manual_close>
                                     <tags>
                                         <tag>
@@ -787,12 +800,12 @@ G450内部の冷却ファンを自動検出し、監視アイテムとして登�
                             <history>1d</history>
                             <trends>0</trends>
                             <units>{#SENSORDISP}</units>
-                            <description>(Japanese)
-冷却ファンの回転数が異常と判断されるしきい値です。
-しきい値に達すると、システムがファン異常と判断し停止します。</description>
-                            <valuemap>
-                                <name>EntitySensorStatus</name>
-                            </valuemap>
+                            <description>High-speed shutdown threshold reported by this fan sensor. This is a numeric threshold value, not a sensor status.
+
+(Japanese)
+冷却ファンの高回転側シャットダウン閾値です。
+機器側がファン回転数の異常を判断するために使用する数値です。
+閾値の取得項目であり、現行テンプレートでは本項目を使用したZabbixトリガーは定義していません。</description>
                             <tags>
                                 <tag>
                                     <tag>component</tag>
@@ -810,12 +823,12 @@ G450内部の冷却ファンを自動検出し、監視アイテムとして登�
                             <history>1d</history>
                             <trends>0</trends>
                             <units>{#SENSORDISP}</units>
-                            <description>(Japanese)
-冷却ファンの回転数が高くなったときに発報するしきい値です。
-この値を超えると発報します。</description>
-                            <valuemap>
-                                <name>EntitySensorStatus</name>
-                            </valuemap>
+                            <description>High-speed warning threshold reported by this fan sensor. This is a numeric threshold value, not a sensor status.
+
+(Japanese)
+冷却ファンの高回転側警告閾値です。
+機器側がファン回転数の警告条件を判断するために使用する数値です。
+閾値の取得項目であり、現行テンプレートでは本項目を使用したZabbixトリガーは定義していません。</description>
                             <tags>
                                 <tag>
                                     <tag>component</tag>
@@ -833,12 +846,12 @@ G450内部の冷却ファンを自動検出し、監視アイテムとして登�
                             <history>1d</history>
                             <trends>0</trends>
                             <units>{#SENSORDISP}</units>
-                            <description>(Japanese)
-冷却ファンの回転数が低下したときに発報するしきい値です。
-この値を下回ると発報します。</description>
-                            <valuemap>
-                                <name>EntitySensorStatus</name>
-                            </valuemap>
+                            <description>Low-speed warning threshold reported by this fan sensor. This is a numeric threshold value, not a sensor status.
+
+(Japanese)
+冷却ファンの低回転側警告閾値です。
+機器側がファン回転数の低下を判断するために使用する数値です。
+閾値の取得項目であり、現行テンプレートでは本項目を使用したZabbixトリガーは定義していません。</description>
                             <tags>
                                 <tag>
                                     <tag>component</tag>
@@ -855,11 +868,11 @@ G450内部の冷却ファンを自動検出し、監視アイテムとして登�
                             <delay>5m</delay>
                             <trends>731d</trends>
                             <units>{#SENSORDISP}</units>
-                            <description>(Japanese)
-冷却ファンの回転数(単位:RPM)</description>
-                            <valuemap>
-                                <name>EntitySensorStatus</name>
-                            </valuemap>
+                            <description>Fan speed reading reported by this cooling fan sensor. The unit is provided by the sensor discovery macro.
+
+(Japanese)
+冷却ファンの回転数です。
+単位はセンサーから取得した値（{#SENSORDISP}）に従います。</description>
                             <tags>
                                 <tag>
                                     <tag>component</tag>
@@ -1070,10 +1083,11 @@ G450内部の温度センサーを自動検出し、監視アイテムとして�
                             <delay>5m</delay>
                             <trends>731d</trends>
                             <units>°C</units>
-                            <description>Ambient Temperature sensor value
+                            <description>Temperature measured by this ambient temperature sensor. The unit is degrees Celsius (°C).
 
 (Japanese)
-最新の筐体温度</description>
+温度センサーが測定した温度です（単位：°C）。
+センサーごとの測定値を示します。</description>
                             <tags>
                                 <tag>
                                     <tag>component</tag>
@@ -1092,9 +1106,9 @@ G450内部の温度センサーを自動検出し、監視アイテムとして�
                             <trends>0</trends>
                             <units>°C</units>
                             <description>(Japanese)
-オーバーヒートのしきい値です。
-筐体温度がしきい値に達すると、システムがオーバーヒートと判断し停止します。
-冷却FANのステータスも併せて確認する必要があります。</description>
+高温シャットダウン閾値です。
+センサーの測定温度がこの値を超えると、G450が過熱状態と判断し、保護動作として停止する可能性があります。
+このアイテムは閾値の取得用です。Zabbixでは、温度測定値と本閾値を比較するトリガーを定義しています。</description>
                             <tags>
                                 <tag>
                                     <tag>component</tag>
@@ -1112,10 +1126,12 @@ G450内部の温度センサーを自動検出し、監視アイテムとして�
                             <history>1d</history>
                             <trends>0</trends>
                             <units>°C</units>
-                            <description>The system generates a warning event when the sensor readingrises and crosses this value
+                            <description>The high-temperature warning threshold configured for this sensor. The device may generate a warning event when the measured temperature exceeds this value.
 
 (Japanese)
-筐体温度がこのしきい値を超えると発報します。</description>
+高温警告閾値です。
+センサーの測定温度がこの値を超えた場合に、機器側で警告イベントが発生する閾値です。
+Zabbixでも、温度測定値と本閾値を比較するトリガーを定義しています。</description>
                             <tags>
                                 <tag>
                                     <tag>component</tag>
@@ -1135,8 +1151,9 @@ G450内部の温度センサーを自動検出し、監視アイテムとして�
                             <trends>0</trends>
                             <units>°C</units>
                             <description>(Japanese)
-筐体温度がしきい値を下回ったときに発報するしきい値です。
-この値を下回ると発報します。</description>
+低温警告閾値です。
+センサーの測定温度がこの値を下回った場合に、低温条件となる閾値です。
+現行テンプレートでは、本閾値を使用したZabbixトリガーは定義していません。</description>
                             <tags>
                                 <tag>
                                     <tag>component</tag>
@@ -1413,10 +1430,12 @@ VoIPエンジンの稼働状況
                 <macro>
                     <macro>{$CPU.UTIL.CRIT}</macro>
                     <value>90</value>
+                    <description>CPU utilization critical threshold (%)</description>
                 </macro>
                 <macro>
-                    <macro>{$FAN_CRIT_STATUS}</macro>
-                    <value>3</value>
+                    <macro>{$MEMORY.UTIL.WARN}</macro>
+                    <value>80</value>
+                    <description>Memory utilization warning threshold (%)</description>
                 </macro>
             </macros>
             <valuemaps>
