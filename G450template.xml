@@ -405,6 +405,636 @@ If the value is other than &quot;00 00&quot;, a specific fault may have occurred
                     </tags>
                 </item>
                 <item>
+                    <uuid>a4500000000000000000000000000001</uuid>
+                    <name>MGP Memory Failure</name>
+                    <type>DEPENDENT</type>
+                    <key>MgpMemoryFailure</key>
+                    <history>30d</history>
+                    <value_type>UNSIGNED</value_type>
+                    <trends>0</trends>
+                    <description>Indicates whether MGP fault flag Cajun bit 0 is set (octet 0, mask 0x80).
+1: Memory failure
+0: No corresponding fault flag.
+
+(Japanese)
+MGP障害フラグのケイジャンビット0（0オクテット目、マスク値0x80）の状態を示します。
+1：メモリ障害
+0：該当する障害フラグなし。</description>
+                    <master_item>
+                        <key>MediagatewayFaultMask</key>
+                    </master_item>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <parameters>
+                                <parameter>var parts = value.trim().split(/\\s+/);
+var token = parts[0];
+if (typeof token === 'undefined') return 0;
+token = token.replace(/^0x/i, '');
+if (!/^[0-9a-fA-F]{1,2}$/.test(token)) {
+    throw 'Unexpected MGP fault mask format: ' + value;
+}
+var octetValue = parseInt(token, 16);
+return (octetValue &amp; 128) ? 1 : 0;</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>health</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>a4500000000000000000000000000002</uuid>
+                    <name>MGP DHCP Request Failure</name>
+                    <type>DEPENDENT</type>
+                    <key>MgpDhcpRequestFailure</key>
+                    <history>30d</history>
+                    <value_type>UNSIGNED</value_type>
+                    <trends>0</trends>
+                    <description>Indicates whether MGP fault flag Cajun bit 1 is set (octet 0, mask 0x40).
+1: DHCP request failure
+0: No corresponding fault flag.
+
+(Japanese)
+MGP障害フラグのケイジャンビット1（0オクテット目、マスク値0x40）の状態を示します。
+1：DHCP要求失敗
+0：該当する障害フラグなし。</description>
+                    <master_item>
+                        <key>MediagatewayFaultMask</key>
+                    </master_item>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <parameters>
+                                <parameter>var parts = value.trim().split(/\\s+/);
+var token = parts[0];
+if (typeof token === 'undefined') return 0;
+token = token.replace(/^0x/i, '');
+if (!/^[0-9a-fA-F]{1,2}$/.test(token)) {
+    throw 'Unexpected MGP fault mask format: ' + value;
+}
+var octetValue = parseInt(token, 16);
+return (octetValue &amp; 64) ? 1 : 0;</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>health</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>a4500000000000000000000000000003</uuid>
+                    <name>MGP Firmware Download Failure</name>
+                    <type>DEPENDENT</type>
+                    <key>MgpFirmwareDownloadFailure</key>
+                    <history>30d</history>
+                    <value_type>UNSIGNED</value_type>
+                    <trends>0</trends>
+                    <description>Indicates whether MGP fault flag Cajun bit 2 is set (octet 0, mask 0x20).
+1: Firmware download failure
+0: No corresponding fault flag.
+
+(Japanese)
+MGP障害フラグのケイジャンビット2（0オクテット目、マスク値0x20）の状態を示します。
+1：ファームウェアダウンロード失敗
+0：該当する障害フラグなし。</description>
+                    <master_item>
+                        <key>MediagatewayFaultMask</key>
+                    </master_item>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <parameters>
+                                <parameter>var parts = value.trim().split(/\\s+/);
+var token = parts[0];
+if (typeof token === 'undefined') return 0;
+token = token.replace(/^0x/i, '');
+if (!/^[0-9a-fA-F]{1,2}$/.test(token)) {
+    throw 'Unexpected MGP fault mask format: ' + value;
+}
+var octetValue = parseInt(token, 16);
+return (octetValue &amp; 32) ? 1 : 0;</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>health</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>a4500000000000000000000000000004</uuid>
+                    <name>MGP Software Watchdog Alert</name>
+                    <type>DEPENDENT</type>
+                    <key>MgpSoftwareWatchdogAlert</key>
+                    <history>30d</history>
+                    <value_type>UNSIGNED</value_type>
+                    <trends>0</trends>
+                    <description>Indicates whether MGP fault flag Cajun bit 3 is set (octet 0, mask 0x10).
+1: Software watchdog alert (MG processes restarting)
+0: No corresponding fault flag.
+
+(Japanese)
+MGP障害フラグのケイジャンビット3（0オクテット目、マスク値0x10）の状態を示します。
+1：ソフトウェアウォッチドッグ警告（MGプロセス再起動）
+0：該当する障害フラグなし。</description>
+                    <master_item>
+                        <key>MediagatewayFaultMask</key>
+                    </master_item>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <parameters>
+                                <parameter>var parts = value.trim().split(/\\s+/);
+var token = parts[0];
+if (typeof token === 'undefined') return 0;
+token = token.replace(/^0x/i, '');
+if (!/^[0-9a-fA-F]{1,2}$/.test(token)) {
+    throw 'Unexpected MGP fault mask format: ' + value;
+}
+var octetValue = parseInt(token, 16);
+return (octetValue &amp; 16) ? 1 : 0;</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>health</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>a4500000000000000000000000000005</uuid>
+                    <name>MGP ICC Missing</name>
+                    <type>DEPENDENT</type>
+                    <key>MgpIccMissing</key>
+                    <history>30d</history>
+                    <value_type>UNSIGNED</value_type>
+                    <trends>0</trends>
+                    <description>Indicates whether MGP fault flag Cajun bit 4 is set (octet 0, mask 0x08).
+1: Internal Communications Controller expected but not present
+0: No corresponding fault flag.
+
+(Japanese)
+MGP障害フラグのケイジャンビット4（0オクテット目、マスク値0x08）の状態を示します。
+1：内部通信コントローラー（ICC）未検出
+0：該当する障害フラグなし。</description>
+                    <master_item>
+                        <key>MediagatewayFaultMask</key>
+                    </master_item>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <parameters>
+                                <parameter>var parts = value.trim().split(/\\s+/);
+var token = parts[0];
+if (typeof token === 'undefined') return 0;
+token = token.replace(/^0x/i, '');
+if (!/^[0-9a-fA-F]{1,2}$/.test(token)) {
+    throw 'Unexpected MGP fault mask format: ' + value;
+}
+var octetValue = parseInt(token, 16);
+return (octetValue &amp; 8) ? 1 : 0;</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>health</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>a4500000000000000000000000000006</uuid>
+                    <name>MGP ICC Automatic Reset</name>
+                    <type>DEPENDENT</type>
+                    <key>MgpIccAutomaticReset</key>
+                    <history>30d</history>
+                    <value_type>UNSIGNED</value_type>
+                    <trends>0</trends>
+                    <description>Indicates whether MGP fault flag Cajun bit 5 is set (octet 0, mask 0x04).
+1: Internal Communications Controller automatic reset
+0: No corresponding fault flag.
+
+(Japanese)
+MGP障害フラグのケイジャンビット5（0オクテット目、マスク値0x04）の状態を示します。
+1：内部通信コントローラー（ICC）自動リセット
+0：該当する障害フラグなし。</description>
+                    <master_item>
+                        <key>MediagatewayFaultMask</key>
+                    </master_item>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <parameters>
+                                <parameter>var parts = value.trim().split(/\\s+/);
+var token = parts[0];
+if (typeof token === 'undefined') return 0;
+token = token.replace(/^0x/i, '');
+if (!/^[0-9a-fA-F]{1,2}$/.test(token)) {
+    throw 'Unexpected MGP fault mask format: ' + value;
+}
+var octetValue = parseInt(token, 16);
+return (octetValue &amp; 4) ? 1 : 0;</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>health</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>a4500000000000000000000000000007</uuid>
+                    <name>MGP Media Gateway Busy-out</name>
+                    <type>DEPENDENT</type>
+                    <key>MgpMediaGatewayBusyOut</key>
+                    <history>30d</history>
+                    <value_type>UNSIGNED</value_type>
+                    <trends>0</trends>
+                    <description>Indicates whether MGP fault flag Cajun bit 6 is set (octet 0, mask 0x02).
+1: Media Gateway busy-out
+0: No corresponding fault flag.
+
+(Japanese)
+MGP障害フラグのケイジャンビット6（0オクテット目、マスク値0x02）の状態を示します。
+1：Media Gatewayのビジーアウト
+0：該当する障害フラグなし。</description>
+                    <master_item>
+                        <key>MediagatewayFaultMask</key>
+                    </master_item>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <parameters>
+                                <parameter>var parts = value.trim().split(/\\s+/);
+var token = parts[0];
+if (typeof token === 'undefined') return 0;
+token = token.replace(/^0x/i, '');
+if (!/^[0-9a-fA-F]{1,2}$/.test(token)) {
+    throw 'Unexpected MGP fault mask format: ' + value;
+}
+var octetValue = parseInt(token, 16);
+return (octetValue &amp; 2) ? 1 : 0;</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>health</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>a4500000000000000000000000000008</uuid>
+                    <name>MGP Configuration Upload Failure</name>
+                    <type>DEPENDENT</type>
+                    <key>MgpConfigurationUploadFailure</key>
+                    <history>30d</history>
+                    <value_type>UNSIGNED</value_type>
+                    <trends>0</trends>
+                    <description>Indicates whether MGP fault flag Cajun bit 7 is set (octet 0, mask 0x01).
+1: Configuration upload failure
+0: No corresponding fault flag.
+
+(Japanese)
+MGP障害フラグのケイジャンビット7（0オクテット目、マスク値0x01）の状態を示します。
+1：設定ファイルのアップロード失敗
+0：該当する障害フラグなし。</description>
+                    <master_item>
+                        <key>MediagatewayFaultMask</key>
+                    </master_item>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <parameters>
+                                <parameter>var parts = value.trim().split(/\\s+/);
+var token = parts[0];
+if (typeof token === 'undefined') return 0;
+token = token.replace(/^0x/i, '');
+if (!/^[0-9a-fA-F]{1,2}$/.test(token)) {
+    throw 'Unexpected MGP fault mask format: ' + value;
+}
+var octetValue = parseInt(token, 16);
+return (octetValue &amp; 1) ? 1 : 0;</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>health</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>a4500000000000000000000000000009</uuid>
+                    <name>MGP Primary Controller Not Found</name>
+                    <type>DEPENDENT</type>
+                    <key>MgpPrimaryControllerNotFound</key>
+                    <history>30d</history>
+                    <value_type>UNSIGNED</value_type>
+                    <trends>0</trends>
+                    <description>Indicates whether MGP fault flag Cajun bit 8 is set (octet 1, mask 0x80).
+1: Primary controller not found
+0: No corresponding fault flag.
+
+(Japanese)
+MGP障害フラグのケイジャンビット8（1オクテット目、マスク値0x80）の状態を示します。
+1：プライマリコントローラー未検出
+0：該当する障害フラグなし。</description>
+                    <master_item>
+                        <key>MediagatewayFaultMask</key>
+                    </master_item>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <parameters>
+                                <parameter>var parts = value.trim().split(/\\s+/);
+var token = parts[1];
+if (typeof token === 'undefined') return 0;
+token = token.replace(/^0x/i, '');
+if (!/^[0-9a-fA-F]{1,2}$/.test(token)) {
+    throw 'Unexpected MGP fault mask format: ' + value;
+}
+var octetValue = parseInt(token, 16);
+return (octetValue &amp; 128) ? 1 : 0;</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>health</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>a4500000000000000000000000000010</uuid>
+                    <name>MGP No Controller Found</name>
+                    <type>DEPENDENT</type>
+                    <key>MgpNoControllerFound</key>
+                    <history>30d</history>
+                    <value_type>UNSIGNED</value_type>
+                    <trends>0</trends>
+                    <description>Indicates whether MGP fault flag Cajun bit 9 is set (octet 1, mask 0x40).
+1: No controller found
+0: No corresponding fault flag.
+
+(Japanese)
+MGP障害フラグのケイジャンビット9（1オクテット目、マスク値0x40）の状態を示します。
+1：コントローラー未検出
+0：該当する障害フラグなし。</description>
+                    <master_item>
+                        <key>MediagatewayFaultMask</key>
+                    </master_item>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <parameters>
+                                <parameter>var parts = value.trim().split(/\\s+/);
+var token = parts[1];
+if (typeof token === 'undefined') return 0;
+token = token.replace(/^0x/i, '');
+if (!/^[0-9a-fA-F]{1,2}$/.test(token)) {
+    throw 'Unexpected MGP fault mask format: ' + value;
+}
+var octetValue = parseInt(token, 16);
+return (octetValue &amp; 64) ? 1 : 0;</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>health</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>a4500000000000000000000000000011</uuid>
+                    <name>MGP Registration Failure</name>
+                    <type>DEPENDENT</type>
+                    <key>MgpRegistrationFailure</key>
+                    <history>30d</history>
+                    <value_type>UNSIGNED</value_type>
+                    <trends>0</trends>
+                    <description>Indicates whether MGP fault flag Cajun bit 10 is set (octet 1, mask 0x20).
+1: Registration failure
+0: No corresponding fault flag.
+
+(Japanese)
+MGP障害フラグのケイジャンビット10（1オクテット目、マスク値0x20）の状態を示します。
+1：レジストレーション失敗
+0：該当する障害フラグなし。</description>
+                    <master_item>
+                        <key>MediagatewayFaultMask</key>
+                    </master_item>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <parameters>
+                                <parameter>var parts = value.trim().split(/\\s+/);
+var token = parts[1];
+if (typeof token === 'undefined') return 0;
+token = token.replace(/^0x/i, '');
+if (!/^[0-9a-fA-F]{1,2}$/.test(token)) {
+    throw 'Unexpected MGP fault mask format: ' + value;
+}
+var octetValue = parseInt(token, 16);
+return (octetValue &amp; 32) ? 1 : 0;</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>health</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>a4500000000000000000000000000012</uuid>
+                    <name>MGP H.248 Control Link Down</name>
+                    <type>DEPENDENT</type>
+                    <key>MgpH248ControlLinkDown</key>
+                    <history>30d</history>
+                    <value_type>UNSIGNED</value_type>
+                    <trends>0</trends>
+                    <description>Indicates whether MGP fault flag Cajun bit 11 is set (octet 1, mask 0x10).
+1: H.248 control link down
+0: No corresponding fault flag.
+
+(Japanese)
+MGP障害フラグのケイジャンビット11（1オクテット目、マスク値0x10）の状態を示します。
+1：H.248制御リンク断
+0：該当する障害フラグなし。</description>
+                    <master_item>
+                        <key>MediagatewayFaultMask</key>
+                    </master_item>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <parameters>
+                                <parameter>var parts = value.trim().split(/\\s+/);
+var token = parts[1];
+if (typeof token === 'undefined') return 0;
+token = token.replace(/^0x/i, '');
+if (!/^[0-9a-fA-F]{1,2}$/.test(token)) {
+    throw 'Unexpected MGP fault mask format: ' + value;
+}
+var octetValue = parseInt(token, 16);
+return (octetValue &amp; 16) ? 1 : 0;</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>health</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>a4500000000000000000000000000013</uuid>
+                    <name>MGP Maintenance Test Failure</name>
+                    <type>DEPENDENT</type>
+                    <key>MgpMaintenanceTestFailure</key>
+                    <history>30d</history>
+                    <value_type>UNSIGNED</value_type>
+                    <trends>0</trends>
+                    <description>Indicates whether MGP fault flag Cajun bit 14 is set (octet 1, mask 0x02).
+1: Maintenance test failure
+0: No corresponding fault flag.
+
+(Japanese)
+MGP障害フラグのケイジャンビット14（1オクテット目、マスク値0x02）の状態を示します。
+1：保守試験失敗
+0：該当する障害フラグなし。</description>
+                    <master_item>
+                        <key>MediagatewayFaultMask</key>
+                    </master_item>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <parameters>
+                                <parameter>var parts = value.trim().split(/\\s+/);
+var token = parts[1];
+if (typeof token === 'undefined') return 0;
+token = token.replace(/^0x/i, '');
+if (!/^[0-9a-fA-F]{1,2}$/.test(token)) {
+    throw 'Unexpected MGP fault mask format: ' + value;
+}
+var octetValue = parseInt(token, 16);
+return (octetValue &amp; 2) ? 1 : 0;</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>health</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>a4500000000000000000000000000014</uuid>
+                    <name>MGP Maintenance Test Failure Over Threshold</name>
+                    <type>DEPENDENT</type>
+                    <key>MgpMaintenanceTestFailureOverThreshold</key>
+                    <history>30d</history>
+                    <value_type>UNSIGNED</value_type>
+                    <trends>0</trends>
+                    <description>Indicates whether MGP fault flag Cajun bit 15 is set (octet 1, mask 0x01).
+1: Maintenance test failure over threshold
+0: No corresponding fault flag.
+
+(Japanese)
+MGP障害フラグのケイジャンビット15（1オクテット目、マスク値0x01）の状態を示します。
+1：保守試験失敗（閾値超過）
+0：該当する障害フラグなし。</description>
+                    <master_item>
+                        <key>MediagatewayFaultMask</key>
+                    </master_item>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <parameters>
+                                <parameter>var parts = value.trim().split(/\\s+/);
+var token = parts[1];
+if (typeof token === 'undefined') return 0;
+token = token.replace(/^0x/i, '');
+if (!/^[0-9a-fA-F]{1,2}$/.test(token)) {
+    throw 'Unexpected MGP fault mask format: ' + value;
+}
+var octetValue = parseInt(token, 16);
+return (octetValue &amp; 1) ? 1 : 0;</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>health</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>a4500000000000000000000000000015</uuid>
+                    <name>MGP Configuration Download Failure</name>
+                    <type>DEPENDENT</type>
+                    <key>MgpConfigurationDownloadFailure</key>
+                    <history>30d</history>
+                    <value_type>UNSIGNED</value_type>
+                    <trends>0</trends>
+                    <description>Indicates whether MGP fault flag Cajun bit 16 is set (octet 2, mask 0x80).
+1: Configuration download failure
+0: No corresponding fault flag.
+
+(Japanese)
+MGP障害フラグのケイジャンビット16（2オクテット目、マスク値0x80）の状態を示します。
+1：設定ファイルのダウンロード失敗
+0：該当する障害フラグなし。</description>
+                    <master_item>
+                        <key>MediagatewayFaultMask</key>
+                    </master_item>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <parameters>
+                                <parameter>var parts = value.trim().split(/\\s+/);
+var token = parts[2];
+if (typeof token === 'undefined') return 0;
+token = token.replace(/^0x/i, '');
+if (!/^[0-9a-fA-F]{1,2}$/.test(token)) {
+    throw 'Unexpected MGP fault mask format: ' + value;
+}
+var octetValue = parseInt(token, 16);
+return (octetValue &amp; 128) ? 1 : 0;</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>health</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
                     <uuid>39f2f47d26f3472c93b5b75c42eea22d</uuid>
                     <name>total count of memory failures</name>
                     <type>SNMP_AGENT</type>
