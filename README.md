@@ -48,10 +48,10 @@ Configure an SNMP read-only community on the gateway and restrict access to the 
 Example CLI syntax (replace the example community and access restrictions with values approved for your environment):
 
 ```text
-snmp-server community read-only <READ_ONLY_COMMUNITY>
+snmp-server community read-only <READ_ONLY_COMMUNITY> read-write <READ_WRITE_COMMUNITY>
 ```
 
-Save the configuration using the gateway's supported configuration procedure. Do not use the example community strings `public` or `private` in production.
+The command syntax requires both a read-only and a read-write community string. Configure strong, unique values; the Zabbix template only requires read-only access, so do not use or disclose the read-write community to the monitoring system. Do not use the example community strings `public` or `private` in production. This command is not available when FIPS mode is enabled.
 
 See the Avaya documentation: [SNMP access configuration](https://documentation.avaya.com/ja-JP/bundle/AvayaG450BranchGatewayCLIReference_10.2.x/page/SNMPAccessConfiguration.html).
 
